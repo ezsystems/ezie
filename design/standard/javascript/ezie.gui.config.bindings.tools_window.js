@@ -53,11 +53,6 @@ ezie.gui.config.bindings.tools_window = [
         'shortcut':     'w'
     },
     {
-        'selector':     '#ezie_saturation',
-        'click':        ezie.gui.config.bind.tool_saturation_show,
-        'shortcut':     'a'
-    },
-    {
         'selector':     '#ezie_blackandwhite',
         'click':        ezie.gui.config.bind.filter_black_and_white,
         'shortcut':     'b'

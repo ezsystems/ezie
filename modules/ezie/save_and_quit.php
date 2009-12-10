@@ -3,11 +3,14 @@
 include_once 'kernel/common/template.php';
 
 $prepare_action = new eZIEImagePreAction();
+$imageId = $prepare_action->getImageId();
+$imageVersion = $prepare_action->getImageVersion();
 
+$imageAttribute = eZContentObjectAttribute::fetch($imageId,  $imageVersion);
 // Save the class attribute
 $imageHandler = $prepare_action->getImageHandler();
-$imageHandler->initializeFromFile( $prepare_action->getAbsoluteImagePath(), false , $false );
-$imageHandler->store( $contentObjectAttribute  ); // TODO: what's $contentobjectattribute (ask jerome) ?
+$imageHandler->initializeFromFile( $prepare_action->getAbsoluteImagePath(), false , false );
+$imageHandler->store( $imageAttribute  ); // TODO: what's $contentobjectattribute (ask jerome) ?
 
 // remove view cache if needed
 eZContentCacheManager::clearObjectViewCacheIfNeeded( $prepare_action->getImageHandler()->attribute('id') );
@@ -19,12 +22,16 @@ $working_folder = eZDir::dirpath($prepare_action->getAbsoluteImagePath());
 // deletes the working folder recursively
 eZDir::recursiveDelete($working_folder);
 
-// TODO: delete the user directory if empty
+
+// new attribute
+$imageAttribute = eZContentObjectAttribute::fetch($imageId,  $imageVersion);
 
 $Result = array();
 $Result["pagelayout"] = false;
 
 $tpl = templateInit();
-$Result["content"] = $tpl->fetch("design:ezie/ajax_responses/empty_json_response.tpl");
+$tpl->setVariable('ezie_ajax_response', true);
+$tpl->setVariable('attribute', $imageAttribute);
+$Result["content"] = $tpl->fetch("design:content/datatype/edit/ezimage.tpl");
 
 ?>

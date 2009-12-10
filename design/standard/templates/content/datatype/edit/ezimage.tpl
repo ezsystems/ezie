@@ -1,6 +1,8 @@
 {**** ep image editor *****}
 {run-once}
-    {include uri='design:ezie/gui.tpl' attribute=$attribute}
+    {if is_set($ezie_ajax_response)|not()}
+        {include uri='design:ezie/gui.tpl' attribute=$attribute}
+    {/if}
 {/run-once}
 
 {default attribute_base='ContentObjectAttribute'}
@@ -9,8 +11,6 @@
 {* Current image. *}
 <div class="block">
     <label>{'Current image'|i18n( 'design/standard/content/datatype' )}:</label>
-
-
     {section show=$attribute_content.original.is_valid}
 
     <table class="list" cellspacing="0">

@@ -38,7 +38,6 @@
     $.fn.ezie = function() {
         $.log('on cree jquery.ezie');
         this.each(function() {
-            $.log('on se ballade');
             $(this).click(function() {
                 var url = $(this).attr('name');
                 
@@ -49,11 +48,13 @@
                     return;
                 }
 
+                $.log('button : ' + this)
+
                 url = url.substring(9, url.lastIndexOf(']'));
                 e = ezie.gui.eziegui.getInstance();
                 // opening ui with the url to call to prepare the image to be
                 // edited
-                e.open(url);
+                e.open(url, this);
             });
         });
         return this;

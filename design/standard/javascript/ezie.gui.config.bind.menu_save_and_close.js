@@ -20,6 +20,15 @@
 //
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
+var b;
+
+ezie.gui.config.bind.reload_saved = function(new_block) {
+    var button = ezie.gui.eziegui.getInstance().button();
+    b = button;
+    var ez_edit_block = button.closest('fieldset').parent();
+
+    ez_edit_block.replaceWith(new_block);
+}
 
 ezie.gui.config.bind.menu_save_and_close = function() {
     if (!ezie.gui.eziegui.isInstanciated()) { // TODO: also when the mainwindow is not open/visible
@@ -31,10 +40,11 @@ ezie.gui.config.bind.menu_save_and_close = function() {
     ezie.ezconnect.connect.instance().action({
         'action': 'save_and_quit',
         'success': function(response) {
-            ezie.ezconnect.success_default(response);
+            ezie.gui.config.bind.reload_saved(response);
             ezie.gui.eziegui.getInstance().close();
 
             // update the frontend
-        }
+        },
+        dataType: 'html'
     });
 }

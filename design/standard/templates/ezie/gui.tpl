@@ -13,7 +13,6 @@
                         'ezie.gui.js',
                         'ezie.gui.selection.js',
                         'ezie.gui.config.bind.filter_black_and_white.js',
-                        'ezie.gui.config.bind.filter_blur.js',
                         'ezie.gui.config.bind.filter_sepia.js',
                         'ezie.gui.config.bind.filter_grain.js',
                         'ezie.gui.config.bind.menu_edit.js',
@@ -21,7 +20,6 @@
                         'ezie.gui.config.bind.menu_help.js',
                         'ezie.gui.config.bind.menu_close_without_saving.js',
                         'ezie.gui.config.bind.menu_save_and_close.js',
-                        'ezie.gui.config.bind.tool_saturation.js',
                         'ezie.gui.config.bind.tool_flip_hor.js',
                         'ezie.gui.config.bind.tool_flip_ver.js',
                         'ezie.gui.config.bind.tool_img.js',
@@ -32,7 +30,6 @@
                         'ezie.gui.config.bind.tool_watermark.js',
                         'ezie.gui.config.bind.tool_pixelate.js',
                         'ezie.gui.config.bind.tool_rotation.js',
-                        'ezie.gui.config.bind.tool_levels.js',
                         'ezie.gui.config.bind.tool_zoom.js',
                         'ezie.gui.config.bind.tool_crop.js',
                         'ezie.gui.config.bind.opts_attach.js',
@@ -104,11 +101,6 @@
                             <div id="optsWatermark" class="opts">
 
                             </div>
-                            <div id="optsBlur" class="opts">
-                                <div class="topMenu"><h2>Blur</h2></div>
-                                <div class="slider"></div>
-                                <button type="button">Ok</button>
-                            </div>
                         </div>
 
                         <div id="optsRotation" class="opts">
@@ -133,22 +125,6 @@
                             <label for="ccw"><input id="ccw" type="radio" name="clockwise" value="no"  />Counter-clockwise</label-->
                             <input type="hidden" name="color" value="FFFFFF" />
                             <div id="colorSelector"><div style="background-color: #ffffff"></div></div>
-                            <button type="button">Ok</button>
-                        </div>
-                        <div id="optsLevels" class="opts">
-                            <div class="topMenu"><h2>Levels</h2></div>
-                            <div id="channelR" class="slider"></div>
-                            <div id="channelG" class="slider"></div>
-                            <div id="channelB" class="slider"></div>
-                            <div id="channelA" class="slider"></div>
-                            <input type="text" name="value" value="255" />
-                            <a class="button" href="#">Auto Contrast</a>
-                            <button type="button">Ok</button>
-                        </div>
-                        <div id="optsSaturation" class="opts">
-                            <div class="topMenu"><h2>Saturation</h2></div>
-                            <div class="slider"></div>
-                            <input type="text" name="saturation" value="0" />
                             <button type="button">Ok</button>
                         </div>
                         <div id="optsZoom" class="opts">
@@ -229,7 +205,6 @@
                         </div>
                         <div class="sectionContent">
                             <ul class="filters">
-                                <!--li><a href="" id="ezie_grain" title="Grain">Grain photo</a></li-->
                                 <li><a href="" id="ezie_flip_hor" title="Horizontal Flip">Horizontal Flip</a></li>
                                 <li><a href="" id="ezie_flip_ver" title="Vertical Flip">Vertical Flip</a></li>
                                 <li class="more"><a href="" id="ezie_rotation" title="Rotation">Rotation</a></li>
@@ -245,10 +220,8 @@
                         <div class="sectionContent">
                             <ul class="filters">
                                 <li><a href="" id="ezie_pixelate" title="Pixelate">Pixelate</a></li>
-                                <li class="more"><a href="" id="ezie_saturation" title="Saturation">Saturation</a></li>
                                 <li><a href="" id="ezie_blackandwhite" title="Black and White">Black and White</a></li>
                                 <li><a href="" id="ezie_sepia" title="Sepia">Sepia</a></li>
-                                <!--li><a href="" id="ezie_levels" title="Levels">Levels</a></li-->
                             </ul>
                         </div>
                     </div>

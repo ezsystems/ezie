@@ -22,9 +22,6 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
 ezie.gui.eziegui = function () {
-    // constructor gui
-    //$.log('constructing eziegui');
-
     var that = this;
     var mainWindow = null;
     var toolWindow = null;
@@ -32,6 +29,7 @@ ezie.gui.eziegui = function () {
     var jWindow = null;
     var initialized = false;
     var freeze = false;
+    var ezie_edit_button = null;
 
     var isFrozen = function () {
         return freeze;
@@ -202,7 +200,7 @@ ezie.gui.eziegui = function () {
     // opens the gui
     // prepare_url is the url to call so
     // the backend prepares the image to be edited (see module/ezie/prepare.php)
-    var open = function(prepare_url) {
+    var open = function(prepare_url, button) {
         $.log('on open \\o/');
         if (initialized == false) {
             init();
@@ -210,7 +208,9 @@ ezie.gui.eziegui = function () {
         $.log('show ton gui ?');
         showGUI();
 
-        $.log('gui a ton showed?');
+
+        ezie_edit_button = $(button);
+        $.log('kik ezie button ? ' + button);
 
         ezie.ezconnect.prepare(prepare_url);
     }
@@ -259,7 +259,9 @@ ezie.gui.eziegui = function () {
         return jWindow;
     }
 
-    //$.log('construction done');
+    var getButton = function() {
+         return ezie_edit_button;
+    }
 
     return {
         open:open,
@@ -286,7 +288,9 @@ ezie.gui.eziegui = function () {
         unfreezeGUI:unfreezeGUI,
         
         isFrozen:isFrozen,
-        freeze:setFreeze
+        freeze:setFreeze,
+
+        button:getButton
     }
 
 };

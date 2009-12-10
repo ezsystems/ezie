@@ -39,7 +39,6 @@ ezie.gui.config.bind.menu_close_without_saving = function() {
     ezie.ezconnect.connect.instance().action({
         'action': 'no_save_and_quit',
         'success': function() {
-            //ezie.ezconnect.success_default(response);
             ezie.gui.eziegui.getInstance().close();
         }
     });

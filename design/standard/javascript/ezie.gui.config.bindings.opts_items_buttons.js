@@ -23,24 +23,12 @@
 
 ezie.gui.config.bindings.opts_items_buttons = [
     {
-        'selector':     '#optsBlur button',
-        'click':        ezie.gui.config.bind.filter_blur_submit
-    },
-    {
         'selector':     '#optsRotation button',
         'click':        ezie.gui.config.bind.tool_rotation_submit
     },
     {
-        'selector':     '#optsLevels button',
-        'click':        ezie.gui.config.bind.tool_levels_submit
-    },
-    {
         'selector':     '#selectAngle .preset',
         'click':        ezie.gui.config.bind.tool_rotation_preset_value
-    },
-    {
-        'selector':     '#optsSaturation button',
-        'click':        ezie.gui.config.bind.tool_saturation_submit
     },
     {
         'selector':     '#optsZoom #zoomIn',

@@ -172,6 +172,14 @@ class eZIEImagePreAction {
     public function getImageHandler() {
         return $this->original_image;
     }
+
+    public function getImageId() {
+        return $this->image_id;
+    }
+
+    public function getImageVersion() {
+        return $this->image_version;
+    }
 }
 
 ?>
