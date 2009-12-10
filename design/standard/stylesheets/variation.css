@@ -1,0 +1,66 @@
+/* Variations */
+
+#ezieVariationsBar {
+    position:fixed;
+    bottom:0px;
+    width:94%;
+    margin:0 3%;
+    background:#e3e3e3;
+    border:1px solid #b1b1b1;
+    border-bottom:none;
+    border-top:none;
+    height:5px;
+    padding-bottom:25px;
+}
+
+#ezieVariationsTop {
+    height:25px;
+    background:#aaa;
+    background:url("../images/menuBarBg.png") top left repeat-x;
+}
+
+#ezieVariationsTop h2 {
+    text-shadow:1px 1px 0px white;
+    padding:8px 20px;
+    font-size:0.875em;
+    margin:0;
+}
+
+#ezieVariationsContent {
+    height:100%;
+}
+
+#ezieVariations {
+    list-style-type:none;
+    padding:0;
+    margin:20px;
+}
+
+#ezieVariations li {
+    height:100px;
+    width:100px;
+    border:1px solid #b1b1b1;
+    overflow:hidden;
+    float:left;
+    margin-right:20px;
+}
+
+#ezieVariations li.selected {
+    border:1px solid #EF8C00;
+}
+
+#ezpieVariations li a img {
+    width:100%;
+}
+
+#ezieVariationsBar:hover .ui-resizable-n {
+    background:#E3E3E3 url("../images/arrawOrange.gif") center center no-repeat;
+}
+
+#ezieVariationsBar .ui-resizable-n {
+    border:1px solid #b1b1b1;
+    border-bottom:1px solid white;
+    margin-left:-1px;
+    background:#E3E3E3 url("../images/arrawBlack.gif") center center no-repeat;
+    z-index:100;
+}

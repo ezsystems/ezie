@@ -1,0 +1,502 @@
+.ezieBox {
+    position:fixed !important;
+    font-family:Arial, Verdana, sans-serif;
+    font-size:16px;
+}
+
+.ezieBox a { text-decoration:none; color:black; }
+.ezieBox ul , .ezieBox li { list-style-type:none; }
+
+.ezieBox * {
+    margin:0px;
+    padding:0px;
+}
+
+.drawZone {
+    width:700px;
+    left:30%;
+    top:10%;
+}
+
+#ezieOptsWindow { position: absolute;
+                  width:184px;
+                  top:10%;
+                  left:78%;
+                  z-index:101;
+                  display:none;
+}
+#ezieOptsWindow .content {
+    height:400px;
+}
+
+.topBar {
+    height:42px;
+    cursor:move;
+    overflow:hidden;
+}
+
+.topBarContent {
+    background:url("../images/topBarBg.png") repeat-x;
+    height:42px;
+    margin:0px 19px;
+}
+
+.topBarContent h2 {
+    font-size:0.875em;
+    text-shadow:1px 1px 0px white;
+    padding:15px 6px;
+    float:left;
+}
+
+.topBar .leftCorner {
+    background:url("../images/topBarLeftCorner.png") no-repeat;
+    height:42px;
+    width:19px;
+    float:left;
+}
+
+.topBar .rightCorner {
+    background:url("../images/topBarRightCorner.png") no-repeat;
+    height:42px;
+    width:19px;
+    float:right;
+}
+
+.contentLeft {
+    background:url("../images/contentLeftShadow.png") top left repeat-y;
+    padding-left:12px;
+}
+
+.contentRight {
+    background:url("../images/contentRightShadow.png") top right repeat-y;
+    padding-right:12px;
+}
+
+#ezieToolsWindow .content {
+    background:#f2f2f2;
+    height:100%;
+    min-height:400px;
+}
+
+.content {
+    background: #CACACA;
+    position:relative;
+}
+
+#grid {
+    height:370px;
+    margin-right:161px;
+    overflow:scroll;
+    text-align: center;
+}
+
+#main_image {
+    background: url(../images/editorBg.png);
+    border: 1px solid #505050;
+    display: inline-block;
+}
+
+#main_image img {
+    width: 100%;
+    height: 100%;
+}
+
+.topMenu {
+    height:26px;
+    background:url("../images/menuBarBg.png") repeat-x;
+    padding:4px 10px 0 12px;
+    font-size:0.75em;
+}
+
+.topMenu li a {
+    display:block;
+    float:left;
+    font-weight:normal;
+    margin-right:10px;
+    padding:3px 15px 3px 5px;
+    height:15px;
+}
+
+.topMenu li:hover a {
+    background:white;
+    border:1px solid #ccc;
+    padding-top:2px;
+    padding-left:4px;
+    padding-right:14px;
+}
+
+.topMenu h2 {
+    font-size:1em;
+    padding-top:1px;
+    float:left;
+}
+
+#ezieToolsWindow .tools {
+    padding:10px 0px 3px 16px;
+}
+
+#optsRotation .tools {
+    padding:0px 10px;
+}
+
+#selectAngle {
+    width: 137px;
+    height: 137px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#circularSlider {
+    width: 137px;
+    height: 137px;
+    margin: 2px auto;
+    background: url(../images/rotationSlider.png) no-repeat;
+    text-align: center;
+}
+
+#circularSlider .ui-circular-slider {
+    background: url(../images/rotationHandle.png) no-repeat;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    margin-top: -12px;
+    z-index: 100;
+}
+
+#circularSlider input {
+    width: 50px;
+    margin-top:50px;
+    text-align: center;
+}
+
+#selectAngle .preset {
+    font-size: 0.01em;
+    color: white;
+    position: absolute;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    text-indent: -100px;
+    text-align: center;
+    z-index: 99;
+    background: url(../images/rotationPreset.png) no-repeat;
+}
+
+#selectAngle .zero {
+    left: 62px;
+    top: 5px;
+}
+
+#selectAngle .halfpi {
+    right: -3px;
+    top: 70px;
+}
+
+#selectAngle .pi {
+    bottom: -13px;
+    left: 62px;
+}
+
+#selectAngle .threehalfpi {
+    left: -3px;
+    top: 70px;
+}
+
+#optsZoom .tools {
+    padding:10px 10px 3px;
+}
+
+#optsRotation label,
+#optsRotation label input{
+    width: auto;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+#optsRotation label input{
+    margin-right: 2px;
+}
+
+.tools a:focus {
+    outline:0;
+}
+
+.tools {
+    overflow:hidden;
+}
+
+.tools li {
+    height:26px;
+    width:26px;
+    margin-right:12px;
+    margin-bottom:7px;
+    float:left;
+    background:url("../images/iconBg.png") no-repeat;
+}
+
+.tools li a {
+    display:block;
+    height:16px;
+    width:16px;
+    padding:5px;
+    background:no-repeat center center;
+}
+
+.tools li.current, .tools li.click {
+    background:url("../images/iconBgOn.png") no-repeat;
+}
+
+#ezie_select { background-image:url("../images/ico/selection.png")}
+#ezie_zoom { background-image:url("../images/ico/zoom.png") }
+#ezie_undo { background-image:url("../images/ico/arrowGreyLeft.png") }
+#ezie_redo { background-image:url("../images/ico/arrowGreyRight.png") }
+.active #ezie_redo { background-image:url("../images/ico/arrowGreenRight.png") }
+.active #ezie_undo { background-image:url("../images/ico/arrowGreenLeft.png") }
+#ezie_pot { background-image:url("../images/ico/pot.png") }
+#ezie_img { background-image:url("../images/ico/img.png") }
+#ezie_rotation_left { background-image:url("../images/ico/rotationLeft.png") }
+#ezie_rotation_right { background-image:url("../images/ico/rotationRight.png") }
+
+#ezie_alternative_crop_text {
+    display: none;
+}
+
+#zoomIn { background-image:url("../images/ico/zoomIn.png") }
+#zoomOut { background-image:url("../images/ico/zoomOut.png") }
+
+.filters {
+}
+.filters li {
+    padding:4px 10px;
+    border-bottom:1px solid #ccc;
+    font-size:0.75em;
+}
+.filters li:hover {
+    background:#DFDFDF;
+}
+
+.filters li.more {
+    background:url("../images/arrowSmall.gif") 95% 50% no-repeat;
+}
+.filters li.current {
+    background-color:#C2E0EF;
+}
+
+.filters li.more:hover {
+    background:#DFDFDF url("../images/arrowSmall.gif") 95% 50% no-repeat;
+}
+
+.section {
+    overflow:hidden;
+}
+
+.sectionHeader {
+    background:url("../images/menuBarBg.png") repeat-x;
+    height:30px;
+}
+
+.sectionHeader h4 {
+    font-size:0.8125em;
+    padding:7px 10px 0 10px !important;
+    color:black !important;
+    background:url("../images/arrowDown.png") 90% 7px no-repeat;
+    cursor:pointer;
+}
+.sectionHeader h4.closed {
+    background:url("../images/arrowUp.png") 90% 7px no-repeat;
+}
+
+.sectionHeader h4:hover {
+    background:url("../images/arrowUp.png") 90% 7px no-repeat;
+}
+.sectionHeader h4.closed:hover {
+    background:url("../images/arrowDown.png") 90% 7px no-repeat;
+}
+
+.bottomBar {
+    height:37px;
+    position:relative;
+}
+.bottomBar .leftCorner {
+    height:37px;
+    width:19px;
+    background:url("../images/bottomBarLeftBorder.png") no-repeat;
+    float:left;
+}
+.bottomBar .rightCorner {
+    height:37px;
+    width:19px;
+    background:url("../images/bottomBarRightBorder.png") no-repeat;
+    float:right;
+}
+.bottomBar .bottomBarContent {
+    margin:0 19px;
+    background:url("../images/bottomBarBg.png") repeat-x;
+    height:37px;
+}
+
+.bottomBarContent p {
+    font-size:0.75em;
+    color:#777;
+    padding:4px 0;
+}
+
+#ezieToolsWindow {
+    display: none;
+    z-index:101;
+    width:160px;
+    left:20%;
+    top:10%;
+}
+
+#ezieMainWindow {
+    display: none;
+    z-index:101;
+}
+
+#ezieMainContainer {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: url("../images/ezie_white_transparent_background.png");
+    z-index:100;
+    width: 100%;
+    height: 100%;
+}
+
+#window {
+    float:right;
+    padding-top:18px;
+}
+
+#window li {
+    float:left;
+    margin-left:3px;
+}
+
+#ezie_expand {
+    display:block;
+    background:url("../images/icoExpand.gif") center center no-repeat;
+    height:16px;
+    width:16px;
+}
+
+#ezie_close {
+    display:block;
+    background:url("../images/icoClose.gif") center center no-repeat;
+    height:16px;
+    width:16px;
+}
+
+#sideBar {
+    background:#f0f0f0;
+    border-left:1px solid #ccc;
+    height:100%;
+    position:absolute;
+    width:160px;
+    top:0px;
+    right:0px;
+}
+
+#miniature {
+    margin:10px;
+    width:138px;
+    height:auto;
+    border:1px solid #ccc;
+    text-align: center;
+}
+
+#miniature img {
+    max-width: 135px;
+    max-height: 135px;
+}
+
+.slider {
+    margin:10px;
+}
+
+.sep {
+    height:9px;
+    width:9px;
+    float:right;
+    margin-top:7px;
+}
+
+.detachBox .sep {
+    background:url("../images/icoDetach.gif");
+}
+.attachBox .sep {
+    background:url("../images/icoAttach.gif");
+}
+
+.ui-icon { width: 16px; height: 16px; background-image: url(../images/ui-icons_222222_256x240.png); }
+
+.opts input {
+    height:16px;
+    margin:5px 10px;
+    padding:4px;
+    width:129px;
+}
+
+.opts button {
+    background:url("../images/validationButton.png") no-repeat;
+    height:30px;
+    width:71px;
+    color:white;
+    margin-left:7px;
+    border:none;
+    cursor:pointer;
+    font-size:0.6875em;
+}
+.opts button:active {
+    background:url("../images/validationButtonActive.png") no-repeat;
+}
+.opts button:hover {
+    background:url("../images/validationButtonHover.png") no-repeat;
+}
+
+#loadingBar {
+    height:19px;
+    width:220px;
+    background:url("../images/loading.gif") no-repeat;
+    position:absolute;
+    right:17px;
+    top:3px;
+}
+
+#optsWatermarks ul {
+    width: 130px;
+    max-height: 110px;
+    margin: 10px auto 0 auto;
+    overflow: scroll;
+    /*
+    * Cooler for browsers supporting css3
+    */
+    overflow-x: visible;
+    overflow-y: scroll;
+}
+
+#optsWatermarksPositions {
+    width: 86px;
+    margin: 2px auto;
+}
+
+#optsWatermarksPositions button {
+    width: 21px;
+    height: 21px;
+    margin: 2px;
+    background:url("../images/positionButton.png") no-repeat;
+}
+
+#optsWatermarksPositions .selected {
+    background:url("../images/positionButton-selected.png") no-repeat;
+}
+
+#optsWatermarks ul li img {
+    width: 100%;
+    max-width: 110px;
+    max-height: 120px;
+    border: 1px solid #CACACA;
+    margin: 2px auto;
+}

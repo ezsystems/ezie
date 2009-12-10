@@ -1,0 +1,6 @@
+<?php /*
+       
+[ExtensionSettings]
+DesignExtensions[]=ezie
+
+*/ ?>
