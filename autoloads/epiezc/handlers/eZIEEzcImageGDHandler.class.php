@@ -76,7 +76,7 @@ eZIEezcImageColorSpace {
 
     ////////////////////////////////////////////////////
 
-    public function rotate($angle, $background) {
+    public function rotate($angle, $background = 'FFFFFF') {
         $angle = intval($angle);
         if ( !is_int($angle) || $angle < 0 || $angle > 360) {
             throw new ezcBaseValueException( 'height', $angle, 'int > 0 && int < 360' );

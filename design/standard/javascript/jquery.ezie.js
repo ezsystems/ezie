@@ -48,7 +48,7 @@
                     return;
                 }
 
-                $.log('button : ' + this)
+                $.log('button : ' + this);
 
                 url = url.substring(9, url.lastIndexOf(']'));
                 e = ezie.gui.eziegui.getInstance();

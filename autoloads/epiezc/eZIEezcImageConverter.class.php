@@ -23,21 +23,32 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
 class eZIEezcImageConverter {
-   private $converter;
+    private $converter;
 
     public function __construct($filter) {
-    // TODO: check for presence of IM and/or GD here
-        $settings = new ezcImageConverterSettings(array(
-            new ezcImageHandlerSettings( 'GD',   'eZIEEzcGDHandler' ),
-            //new ezcImageHandlerSettings( 'ImageMagick', 'eZIEEzcImageMagickHandler' ),
-            )
-        );
+        $ini = eZINI::instance( "image.ini" );
+
+        // we use in priority image magick
+        $hasImageMagick = $ini->variable( "ImageMagick", "IsEnabled" );
+
+        if ($hasImageMagick) {
+            $settings = new ezcImageConverterSettings(array(
+                new ezcImageHandlerSettings( 'ImageMagick', 'eZIEEzcImageMagickHandler' ))
+            );
+
+        } else {
+            $settings = new ezcImageConverterSettings(array(
+                new ezcImageHandlerSettings( 'GD', 'eZIEEzcGDHandler' ))
+            );
+        }
+
+
         $this->converter = new ezcImageConverter( $settings );
 
         $mimeType = array('image/jpeg', 'image/png');
 
         try {
-        $this->converter->createTransformation( 'transformation', $filter, $mimeType);
+            $this->converter->createTransformation( 'transformation', $filter, $mimeType);
         } catch (ezcBaseSettingValueException $e) {
             die("error applying the transformation => " . $e->getMessage());
         }
@@ -51,6 +62,10 @@ class eZIEezcImageConverter {
             var_dump($e);
             die( "Error transforming the image: lol =><{$e->getMessage()}>" );
         }
+    }
+
+    public function getConverter() {
+        return $this->converter;
     }
 }
 

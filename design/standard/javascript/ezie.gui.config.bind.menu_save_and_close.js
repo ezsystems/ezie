@@ -28,6 +28,7 @@ ezie.gui.config.bind.reload_saved = function(new_block) {
     var ez_edit_block = button.closest('fieldset').parent();
 
     ez_edit_block.replaceWith(new_block);
+    $(new_block).find(".ezieEditButton").ezie();
 }
 
 ezie.gui.config.bind.menu_save_and_close = function() {
@@ -41,6 +42,7 @@ ezie.gui.config.bind.menu_save_and_close = function() {
         'action': 'save_and_quit',
         'success': function(response) {
             ezie.gui.config.bind.reload_saved(response);
+            $('#main_image, #miniature').empty();
             ezie.gui.eziegui.getInstance().close();
 
             // update the frontend

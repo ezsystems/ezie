@@ -23,7 +23,7 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
 interface eZIEezcImageRotate {
-    public function rotate($angle, $color);
+    public function rotate($angle, $color = 'FFFFFF');
 }
 
 ?>
