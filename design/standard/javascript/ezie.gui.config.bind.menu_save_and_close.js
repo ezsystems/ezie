@@ -25,14 +25,17 @@ var b;
 ezie.gui.config.bind.reload_saved = function(new_block) {
     var button = ezie.gui.eziegui.getInstance().button();
     b = button;
-    var ez_edit_block = button.closest('fieldset').parent();
+    var ez_edit_block = button.closest('fieldset');
 
-    ez_edit_block.replaceWith(new_block);
-    $(new_block).find(".ezieEditButton").ezie();
+    ez_edit_block.find('div.block').remove();
+
+    ez_edit_block.find('legend:first').after(new_block);
+
+    ez_edit_block.find(".ezieEditButton").ezie();
 }
 
 ezie.gui.config.bind.menu_save_and_close = function() {
-    if (!ezie.gui.eziegui.isInstanciated()) { // TODO: also when the mainwindow is not open/visible
+    if (!ezie.gui.eziegui.isInstanciated()) {
         return;
     }
 
