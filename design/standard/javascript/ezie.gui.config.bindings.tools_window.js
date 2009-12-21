@@ -92,4 +92,14 @@ ezie.gui.config.bindings.tools_window = [
         'click':        ezie.gui.config.bind.tool_crop,
         'shortcut':     'ctrl+c'
     },
+    {
+        'selector':     '#ezie_contrast',
+        'click':        ezie.gui.config.bind.filter_contrast,
+        'shortcut':     null
+    },
+    {
+        'selector':     '#ezie_brightness',
+        'click':        ezie.gui.config.bind.filter_brightness,
+        'shortcut':     null
+    },
     ];

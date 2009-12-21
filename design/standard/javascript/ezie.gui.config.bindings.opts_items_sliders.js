@@ -22,5 +22,21 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
 ezie.gui.config.bindings.opts_items_sliders = [
-    ];
+{
+    'selector':     '#optsContrast .slider',
+    'change':       ezie.gui.config.bind.filter_contrast_slide,
+    'slide':        ezie.gui.config.bind.filter_contrast_slide,
+    'min':          -100,
+    'max':          100,
+    'step' :        1
+},
+{
+    'selector':     '#optsBrightness .slider',
+    'change':       ezie.gui.config.bind.filter_brightness_slide,
+    'slide':        ezie.gui.config.bind.filter_brightness_slide,
+    'min':          -255,
+    'max':          255,
+    'step' :        1
+}
+];
 

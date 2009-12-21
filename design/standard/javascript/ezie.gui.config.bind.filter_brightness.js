@@ -21,6 +21,25 @@
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
-ezie.gui.config.bind.tool_img = function() {
-    alert('kik le click img');
+ezie.gui.config.bind.filter_brightness = function() {
+    $.log('starting brightness filter');
+
+    ezie.gui.eziegui.getInstance().opts().showOpts("#optsBrightness");
+}
+
+ezie.gui.config.bind.filter_brightness_slide = function(val) {
+    $('#optsBrightness input[name="optsBrightnessValue"]:first').val(val);
+}
+
+ezie.gui.config.bind.filter_brightness_submit = function() {
+    var val = $('#optsBrightness input[name="optsBrightnessValue"]:first').val();
+
+    $.log('sending brightness action');
+
+    ezie.ezconnect.connect.instance().action({
+        'action':   'filter_brightness',
+        'data':     {
+            'value':    val
+        }
+    });
 }

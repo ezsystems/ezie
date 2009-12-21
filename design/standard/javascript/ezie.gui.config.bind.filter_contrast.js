@@ -21,7 +21,25 @@
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
-ezie.gui.config.bind.filter_grain = function() {
-    
-    alert('kik le ckucj grain');
+ezie.gui.config.bind.filter_contrast = function() {
+    $.log('starting contrast filter');
+
+    ezie.gui.eziegui.getInstance().opts().showOpts("#optsContrast");
+}
+
+ezie.gui.config.bind.filter_contrast_slide = function(val) {
+    $('#optsContrast input[name="optsContrastValue"]:first').val(val);
+}
+
+ezie.gui.config.bind.filter_contrast_submit = function() {
+    var val = $('#optsContrast input[name="optsContrastValue"]:first').val();
+
+    $.log('sending contrast action');
+
+    ezie.ezconnect.connect.instance().action({
+        'action':   'filter_contrast',
+        'data':     {
+            'value':    val
+        }
+    });
 }

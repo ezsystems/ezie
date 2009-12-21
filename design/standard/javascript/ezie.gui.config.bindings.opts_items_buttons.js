@@ -56,6 +56,14 @@ ezie.gui.config.bindings.opts_items_buttons = [
     },
     {
         'selector':     '#optsWatermarksPositions button',
-        'click':            ezie.gui.config.bind.tool_watermark_set_pos
+        'click':        ezie.gui.config.bind.tool_watermark_set_pos
+    },
+    {
+        'selector':     '#optsContrast button.submit',
+        'click':        ezie.gui.config.bind.filter_contrast_submit
+    },
+    {
+        'selector':     '#optsBrightness button.submit',
+        'click':        ezie.gui.config.bind.filter_brightness_submit
     }
 ];
