@@ -30,6 +30,7 @@ class eZIEezcImageConverter {
 
         // we use in priority image magick
         $hasImageMagick = $ini->variable( "ImageMagick", "IsEnabled" );
+        //$hasImageMagick = false;
 
         if ($hasImageMagick) {
             $settings = new ezcImageConverterSettings(array(

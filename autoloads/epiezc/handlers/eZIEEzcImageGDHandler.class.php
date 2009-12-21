@@ -222,8 +222,6 @@ eZIEezcImageColorSpace {
     // End pixelate
     ///////////////////////////////////////////////////////////
     private function blurImg($resource, $truc) {
-    //        imagefilter($resource, IMG_FILTER_GAUSSIAN_BLUR);
-    //    imagefilter($resource, IMG_FILTER_SMOOTH, 5);
         $gaussian = array(array(1.0, 2.0, 1.0),
                                     array(2.0, 4.0 * $truc, 2.0),
                                     array(1.0, 2.0, 1.0));
@@ -242,6 +240,26 @@ eZIEezcImageColorSpace {
         }
 
         $this->setActiveResource($newResource);
+    }
+
+    public function brightness($value) {
+        $resource = $this->getActiveResource();
+
+        if ($value < -255 || $value > 255) {
+            throw new ezcBaseValueException( 'value', $value, 'int >= -255 && int <= 255' );
+        }
+
+        imagefilter($resource, IMG_FILTER_BRIGHTNESS, $value);
+    }
+
+    public function contrast($value) {
+        $resource = $this->getActiveResource();
+
+        if ($value < -100 || $value > 100) {
+            throw new ezcBaseValueException( 'value', $value, 'int >= -100 && int <= 100' );
+        }
+        
+        imagefilter($resource, IMG_FILTER_CONTRAST, $value);
     }
 }
 ?>

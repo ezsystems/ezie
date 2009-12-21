@@ -13,6 +13,8 @@ $ViewList['prepare'] = array('script' => 'prepare.php',
 $ViewList['filter_bw'] = array('script' => 'filter_bw.php');
 $ViewList['filter_sepia'] = array('script' => 'filter_sepia.php');
 $ViewList['filter_blur'] = array('script' => 'filter_blur.php');
+$ViewList['filter_contrast'] = array('script' => 'filter_contrast.php');
+$ViewList['filter_brightness'] = array('script' => 'filter_brightness.php');
 
 // TOOLS
 $ViewList['tool_flip_hor'] = array('script' => 'tool_flip_hor.php');

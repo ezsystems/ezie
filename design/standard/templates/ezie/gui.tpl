@@ -14,16 +14,12 @@
                         'ezie.gui.selection.js',
                         'ezie.gui.config.bind.filter_black_and_white.js',
                         'ezie.gui.config.bind.filter_sepia.js',
-                        'ezie.gui.config.bind.filter_grain.js',
-                        'ezie.gui.config.bind.menu_edit.js',
-                        'ezie.gui.config.bind.menu_file.js',
-                        'ezie.gui.config.bind.menu_help.js',
+                        'ezie.gui.config.bind.filter_contrast.js',
+                        'ezie.gui.config.bind.filter_brightness.js',
                         'ezie.gui.config.bind.menu_close_without_saving.js',
                         'ezie.gui.config.bind.menu_save_and_close.js',
                         'ezie.gui.config.bind.tool_flip_hor.js',
                         'ezie.gui.config.bind.tool_flip_ver.js',
-                        'ezie.gui.config.bind.tool_img.js',
-                        'ezie.gui.config.bind.tool_pot.js',
                         'ezie.gui.config.bind.tool_redo.js',
                         'ezie.gui.config.bind.tool_select.js',
                         'ezie.gui.config.bind.tool_undo.js',
@@ -98,9 +94,6 @@
                                 <div class="topMenu"><h2>Grain</h2></div>
                                 <div class="slider"></div>
                             </div>
-                            <div id="optsWatermark" class="opts">
-
-                            </div>
                         </div>
 
                         <div id="optsRotation" class="opts">
@@ -164,6 +157,27 @@
                             
                             <button class="submit">Apply</button>
                         </div>
+
+                        <!-- CONTRAST -->
+                        <div id="optsContrast" class="opts">
+                            <div class="topMenu"><h2>Contrast</h2></div>
+                            <div>
+                                <div class="slider"></div>
+                                <input type="text" name="optsContrastValue" value="0" />
+                            </div>
+                            <button class="submit">Apply</button>
+                        </div>
+
+                        <!-- BRIGHTNESS -->
+                        <div id="optsBrightness" class="opts">
+                            <div class="topMenu"><h2>Brightness</h2></div>
+                            <div>
+                                <div class="slider"></div>
+                                <input type="text" name="optsBrightnessValue" value="0" />
+                            </div>
+                            <button class="submit">Apply</button>
+                        </div>
+
                     </div>
                 </div>
         </div></div>
@@ -219,6 +233,8 @@
                         </div>
                         <div class="sectionContent">
                             <ul class="filters">
+                                <li class="more"><a href="" id="ezie_contrast" title="Contrast">Contrast</a></li>
+                                <li class="more"><a href="" id="ezie_brightness" title="Brightness">Brightness</a></li>
                                 <li><a href="" id="ezie_pixelate" title="Pixelate">Pixelate</a></li>
                                 <li><a href="" id="ezie_blackandwhite" title="Black and White">Black and White</a></li>
                                 <li><a href="" id="ezie_sepia" title="Sepia">Sepia</a></li>

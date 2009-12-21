@@ -106,6 +106,47 @@ eZIEezcImagePixelate {
 
         parent::colorspace($space);
     }
+
+    public function brightness($value) {
+        if ($value < -255 || $value > 255) {
+            throw new ezcBaseValueException( 'value', $value, 'int >= -255 && int <= 255' );
+        }
+
+        // 0 = -255
+        // 50 = half as bright = -127
+        // 100 = regular brightness = 0
+        // 150 = 127
+        // 200 = twice as bright = 255
+        $value = (200 * ($value + 255)) / 512;
+
+        $this->addFilterOption(
+            $this->getActiveReference(),
+            '-modulate',
+            $value
+        );
+    }
+
+    public function contrast($value) {
+        if ($value < -100 || $value > 100) {
+            throw new ezcBaseValueException( 'value', $value, 'int >= -100 && int <= 100' );
+        }
+
+        $round_value = round($value / 10);
+
+        if ($round_value >= 0) {
+            $option = '+contrast';
+        } else {
+            $option = '-contrast';
+            $round_value = -$round_value;
+        }
+
+        for ($i = 0; $i < $round_value; ++$i) {
+            $this->addFilterOption(
+                $this->getActiveReference(),
+                $option
+            );
+        }
+    }
 }
 
 ?>
