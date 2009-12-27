@@ -145,14 +145,12 @@
                                 <button></button>
                             </div>
 
+                            {def $watermarks=ezini('eZIE', 'watermarks', 'image.ini')}
+
                             <ul>
-                                <li><img class="ezie-watermark-image" src={'watermarks/ez-logo.png'|ezimage()} alt="ez watermark" /></li>
-                                <li><img class="ezie-watermark-image" src={'watermarks/elephpant.png'|ezimage()} alt="elephpant watermark" /></li>
-                                <li><img class="ezie-watermark-image" src={'watermarks/logo_chrome.png'|ezimage()} alt="elephpant watermark" /></li>
-                                <li><img class="ezie-watermark-image" src={'watermarks/logo_opera.png'|ezimage()} alt="elephpant watermark" /></li>
-                                <li><img class="ezie-watermark-image" src={'watermarks/logo_safari.png'|ezimage()} alt="elephpant watermark" /></li>
-                                <li><img class="ezie-watermark-image" src={'watermarks/logo_firefox.png'|ezimage()} alt="elephpant watermark" /></li>
-                                <li><img class="ezie-watermark-image" src={'watermarks/logo_ie.png'|ezimage()} alt="elephpant watermark" /></li>
+                                {foreach $watermarks as $wm}
+                                    <li><img class="ezie-watermark-image" src={concat('watermarks/', $wm)|ezimage()} alt="" /></li>
+                                {/foreach}
                             </ul>
                             
                             <button class="submit">Apply</button>
