@@ -15,8 +15,18 @@
         </message>
 
         <message>
+            <source>Save and Close</source>
+            <translation>Sauvegarder et quitter</translation>
+        </message>
+
+        <message>
             <source>Quit</source>
             <translation>Quitter</translation>
+        </message>
+
+        <message>
+            <source>Close without saving</source>
+            <translation>Quitter sans sauvegarder</translation>
         </message>
 
         <message>
