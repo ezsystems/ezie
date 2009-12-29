@@ -66,7 +66,6 @@
             <div class="topBarContent">
                 <h2>eZ Image Editor</h2>
                 <ul id="window">
-                    <!--<li><a id="ezie_expand" class="smallUi" href=""></a></li>-->
                     <li><a id="ezie_close" href="#"></a></li>
                 </ul>
             </div>
@@ -74,8 +73,8 @@
         <div class="contentLeft"><div class="contentRight">
                 <div class="content" id="resize">
                     <ul class="topMenu">
-                        <li><a href="" id="ezie_save_and_close" title="Save and Close this interface">Save & Close</a></li>
-                        <li><a href="" id="ezie_quit_without_saving" title="Close this interface without saving">Quit</a></li>
+                        <li><a href="" id="ezie_save_and_close" title="{'Save and Close'|i18n('design/standard/ezie')}">{'Save & Close'|i18n('design/standard/ezie')}</a></li>
+                        <li><a href="" id="ezie_quit_without_saving" title="{'Close without saving'|i18n('design/standard/ezie')}">{'Quit'|i18n('design/standard/ezie')}</a></li>
                     </ul>
                     <div id="grid">
                         <span id="main_image">
@@ -83,17 +82,11 @@
                     </div>
                     <div id="sideBar" class="detachBox">
                         <div class="topMenu">
-                            <h2>Thumbnail</h2>
+                            <h2>{'Thumbnail'|i18n('design/standard/ezie')}</h2>
                             <a class="sep" href="#"></a>
                         </div>
                         <div id="miniature">
 
-                        </div>
-                        <div id="toolsOptions">
-                            <div id="optsGrain" class="opts">
-                                <div class="topMenu"><h2>Grain</h2></div>
-                                <div class="slider"></div>
-                            </div>
                         </div>
 
                         <div id="optsRotation" class="opts">
@@ -110,28 +103,22 @@
                                 </p>
                              </div>
 
-                            <!--ul class="tools">
-                                <li><a id="ezie_rotation_left" class="vtip" title="90° counter-clockwise rotation" href="#"></a></li>
-                                <li><a id="ezie_rotation_right" class="vtip" title="90° clockwise rotation" href="#"></a></li>
-                            </ul-->
-                            <!--label for="cw"><input id="cw" type="radio" name="clockwise"  value="yes" checked="checked" />Clockwise</label>
-                            <label for="ccw"><input id="ccw" type="radio" name="clockwise" value="no"  />Counter-clockwise</label-->
                             <input type="hidden" name="color" value="FFFFFF" />
                             <div id="colorSelector"><div style="background-color: #ffffff"></div></div>
-                            <button type="button">Ok</button>
+                            <button type="button">{'Ok'|i18n('design/standard/ezie')}</button>
                         </div>
                         <div id="optsZoom" class="opts">
-                            <div class="topMenu"><h2>Zoom</h2></div>
+                            <div class="topMenu"><h2>{'Zoom'|i18n('design/standard/ezie')}</h2></div>
                             <ul class="tools">
                                 <li class="current"><a id="zoomIn" href="#"></a></li>
                                 <li><a id="zoomOut" href="#"></a></li>
                             </ul>
-                            <button id="actualPixels">Actual pixels</button>
-                            <button id="fitOnScreen">Fit on screen</button>
+                            <button id="actualPixels">{'Actual pixels'|i18n('design/standard/ezie')}</button>
+                            <button id="fitOnScreen">{'Fit on screen'|i18n('design/standard/ezie')}</button>
                         </div>
 
                         <div id="optsWatermarks" class="opts">
-                            <div class="topMenu"><h2>Watermarks</h2></div>
+                            <div class="topMenu"><h2>{'Watermarks'|i18n('design/standard/ezie')}</h2></div>
 
                             <div id="optsWatermarksPositions">
                                 <button></button>
@@ -153,27 +140,27 @@
                                 {/foreach}
                             </ul>
                             
-                            <button class="submit">Apply</button>
+                            <button class="submit">{'Apply'|i18n('design/standard/ezie')}</button>
                         </div>
 
                         <!-- CONTRAST -->
                         <div id="optsContrast" class="opts">
-                            <div class="topMenu"><h2>Contrast</h2></div>
+                            <div class="topMenu"><h2>{'Contrast'|i18n('design/standard/ezie')}</h2></div>
                             <div>
                                 <div class="slider"></div>
                                 <input type="text" name="optsContrastValue" value="0" />
                             </div>
-                            <button class="submit">Apply</button>
+                            <button class="submit">{'Apply'|i18n('design/standard/ezie')}</button>
                         </div>
 
                         <!-- BRIGHTNESS -->
                         <div id="optsBrightness" class="opts">
-                            <div class="topMenu"><h2>Brightness</h2></div>
+                            <div class="topMenu"><h2>{'Brightness'|i18n('design/standard/ezie')}</h2></div>
                             <div>
                                 <div class="slider"></div>
                                 <input type="text" name="optsBrightnessValue" value="0" />
                             </div>
-                            <button class="submit">Apply</button>
+                            <button class="submit">{'Apply'|i18n('design/standard/ezie')}</button>
                         </div>
 
                     </div>
@@ -182,7 +169,7 @@
         <div class="bottomBar">
             <div class="leftCorner"></div><div class="rightCorner"></div>
             <div class="bottomBarContent">
-                <p>Status, informations...</p>
+                <p></p>
                 <div id="loadingBar"></div>
             </div>
         </div>
@@ -193,49 +180,49 @@
         <div class="topBar">
             <div class="leftCorner"></div><div class="rightCorner"></div>
             <div class="topBarContent">
-                <h2>Actions</h2>
+                <h2>{'Actions'|i18n('design/standard/ezie')}</h2>
             </div>
         </div>
         <div class="contentLeft"><div class="contentRight">
                 <div class="content">
                     <div class="section">
                         <div class="sectionHeader">
-                            <h4>Tools</h4>
+                            <h4>{'Tools'|i18n('design/standard/ezie')}</h4>
                         </div>
                         <div class="sectionContent">
                             <ul class="tools">
-                                <li><a class="vtip" id="ezie_select" href="" title="Select"></a></li>
-                                <li class="less"><a class="vtip" id="ezie_undo" href="" title="Undo"></a></li>
-                                <li class="less"><a class="vtip" id="ezie_redo" href="" title="Redo"></a></li>
-                                <li class="current"><a class="vtip" id="ezie_zoom" href="" title="Zoom"></a></li>
+                                <li><a class="vtip" id="ezie_select" href="" title="{'Select'|i18n('design/standard/ezie')}"></a></li>
+                                <li class="less"><a class="vtip" id="ezie_undo" href="" title="{'Undo'|i18n('design/standard/ezie')}"></a></li>
+                                <li class="less"><a class="vtip" id="ezie_redo" href="" title="{'Redo'|i18n('design/standard/ezie')}"></a></li>
+                                <li class="current"><a class="vtip" id="ezie_zoom" href="" title="{'Zoom'|i18n('design/standard/ezie')}"></a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="section">
                         <div class="sectionHeader">
-                            <h4>Image</h4>
+                            <h4>{'Image'|i18n('design/standard/ezie')}</h4>
                         </div>
                         <div class="sectionContent">
                             <ul class="filters">
-                                <li><a href="" id="ezie_flip_hor" title="Horizontal Flip">Horizontal Flip</a></li>
-                                <li><a href="" id="ezie_flip_ver" title="Vertical Flip">Vertical Flip</a></li>
-                                <li class="more"><a href="" id="ezie_rotation" title="Rotation">Rotation</a></li>
+                                <li><a href="" id="ezie_flip_hor" title={'Horizontal Flip'|i18n('design/standard/ezie')}">{'Horizontal Flip'|i18n('design/standard/ezie')}</a></li>
+                                <li><a href="" id="ezie_flip_ver" title="{'Vertical Flip'|i18n('design/standard/ezie')}">{'Vertical Flip'|i18n('design/standard/ezie')}</a></li>
+                                <li class="more"><a href="" id="ezie_rotation" title="{'Rotation'|i18n('design/standard/ezie')}">{'Rotation'|i18n('design/standard/ezie')}</a></li>
                                 <li><a href="" id="ezie_crop" title="Crop">Crop</a><span id="ezie_alternative_crop_text">Perform Crop</span></li>
-                                <li class="more"><a href="" id="ezie_watermark" title="Watermark">Watermark</a></li>
+                                <li class="more"><a href="" id="ezie_watermark" title="{'Watermark'|i18n('design/standard/ezie')}">{'Watermark'|i18n('design/standard/ezie')}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="section">
                         <div class="sectionHeader">
-                            <h4>Effects</h4>
+                            <h4>{'Effects'|i18n('design/standard/ezie')}</h4>
                         </div>
                         <div class="sectionContent">
                             <ul class="filters">
-                                <li class="more"><a href="" id="ezie_contrast" title="Contrast">Contrast</a></li>
-                                <li class="more"><a href="" id="ezie_brightness" title="Brightness">Brightness</a></li>
-                                <li><a href="" id="ezie_pixelate" title="Pixelate">Pixelate</a></li>
-                                <li><a href="" id="ezie_blackandwhite" title="Black and White">Black and White</a></li>
-                                <li><a href="" id="ezie_sepia" title="Sepia">Sepia</a></li>
+                                <li class="more"><a href="" id="ezie_contrast" title="{'Contrast'|i18n('design/standard/ezie')}">{'Contrast'|i18n('design/standard/ezie')}</a></li>
+                                <li class="more"><a href="" id="ezie_brightness" title="{'Brightness'|i18n('design/standard/ezie')}">{'Brightness'|i18n('design/standard/ezie')}</a></li>
+                                <li><a href="" id="ezie_pixelate" title="{'Pixelate'|i18n('design/standard/ezie')}">{'Pixelate'|i18n('design/standard/ezie')}</a></li>
+                                <li><a href="" id="ezie_blackandwhite" title="{'Black and White'|i18n('design/standard/ezie')}">{'Black and White'|i18n('design/standard/ezie')}</a></li>
+                                <li><a href="" id="ezie_sepia" title="{'Sepia'|i18n('design/standard/ezie')}">{'Sepia'|i18n('design/standard/ezie')}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -244,7 +231,7 @@
         <div class="bottomBar">
             <div class="leftCorner"></div><div class="rightCorner"></div>
             <div class="bottomBarContent">
-                <p>Status</p>
+                <p></p>
             </div>
         </div>
     </div>
@@ -253,18 +240,17 @@
         <div class="topBar">
             <div class="leftCorner"></div><div class="rightCorner"></div>
             <div class="topBarContent">
-                <h2>Options</h2>
+                <h2>{'Options'|i18n('design/standard/ezie')}</h2>
             </div>
         </div>
         <div class="contentLeft"><div class="contentRight">
                 <div class="content">
-
                 </div>
         </div></div>
         <div class="bottomBar">
             <div class="leftCorner"></div><div class="rightCorner"></div>
             <div class="bottomBarContent">
-                <p>Status</p>
+                <p></p>
             </div>
         </div>
     </div>

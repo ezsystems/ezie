@@ -33,7 +33,7 @@
            class="button ezieEdit ezieEditButton"
            name="ezieEdit[{concat("ezie/prepare/", $attribute.id, "/", $attribute.version)|ezurl(no)}]"
            id="ezieEdit_{$attribute.id}_{$attribute.version}_{$attribute.contentobject_id}"
-           value="{'Edit'|i18n('extension/imageeditor')}"
+           value="{'Edit'|i18n( 'design/standard/ezie' )}"
            {if $attribute_content.original.is_valid|not} disabled="disabled"{/if}
            />
 

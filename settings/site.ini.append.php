@@ -1,7 +1,7 @@
 <?php /*
 
 [RegionalSettings]
-TranslationExtensions[]=imageeditor
+TranslationExtensions[]=ezie
 
 [TemplateSettings]
 ExtensionAutoloadPath[]=ezie
