@@ -69,6 +69,14 @@ ezie.gui.opts_window = function() {
     var setBinds = function() {
         setBindsForSliders();
         setBindsForButtons();
+
+        $('#optsSelect input[type="text"]').keyup(function(e) {
+            if ($('#optsSelect input[type="radio"]:checked:first').val() != 'free') {
+                ezie.gui.config.bind.tool_select_method();
+            }
+            return true;
+        });
+
     };
 
     var init = function() {

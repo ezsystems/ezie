@@ -38,12 +38,12 @@ ezie.gui.config.bind.tool_place_watermark = function(watermark) {
 
     $.log('on va se faire un ptit wm de ratio : ' + img.width() + ' / ' + img.height() + " = " + ratio);
 
-    ezie.gui.config.bind.tool_select(null, {
+    ezie.gui.config.bind.set_tool_select(null, {
         bgColor:     'transparent',
         aspectRatio: ratio,
         bgOpacity: 1,
         setSelect: [10, 10, img.width(), img.height()]
-    });
+    }, true);
 
     // this is a trick/hack and it would be nice to find another
     // way of doing it.

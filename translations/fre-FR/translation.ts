@@ -121,6 +121,16 @@
         </message>
 
         <message>
+            <source>Crop</source>
+            <translation>Rogner</translation>
+        </message>
+
+        <message>
+            <source>Perform Crop</source>
+            <translation>Appliquer rognage</translation>
+        </message>
+
+        <message>
             <source>Rotation</source>
             <translation>Rotation</translation>
         </message>

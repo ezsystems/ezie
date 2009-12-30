@@ -107,6 +107,27 @@
                             <div id="colorSelector"><div style="background-color: #ffffff"></div></div>
                             <button type="button">{'Ok'|i18n('design/standard/ezie')}</button>
                         </div>
+
+                        <div id="optsSelect" class="opts">
+                            <div class="topMenu"><h2>{'Select'|i18n('design/standard/ezie')}</h2></div>
+
+                            <fieldset>
+                                <legend>Dimensions</legend>
+                                <input type="text" name="selection_width" value="100" /> x
+                                <input type="text" name="selection_height" value="100" />
+                            </fieldset>
+
+                            <ul class="box-content">
+                                <li><input type="radio" name="selection_type" value="ratio" id="selection_type_ratio" /><label for="selection_type_ratio">{'Keep ratio'|i18n('design/standard/ezie')}</label></li>
+                                <li><input type="radio" name="selection_type" value="free" id="selection_type_free" checked="checked" /><label for="selection_type_free">{'Free'|i18n('design/standard/ezie')}</label></li>
+                            </ul>
+
+                            <div id="optsCrop" class="opts">
+                                <button class="submit">Crop</button>
+                            </div>
+                        </div>
+
+
                         <div id="optsZoom" class="opts">
                             <div class="topMenu"><h2>{'Zoom'|i18n('design/standard/ezie')}</h2></div>
                             <ul class="tools">
@@ -207,7 +228,7 @@
                                 <li><a href="" id="ezie_flip_hor" title={'Horizontal Flip'|i18n('design/standard/ezie')}">{'Horizontal Flip'|i18n('design/standard/ezie')}</a></li>
                                 <li><a href="" id="ezie_flip_ver" title="{'Vertical Flip'|i18n('design/standard/ezie')}">{'Vertical Flip'|i18n('design/standard/ezie')}</a></li>
                                 <li class="more"><a href="" id="ezie_rotation" title="{'Rotation'|i18n('design/standard/ezie')}">{'Rotation'|i18n('design/standard/ezie')}</a></li>
-                                <li><a href="" id="ezie_crop" title="Crop">Crop</a><span id="ezie_alternative_crop_text">Perform Crop</span></li>
+                                <li class="more"><a href="" id="ezie_crop" title="Crop">{'Crop'|i18n('design/standard/ezie')}</a><span id="ezie_alternative_crop_text">{'Perform Crop'|i18n('design/standard/ezie')}</span></li>
                                 <li class="more"><a href="" id="ezie_watermark" title="{'Watermark'|i18n('design/standard/ezie')}">{'Watermark'|i18n('design/standard/ezie')}</a></li>
                             </ul>
                         </div>

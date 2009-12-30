@@ -56,31 +56,14 @@ ezie.gui.selection_impl = function() {
             activate();
         }
 
-        //$.log('[selection] (x, y) : (' + selection.x + ',  ' + selection.y + ') - (w, h)' + '(' + selection.w + ', ' + selection.h + ')');
+    //$.log('[selection] (x, y) : (' + selection.x + ',  ' + selection.y + ') - (w, h)' + '(' + selection.w + ', ' + selection.h + ')');
     };
 
-    var switchCropTexts = function() {
-        var crop = $("#ezie_crop");
-        var alternative = $("#ezie_alternative_crop_text");
-        var tmp = crop.html();
-
-        $.log('switching crop texts c = "'+tmp+'" & a = "'+alternative.html() + '"');
-
-        crop.html(alternative.html());
-        alternative.html(tmp);
-    }
-
     var deactivate = function () {
-        if (active) {
-            switchCropTexts();
-        }
         active = false;
     }
 
     var activate = function() {
-        if (!active) {
-            switchCropTexts();
-        }
         active = true;
     }
 

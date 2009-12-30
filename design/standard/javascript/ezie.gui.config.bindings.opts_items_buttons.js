@@ -22,48 +22,56 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
 ezie.gui.config.bindings.opts_items_buttons = [
-    {
-        'selector':     '#optsRotation button',
-        'click':        ezie.gui.config.bind.tool_rotation_submit
-    },
-    {
-        'selector':     '#selectAngle .preset',
-        'click':        ezie.gui.config.bind.tool_rotation_preset_value
-    },
-    {
-        'selector':     '#optsZoom #zoomIn',
-        'click':        ezie.gui.config.tool_zoom_in
-    },
-    {
-        'selector':  '#optsZoom #zoomOut',
-        'click':        ezie.gui.config.tool_zoom_out
-    },
-    {
-        'selector':     '#optsZoom #fitOnScreen',
-        'click':        ezie.gui.config.tool_zoom_fit_on_screen
-    },
-    {
-        'selector':     '#optsZoom #actualPixels',
-        'click':        ezie.gui.config.tool_zoom_actual_pixels
-    },
-    {
-        'selector':    '#optsWatermarks .ezie-watermark-image',
-        'click':           ezie.gui.config.bind.tool_place_watermark
-    },
-    {
-        'selector':     '#optsWatermarks button.submit',
-        'click':           ezie.gui.config.bind.tool_watermark_submit
-    },
-    {
-        'selector':     '#optsWatermarksPositions button',
-        'click':        ezie.gui.config.bind.tool_watermark_set_pos
-    },
-    {
-        'selector':     '#optsContrast button.submit',
-        'click':        ezie.gui.config.bind.filter_contrast_submit
-    },
-    {
-        'selector':     '#optsBrightness button.submit',
-        'click':        ezie.gui.config.bind.filter_brightness_submit
-    }
+{
+    'selector':     '#optsRotation button',
+    'click':        ezie.gui.config.bind.tool_rotation_submit
+},
+{
+    'selector':     '#selectAngle .preset',
+    'click':        ezie.gui.config.bind.tool_rotation_preset_value
+},
+{
+    'selector':     '#optsZoom #zoomIn',
+    'click':        ezie.gui.config.tool_zoom_in
+},
+{
+    'selector':  '#optsZoom #zoomOut',
+    'click':        ezie.gui.config.tool_zoom_out
+},
+{
+    'selector':     '#optsZoom #fitOnScreen',
+    'click':        ezie.gui.config.tool_zoom_fit_on_screen
+},
+{
+    'selector':     '#optsZoom #actualPixels',
+    'click':        ezie.gui.config.tool_zoom_actual_pixels
+},
+{
+    'selector':    '#optsWatermarks .ezie-watermark-image',
+    'click':           ezie.gui.config.bind.tool_place_watermark
+},
+{
+    'selector':     '#optsWatermarks button.submit',
+    'click':           ezie.gui.config.bind.tool_watermark_submit
+},
+{
+    'selector':     '#optsWatermarksPositions button',
+    'click':        ezie.gui.config.bind.tool_watermark_set_pos
+},
+{
+    'selector':     '#optsContrast button.submit',
+    'click':        ezie.gui.config.bind.filter_contrast_submit
+},
+{
+    'selector':     '#optsBrightness button.submit',
+    'click':        ezie.gui.config.bind.filter_brightness_submit
+},
+{
+    'selector':     '#optsSelect li',
+    'click':        ezie.gui.config.bind.tool_select_method
+},
+{
+    'selector':     '#optsCrop button.submit',
+    'click':        ezie.gui.config.bind.tool_crop_perform
+}
 ];

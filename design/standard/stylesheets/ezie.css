@@ -439,6 +439,11 @@
     width:129px;
 }
 
+.opts input[type="radio"] {
+    height: auto;
+    margin:5px 10px;
+    width: auto;
+}
 .opts button {
     background:url("../images/validationButton.png") no-repeat;
     height:30px;
@@ -499,4 +504,28 @@
     max-height: 120px;
     border: 1px solid #CACACA;
     margin: 2px auto;
+}
+
+#optsSelect fieldset {
+    margin: 5px;
+}
+
+#optsSelect fieldset legend {
+    font-size: 0.7em;
+    margin-left: 5px;
+}
+
+#optsSelect input[type="text"] {
+    width: 50px;
+    text-align: center;
+    margin: 5px;
+    padding: 0;
+}
+
+#optsSelect li {
+    font-size: 0.9em;
+}
+
+#optsSelect label {
+    display: inline;
 }

@@ -22,20 +22,26 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
 ezie.gui.config.bind.tool_crop = function () {
+    ezie.gui.eziegui.getInstance().opts().showOpts("#optsSelect");
 
-    if (!ezie.gui.selection().isSelectionActive()) {
-        ezie.gui.config.bind.tool_select({
-            x:0,
-            y:0,
-            w:100,
-            h:100
-        });
-    } else {
+    try {
+        ezie.gui.config.bind.tool_select_method();
+    } catch(e) {}
+//    ezie.gui.config.bind.set_tool_select({
+//        x:0,
+//        y:0,
+//        w:100,
+//        h:100
+//    });
+//    
+    $('#optsCrop').fadeIn('fast');
+}
+
+ezie.gui.config.bind.tool_crop_perform = function() {
+    if (ezie.gui.selection().isSelectionActive()) {
         ezie.ezconnect.connect.instance().action({
             'action': 'tool_crop'
         });
         ezie.gui.config.bind.tool_select_remove();
-
     }
-
 }

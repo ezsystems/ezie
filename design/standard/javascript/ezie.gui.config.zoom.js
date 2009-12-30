@@ -91,7 +91,7 @@ ezie.gui.config.zoom_impl = function() {
 
         if (selection != null) {
             $.log('2| sel opts :' + selectionOptions);
-            ezie.gui.config.bind.tool_select(selection, selectionOptions);
+            ezie.gui.config.bind.set_tool_select(selection, selectionOptions, ezie.gui.config.bind.select_last_was_wm);
             if (selectionData) {
                 $('.jcrop-tracker:first').html(selectionData);
             }
