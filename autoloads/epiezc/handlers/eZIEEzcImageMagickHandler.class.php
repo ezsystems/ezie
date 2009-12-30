@@ -32,8 +32,8 @@ eZIEezcImagePixelate {
             return;
 
         $this->addFilterOption($this->getActiveReference(),
-            '-region',
-            $region["w"] . "x" . $region["h"].'+' . $region['x'] . '+' . $region['y']
+                '-region',
+                $region["w"] . "x" . $region["h"].'+' . $region['x'] . '+' . $region['y']
         );
     }
 
@@ -47,15 +47,15 @@ eZIEezcImagePixelate {
         $background = '#' . $background;
 
         $this->addFilterOption(
-            $this->getActiveReference(),
-            '-background',
-            $background
+                $this->getActiveReference(),
+                '-background',
+                $background
         );
 
         $this->addFilterOption(
-            $this->getActiveReference(),
-            '-rotate',
-            $angle
+                $this->getActiveReference(),
+                '-rotate',
+                $angle
         );
     }
 
@@ -67,25 +67,49 @@ eZIEezcImagePixelate {
         $this->addFilterOption($this->getActiveReference(), '-flip');
     }
 
-    public function pixelate1() {
-        $this->addFilterOption($this->getActiveRegerence(),
-            '-resize',
-            '10%'
-        );
-        $this->addFilterOption($this->getActiveRegerence(),
-            '-resize',
-            '1000%'
-        );
-    }
+    public function pixelate($width, $height, $region = null) {
+        $size = ceil(max($width, $height) / 42);
 
-    public function pixelate($region = null) {
+        if ($region === null) {
+            $region = array(
+                    'x' => 0,
+                    'y' => 0,
+                    'w' => $width,
+                    'h' => $height
+            );
+        }
+
+        $tmpRegion = array(
+                'x' => $region['x'],
+                'y' => $region['y'],
+                'w' => $size,
+                'h' => $size
+        );
+
+        $activeReference = $this->getActiveReference();
+        $blur = $size.'x'.$size;
+
+        for ($i = $region['x']; $i < $region['w']; $i += $size) {
+            $tmpRegion['x'] = $i;
+
+            for ($j = $region['y']; $j < $region['h']; $j += $size) {
+                $tmpRegion['y'] = $j;
+
+                $this->setRegion($tmpRegion);
+                
+                $this->addFilterOption($activeReference,
+                        '-blur',
+                        $blur
+                );
+            }
+        }
     }
 
     /*
      * Reimplementation of the very same function of the parent class
      * but withou the restriction on the width.
      * See related issue: http://issues.ez.no/IssueView.php?Id=15976&
-     */
+    */
     public function scalePercent( $width, $height ) {
         if ( !is_int( $height ) || $height < 1 ) {
             throw new ezcBaseValueException( 'height', $height, 'int > 0' );
@@ -95,9 +119,9 @@ eZIEezcImagePixelate {
             throw new ezcBaseValueException( 'width', $width, 'int > 0' );
         }
         $this->addFilterOption(
-            $this->getActiveReference(),
-            '-resize',
-            $width.'%x'.$height.'%'
+                $this->getActiveReference(),
+                '-resize',
+                $width.'%x'.$height.'%'
         );
     }
 
@@ -120,9 +144,9 @@ eZIEezcImagePixelate {
         $value = (200 * ($value + 255)) / 512;
 
         $this->addFilterOption(
-            $this->getActiveReference(),
-            '-modulate',
-            $value
+                $this->getActiveReference(),
+                '-modulate',
+                $value
         );
     }
 
@@ -142,8 +166,8 @@ eZIEezcImagePixelate {
 
         for ($i = 0; $i < $round_value; ++$i) {
             $this->addFilterOption(
-                $this->getActiveReference(),
-                $option
+                    $this->getActiveReference(),
+                    $option
             );
         }
     }

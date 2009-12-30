@@ -169,8 +169,10 @@ eZIEezcImageColorSpace {
         $w = imagesx($resource);
         $h =  imagesy($resource);
 
-        $tmp_w = $w / 10;
-        $tmp_h = $h / 10;
+        $size = ceil(max($w, $h)) / 42;
+
+        $tmp_w = $w / $size;
+        $tmp_h = $h / $size;
 
         $tmpResource = imagecreatetruecolor($tmp_w, $tmp_h);
 
@@ -207,7 +209,7 @@ eZIEezcImageColorSpace {
         return $newResource;
     }
 
-    public function pixelate($region = null) {
+    public function pixelate($width, $height, $region = null) {
         $resource = $this->getActiveResource();
 
         if ($region) {

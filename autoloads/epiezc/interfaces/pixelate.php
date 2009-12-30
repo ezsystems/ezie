@@ -23,7 +23,7 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
 interface eZIEezcImagePixelate {
-    public function pixelate($region = null);
+    public function pixelate($width, $height, $region = null);
     //public function pixelate2();
 }
 
