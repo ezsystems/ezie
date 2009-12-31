@@ -87,22 +87,29 @@ eZIEezcImagePixelate {
         );
 
         $activeReference = $this->getActiveReference();
-        $blur = $size.'x'.$size;
+        $blur = ($size * 3).'x'.($size * 4);
 
-        for ($i = $region['x']; $i < $region['w']; $i += $size) {
+        $i = $region['x'];
+
+        $i_max = $region['w'] + $region['x'];
+        $j_max = $region['h'] + $region['y'];
+
+        for (; $i < $i_max; $i += $size) {
             $tmpRegion['x'] = $i;
 
-            for ($j = $region['y']; $j < $region['h']; $j += $size) {
+            $j = $region['y'];
+            for (; $j < $j_max; $j += $size) {
                 $tmpRegion['y'] = $j;
 
                 $this->setRegion($tmpRegion);
-                
+
                 $this->addFilterOption($activeReference,
                         '-blur',
                         $blur
                 );
             }
         }
+
     }
 
     /*

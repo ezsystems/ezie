@@ -30,12 +30,18 @@ eZIEezcImageColorSpace {
 
 // Apply a the filter on the specified region and return the new resource
     private function region($filter, $resource, $region, $colorspace = null) {
+
         $dest = imagecreatetruecolor($region["w"], $region["h"]);
         if (!imagecopy($dest, $resource, 0, 0, $region["x"], $region["y"], $region["w"], $region["h"])) {
             throw new ezcImageFilterFailedException( "1/ " . $function . ' applied on region ' . $region["x"] . "x" . $region["y"]);
         }
+
         if (!$colorspace) {
-            $result = $this->$filter($dest);
+            if ($filter == "pixelateImg") {
+                
+                $result = $this->$filter($dest, imagesx($resource), imagesy($resource));
+            } else
+                $result = $this->$filter($dest);
         } else {
             $this->setActiveResource( $dest );
             parent::colorspace($colorspace);
@@ -52,10 +58,10 @@ eZIEezcImageColorSpace {
 
     private function bgArrayFromHex($hex) {
         return array(
-        'r' => hexdec(substr($hex, 0, 2)),
-        'g' => hexdec(substr($hex, 2, 2)),
-        'b' => hexdec(substr($hex, 4, 2)),
-        'a' => 127
+                'r' => hexdec(substr($hex, 0, 2)),
+                'g' => hexdec(substr($hex, 2, 2)),
+                'b' => hexdec(substr($hex, 4, 2)),
+                'a' => 127
         );
     }
 
@@ -108,10 +114,10 @@ eZIEezcImageColorSpace {
         imagesavealpha($newResource, true);
 
         $res = imagecopyresampled($newResource, $resource,
-            0,  0,
-            0, $h,
-            $w, $h,
-            $w, -$h);
+                0,  0,
+                0, $h,
+                $w, $h,
+                $w, -$h);
 
         if ( $res === false ) {
             throw new ezcImageFilterFailedException( 'rotate', 'Rotation of image failed.' );
@@ -134,10 +140,10 @@ eZIEezcImageColorSpace {
         imagesavealpha($newResource, true);
 
         $res = imagecopyresampled($newResource, $resource,
-            0,  0,
-            $w, 0,
-            $w, $h,
-            -$w, $h);
+                0,  0,
+                $w, 0,
+                $w, $h,
+                -$w, $h);
 
         if ( $res === false ) {
             throw new ezcImageFilterFailedException( 'rotate', 'Rotation of image failed.' );
@@ -165,11 +171,12 @@ eZIEezcImageColorSpace {
     ///////////////////////////////////////////////////////////
     // Pixelate
 
-    private function pixelateImg($resource) {
+    private function pixelateImg($resource, $width, $height) {
         $w = imagesx($resource);
         $h =  imagesy($resource);
 
-        $size = ceil(max($w, $h)) / 42;
+
+        $size = ceil(max($width, $height)) / 42;
 
         $tmp_w = $w / $size;
         $tmp_h = $h / $size;
@@ -180,10 +187,10 @@ eZIEezcImageColorSpace {
         imagesavealpha($tmpResource, true);
 
         $res = imagecopyresampled($tmpResource, $resource,
-            0, 0,
-            0, 0,
-            $tmp_w, $tmp_h,
-            $w, $h);
+                0, 0,
+                0, 0,
+                $tmp_w, $tmp_h,
+                $w, $h);
 
         if ( $res === false ) {
             throw new ezcImageFilterFailedException( 'pixelate', 'First part of pixelate failed.' );
@@ -196,10 +203,10 @@ eZIEezcImageColorSpace {
         imagesavealpha($newResource, true);
 
         $res = imagecopyresampled($newResource, $tmpResource,
-            0, 0,
-            0, 0,
-            $w, $h,
-            $tmp_w, $tmp_h);
+                0, 0,
+                0, 0,
+                $w, $h,
+                $tmp_w, $tmp_h);
 
         if ( $res === false ) {
             throw new ezcImageFilterFailedException( 'pixelate', 'Second part of pixelate failed.' );
@@ -215,7 +222,7 @@ eZIEezcImageColorSpace {
         if ($region) {
             $newResource = $this->region("pixelateImg", $resource, $region);
         } else {
-            $newResource = $this->pixelateImg($resource);
+            $newResource = $this->pixelateImg($resource, $width, $height);
         }
 
         $this->setActiveResource( $newResource );
@@ -225,8 +232,8 @@ eZIEezcImageColorSpace {
     ///////////////////////////////////////////////////////////
     private function blurImg($resource, $truc) {
         $gaussian = array(array(1.0, 2.0, 1.0),
-                                    array(2.0, 4.0 * $truc, 2.0),
-                                    array(1.0, 2.0, 1.0));
+                array(2.0, 4.0 * $truc, 2.0),
+                array(1.0, 2.0, 1.0));
         imageconvolution($image, $gaussian, 16, 0);
 
         return $resource;
@@ -260,7 +267,7 @@ eZIEezcImageColorSpace {
         if ($value < -100 || $value > 100) {
             throw new ezcBaseValueException( 'value', $value, 'int >= -100 && int <= 100' );
         }
-        
+
         imagefilter($resource, IMG_FILTER_CONTRAST, $value);
     }
 }
