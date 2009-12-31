@@ -100,8 +100,6 @@ ezie.ezconnect.connect = function() {
             var zoom = ezie.gui.config.zoom().get();
             var selection = ezie.gui.selection().arrayZoomedSelection((100  * 100) / zoom);
 
-            $.log('curr zoom = ' + zoom + ' => togoto100: ' + (10000/zoom) );
-
             $.extend(settings.data, selection);
         }
 

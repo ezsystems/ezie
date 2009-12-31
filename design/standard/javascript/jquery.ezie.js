@@ -34,19 +34,13 @@
     }
 
     $.fn.ezie = function() {
-        $.log('on cree jquery.ezie');
         this.each(function() {
             $(this).click(function() {
                 var url = $(this).attr('name');
-                
-                $.log('url ? ' + url);
 
                 if (url.indexOf('ezieEdit[') != 0) {
-                    $.log('ezie edit button invalid');
                     return;
                 }
-
-                $.log('button : ' + this);
 
                 url = url.substring(9, url.lastIndexOf(']'));
                 e = ezie.gui.eziegui.getInstance();

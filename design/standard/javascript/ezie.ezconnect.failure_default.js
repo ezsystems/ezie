@@ -20,7 +20,13 @@
 //
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-ezie.ezconnect.failure_default = function() {
+ezie.ezconnect.failure_default = function(XMLHttpRequest, textStatus, errorThrown) {
     // TODO: display a message in the gui?
     $.log("[ezie.ezconnect] failure_default called: unhandled error");
+    $.log('  debug: textStatus:');
+    $.log(textStatus);
+    $.log('  debug: errorThrown');
+    $.log(errorThrown);
+    //$.log('  debug: responseText');
+    //$.log(XMLHttpRequest.responseText);
 }

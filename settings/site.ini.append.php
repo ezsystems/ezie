@@ -11,6 +11,6 @@ DevelopmentMode=enabled
 #Debug=disabled
 
 [DebugSettings]
-AlwaysLog[]=1
+AlwaysLog[]=0
 
 */ ?>
