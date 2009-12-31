@@ -29,8 +29,6 @@
             if ((typeof opera != "undefined")
                 && opera.postError) {
                 opera.postError(msg);
-            } else {
-                alert(msg);
             }
         }
     }
