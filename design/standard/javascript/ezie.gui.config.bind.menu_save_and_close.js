@@ -48,7 +48,8 @@ ezie.gui.config.bind.menu_save_and_close = function() {
             $('#main_image, #miniature').empty();
             ezie.gui.eziegui.getInstance().close();
 
-            // update the frontend
+            $('#ezieToolsWindow').find('.current').removeClass('current');
+            $('#ezie_zoom').parent().addClass('current');
         },
         dataType: 'html'
     });
