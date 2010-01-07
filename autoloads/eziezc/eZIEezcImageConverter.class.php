@@ -31,26 +31,23 @@ class eZIEezcImageConverter {
         // we use in priority image magick
         $hasImageMagick = $ini->variable( "ImageMagick", "IsEnabled" );
 
-        if ($hasImageMagick) {
+        if ($hasImageMagick == "true") {
             $settings = new ezcImageConverterSettings(array(
-                new ezcImageHandlerSettings( 'ImageMagick', 'eZIEEzcImageMagickHandler' ))
-            );
-
+            new ezcImageHandlerSettings( 'ImageMagick', 'eZIEEzcImageMagickHandler' ) ) );
         } else {
             $settings = new ezcImageConverterSettings(array(
-                new ezcImageHandlerSettings( 'GD', 'eZIEEzcGDHandler' ))
-            );
+            new ezcImageHandlerSettings( 'GD', 'eZIEEzcGDHandler' ) ) );
         }
 
 
         $this->converter = new ezcImageConverter( $settings );
 
-        $mimeType = array('image/jpeg', 'image/png');
+        $mimeType = array( 'image/jpeg', 'image/png' );
 
         try {
             $this->converter->createTransformation( 'transformation', $filter, $mimeType);
         } catch (ezcBaseSettingValueException $e) {
-            die("error applying the transformation => " . $e->getMessage());
+            die( "error applying the transformation => " . $e->getMessage() );
         }
     }
 
