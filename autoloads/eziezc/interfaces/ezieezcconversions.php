@@ -22,9 +22,54 @@
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
-interface eZIEezcImageColorSpace {
+/**
+ * @author eZIE Team
+ *
+ */
+interface eZIEEzcConversions {
+	/**
+	 * @param int $angle
+	 * @param string $color
+	 * @return void
+	 */
+	public function rotate($angle, $color = 'FFFFFF');
+	
+	/**
+	 * @param int $width
+	 * @param int $height
+	 * @param int $region
+	 * @return void
+	 */
+	public function pixelate($width, $height, $region = null);
+	
+	/**
+	 * @param int[4] $region
+	 * @return void
+	 */
+	public function horizontalFlip($region = null);
+    
+	/**
+	 * @param int[4] $region
+	 * @return void
+	 */
+	public function verticalFlip($region = null);
+	
+    /**
+     * @param string $space
+     * @param int[4] $region
+     * @return void
+     */
     public function colorspace($space, $region = null);
-    //public function pixelate2();
+    
+    /**
+     * @param int $value
+     * @return void
+     */
+    public function brightness($value);
+    
+    /**
+     * @param int $value
+     * @return void
+     */
+    public function contrast($value);
 }
-
-?>

@@ -73,7 +73,7 @@
         <div class="contentLeft"><div class="contentRight">
                 <div class="content" id="resize">
                     <ul class="topMenu">
-                        <li><a href="" id="ezie_save_and_close" title="{'Save and Close'|i18n('design/standard/ezie')}">{'Save & Close'|i18n('design/standard/ezie')}</a></li>
+                        <li><a href="" id="ezie_save_and_close" title="{'Save and Close'|i18n('design/standard/ezie')}">{'Save &amp; Close'|i18n('design/standard/ezie')}</a></li>
                         <li><a href="" id="ezie_quit_without_saving" title="{'Close without saving'|i18n('design/standard/ezie')}">{'Quit'|i18n('design/standard/ezie')}</a></li>
                     </ul>
                     <div id="grid">
@@ -157,7 +157,9 @@
 
                             <ul>
                                 {foreach $watermarks as $wm}
-                                    <li><img class="ezie-watermark-image" src={concat('watermarks/', $wm)|ezimage()} alt="" /></li>
+                                    <li><img
+		class="ezie-watermark-image" src={concat(
+		'watermarks/', $wm)|ezimage()} alt="" /></li>
                                 {/foreach}
                             </ul>
                             

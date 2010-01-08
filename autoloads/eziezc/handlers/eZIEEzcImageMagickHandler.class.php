@@ -22,11 +22,17 @@
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
+/**
+ * @author eZIE Team
+ *
+ */
 class eZIEEzcImageMagickHandler extends ezcImageImagemagickHandler
-implements eZIEezcImageRotate,
-eZIEezcImageFlip,
-eZIEezcImagePixelate {
+implements eZIEEzcConversions {
 
+    /**
+     * @param int[4] $region
+     * @return void
+     */
     private function setRegion($region) {
         if ($region === null)
             return;
@@ -37,6 +43,9 @@ eZIEezcImagePixelate {
         );
     }
 
+    /* (non-PHPdoc)
+     * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#rotate($angle, $color)
+     */
     public function rotate($angle, $background = 'FFFFFF') {
         $angle = intval($angle);
         if ( !is_int($angle) || $angle < 0 || $angle > 360) {
@@ -59,14 +68,23 @@ eZIEezcImagePixelate {
         );
     }
 
+    /* (non-PHPdoc)
+     * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#horizontalFlip($region)
+     */
     public function horizontalFlip($region = null) {
         $this->addFilterOption($this->getActiveReference(), '-flop');
     }
 
+    /* (non-PHPdoc)
+     * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#verticalFlip($region)
+     */
     public function verticalFlip($region = null) {
         $this->addFilterOption($this->getActiveReference(), '-flip');
     }
 
+    /* (non-PHPdoc)
+     * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#pixelate($width, $height, $region)
+     */
     public function pixelate($width, $height, $region = null) {
         $size = ceil(max($width, $height) / 42);
 
@@ -112,11 +130,14 @@ eZIEezcImagePixelate {
 
     }
 
-    /*
+    /* (non-PHPdoc)
+     * 
      * Reimplementation of the very same function of the parent class
      * but withou the restriction on the width.
      * See related issue: http://issues.ez.no/IssueView.php?Id=15976&
-    */
+     * 
+     * @see lib/ezc/ImageConversion/src/handlers/ezcImageImagemagickHandler#scalePercent($width, $height)
+     */
     public function scalePercent( $width, $height ) {
         if ( !is_int( $height ) || $height < 1 ) {
             throw new ezcBaseValueException( 'height', $height, 'int > 0' );
@@ -132,12 +153,18 @@ eZIEezcImagePixelate {
         );
     }
 
+    /* (non-PHPdoc)
+     * @see lib/ezc/ImageConversion/src/handlers/ezcImageImagemagickHandler#colorspace($space)
+     */
     public function colorspace($space, $region = null) {
         $this->setRegion($region);
 
         parent::colorspace($space);
     }
 
+    /* (non-PHPdoc)
+     * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#brightness($value)
+     */
     public function brightness($value) {
         if ($value < -255 || $value > 255) {
             throw new ezcBaseValueException( 'value', $value, 'int >= -255 && int <= 255' );
@@ -157,6 +184,9 @@ eZIEezcImagePixelate {
         );
     }
 
+    /* (non-PHPdoc)
+     * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#contrast($value)
+     */
     public function contrast($value) {
         if ($value < -100 || $value > 100) {
             throw new ezcBaseValueException( 'value', $value, 'int >= -100 && int <= 100' );
@@ -165,9 +195,9 @@ eZIEezcImagePixelate {
         $round_value = round($value / 10);
 
         if ($round_value >= 0) {
-            $option = '+contrast';
-        } else {
             $option = '-contrast';
+        } else {
+            $option = '+contrast';
             $round_value = -$round_value;
         }
 

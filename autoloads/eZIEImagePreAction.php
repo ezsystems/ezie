@@ -63,8 +63,8 @@ class eZIEImagePreAction {
             . $this->history_version . "-"
             . $this->original_image->attributeFromOriginal('filename');
 
-        // check if file exists (that will mean the data sent if correct)
-        $absolute_image_path = eZSys::rootDir() . "/" . $image_path;
+        // check if file exists (that will mean the data sent is correct)
+        $absolute_image_path = eZSys::rootDir() . "/" . $this->image_path;
  
         $fs_handler = new eZFSFileHandler();
         if (!$fs_handler->fileExists($absolute_image_path)) {
