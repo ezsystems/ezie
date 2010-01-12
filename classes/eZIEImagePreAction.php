@@ -1,6 +1,6 @@
 <?php
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: Ep Image Editor extension for eZ Publish
+// SOFTWARE NAME: eZ Image Editor extension for eZ Publish
 // SOFTWARE RELEASE: 0.1 (preview only)
 // COPYRIGHT NOTICE: Copyright (C) 2009 eZ Systems AS
 // SOFTWARE LICENSE: GNU General Public License v2.0
@@ -22,6 +22,10 @@
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
+/**
+ * @author eZIE Team
+ *
+ */
 class eZIEImagePreAction {
     private $image_path;
     private $image_id;
@@ -32,6 +36,9 @@ class eZIEImagePreAction {
     private $working_folder;
     private $region;
 
+    /**
+     * @return unknown_type
+     */
     public function  __construct() {
         $http = eZHTTPTool::instance(); //(hasPostVariables hasVariable variable);
 
@@ -75,6 +82,9 @@ class eZIEImagePreAction {
         $this->prepare_region();
     }
 
+    /**
+     * @return unknown_type
+     */
     private function prepare_region() {
         $region = null;
 
@@ -98,62 +108,104 @@ class eZIEImagePreAction {
         $this->region = $region;
     }
 
+    /**
+     * @return unknown_type
+     */
     public function hasRegion() {
         return $this->region !== null;
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getRegion() {
         return $this->region;
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getAbsoluteImagePath() { // var/ezie/{user_id}/{image_id}-{image_version}/{history_version}-
         return eZSys::rootDir() . "/" . $this->getImagePath();
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getImagePath() {
         return $this->image_path;
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getThumbnailPath() {
         return $this->working_folder . "/thumb-" . $this->getHistoryVersion() . "-"
             . $this->original_image->attributeFromOriginal('filename');
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getAbsoluteThumbnailPath() {
         return eZSys::rootDir() . "/" . $this->getThumbnailPath();
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getAbsoluteNewThumbnailPath() {
         return eZSys::rootDir() . "/" . $this->getNewThumbnailPath();
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getNewThumbnailPath() {
         return $this->working_folder . "/thumb-" . $this->getNewHistoryVersion() . "-"
             . $this->original_image->attributeFromOriginal('filename');
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getAbsoluteNewImagePath() {
         return eZSys::rootDir() . "/" . $this->getNewImagePath();
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getNewImagePath() {
         return $this->working_folder . "/"
             . $this->getNewHistoryVersion() . "-"
             . $this->original_image->attributeFromOriginal('filename');
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getVersion() {
         return $this->image_version;
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getHistoryVersion() {
         return $this->history_version;
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getNewHistoryVersion() {
         return $this->history_version + 1;
     }
 
+    /**
+     * @return unknown_type
+     */
     public function responseArray() {
         return array( 'original' => $this->getNewImagePath(),
         'thumbnail' => $this->getNewThumbnailPath(),
@@ -161,22 +213,37 @@ class eZIEImagePreAction {
         );
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getWorkingFolder() {
         return $this->working_folder;
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getAbsoluteWorkingFolder() {
         return eZSys::rootDir() . "/" . $this->working_folder;
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getImageHandler() {
         return $this->original_image;
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getImageId() {
         return $this->image_id;
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getImageVersion() {
         return $this->image_version;
     }

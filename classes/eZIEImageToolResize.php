@@ -1,6 +1,6 @@
 <?php
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: Ep Image Editor extension for eZ Publish
+// SOFTWARE NAME: eZ Image Editor extension for eZ Publish
 // SOFTWARE RELEASE: 0.1 (preview only)
 // COPYRIGHT NOTICE: Copyright (C) 2009 eZ Systems AS
 // SOFTWARE LICENSE: GNU General Public License v2.0
@@ -22,17 +22,45 @@
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
-class eZIEImageToolPixelate extends eZIEImageAction {
-    static function filter($width, $height, $region = null) {
+/**
+ * @author eZIE Team
+ *
+ */
+class eZIEImageToolResize extends eZIEImageAction {
+    /**
+     * @param $w
+     * @param $h
+     * @return unknown_type
+     */
+    static function filter($w, $h) {
         return (array(new ezcImageFilter(
-                        'pixelate',
-                        array(
-                                'width' => $width,
-                                'height' => $height,
-                                'region' => $region,
-                        )
-                )));
+        'scale',
+        array(
+        'width' => intval($w),
+        'height' => intval($h),
+        'direction' => ezcImageGeometryFilters::SCALE_BOTH
+        ))));
+    }
+
+    /**
+     * @param $src
+     * @param $dst
+     * @param $w
+     * @param $h
+     * @return unknown_type
+     */
+    static function resize($src, $dst, $w, $h) {
+        $imageconverter = new eZIEezcImageConverter(self::filter($h, $w));
+        $imageconverter->perform($src, $dst);
+    }
+
+    /**
+     * @param $src
+     * @param $dst
+     * @return unknown_type
+     */
+    static function doThumb($src, $dst) {
+        self::resize($src, $dst, 250, 250);
     }
 }
-
 ?>

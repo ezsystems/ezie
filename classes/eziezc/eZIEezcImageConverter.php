@@ -1,6 +1,6 @@
 <?php
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: Ep Image Editor extension for eZ Publish
+// SOFTWARE NAME: eZ Image Editor extension for eZ Publish
 // SOFTWARE RELEASE: 0.1 (preview only)
 // COPYRIGHT NOTICE: Copyright (C) 2009 eZ Systems AS
 // SOFTWARE LICENSE: GNU General Public License v2.0
@@ -22,9 +22,17 @@
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
+/**
+ * @author eZIE Team
+ *
+ */
 class eZIEezcImageConverter {
     private $converter;
 
+    /**
+     * @param $filter
+     * @return unknown_type
+     */
     public function __construct($filter) {
         $ini = eZINI::instance( "image.ini" );
 
@@ -51,6 +59,11 @@ class eZIEezcImageConverter {
         }
     }
 
+    /**
+     * @param $src
+     * @param $dst
+     * @return unknown_type
+     */
     public function perform($src, $dst) {
         try {
             $this->converter->transform('transformation', $src, $dst);
@@ -61,6 +74,9 @@ class eZIEezcImageConverter {
         }
     }
 
+    /**
+     * @return unknown_type
+     */
     public function getConverter() {
         return $this->converter;
     }

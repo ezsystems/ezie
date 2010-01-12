@@ -1,6 +1,6 @@
 <?php
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: Ep Image Editor extension for eZ Publish
+// SOFTWARE NAME: eZ Image Editor extension for eZ Publish
 // SOFTWARE RELEASE: 0.1 (preview only)
 // COPYRIGHT NOTICE: Copyright (C) 2009 eZ Systems AS
 // SOFTWARE LICENSE: GNU General Public License v2.0

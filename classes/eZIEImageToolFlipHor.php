@@ -1,3 +1,4 @@
+<?php
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 // SOFTWARE NAME: eZ Image Editor extension for eZ Publish
 // SOFTWARE RELEASE: 0.1 (preview only)
@@ -21,21 +22,25 @@
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
-ezie.gui.config.bind.tool_undo = function() {
-    if (!ezie.history().hasAntecedent()) {
-        return;
+
+/**
+ * @author eZIE Team
+ *
+ */
+class eZIEImageToolFlipHor extends eZIEImageAction {
+
+    /**
+     * @param $region
+     * @return unknown_type
+     */
+    static function filter($region = null) {
+        return (array(new ezcImageFilter(
+        'horizontalFlip',
+        array(
+            "region" => $region
+        ))));
     }
 
-    ezie.history().undo();
-    ezie.gui.eziegui.getInstance().refreshImages();
-
-    if (!ezie.history().hasAntecedent()) {
-        ezie.gui.eziegui.getInstance().desactivateUndo();
-    }
-
-    if (ezie.history().hasSuccessor()) {
-        ezie.gui.eziegui.getInstance().activateRedo();
-    }
-
-    ezie.gui.config.zoom().reZoom(true);
 }
+
+?>

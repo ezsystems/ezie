@@ -1,6 +1,6 @@
 <?php
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: Ep Image Editor extension for eZ Publish
+// SOFTWARE NAME: eZ Image Editor extension for eZ Publish
 // SOFTWARE RELEASE: 0.1 (preview only)
 // COPYRIGHT NOTICE: Copyright (C) 2009 eZ Systems AS
 // SOFTWARE LICENSE: GNU General Public License v2.0
@@ -22,13 +22,26 @@
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
-class eZIEImageFilterContrast extends eZIEImageAction {
-    static function filter($value = 0) {
+/**
+ * @author eZIE Team
+ *
+ */
+class eZIEImageToolPixelate extends eZIEImageAction {
+    /**
+     * @param $width
+     * @param $height
+     * @param $region
+     * @return unknown_type
+     */
+    static function filter($width, $height, $region = null) {
         return (array(new ezcImageFilter(
-        'contrast',
-        array(
-        'value' => $value
-        ))));
+                        'pixelate',
+                        array(
+                                'width' => $width,
+                                'height' => $height,
+                                'region' => $region,
+                        )
+                )));
     }
 }
 

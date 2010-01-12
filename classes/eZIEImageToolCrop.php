@@ -1,6 +1,6 @@
 <?php
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: Ep Image Editor extension for eZ Publish
+// SOFTWARE NAME: eZ Image Editor extension for eZ Publish
 // SOFTWARE RELEASE: 0.1 (preview only)
 // COPYRIGHT NOTICE: Copyright (C) 2009 eZ Systems AS
 // SOFTWARE LICENSE: GNU General Public License v2.0
@@ -22,7 +22,24 @@
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
-class eZIEImageAction {
+
+/**
+ * @author eZIE Team
+ *
+ */
+class eZIEImageToolCrop extends eZIEImageAction {
+    /**
+     * @param $selection
+     * @return unknown_type
+     */
+    public static function filter($selection) {
+        $r = array('x' => intval($selection['x']),
+            'y' => intval($selection['y']),
+            'width' => intval($selection['w']),
+            'height' => intval($selection['h'])
+        );
+        return array(new ezcImageFilter('crop', $r));
+    }
 }
 
 ?>

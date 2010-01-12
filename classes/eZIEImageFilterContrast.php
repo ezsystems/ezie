@@ -1,6 +1,6 @@
 <?php
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: Ep Image Editor extension for eZ Publish
+// SOFTWARE NAME: eZ Image Editor extension for eZ Publish
 // SOFTWARE RELEASE: 0.1 (preview only)
 // COPYRIGHT NOTICE: Copyright (C) 2009 eZ Systems AS
 // SOFTWARE LICENSE: GNU General Public License v2.0
@@ -22,17 +22,22 @@
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
-
-class eZIEImageToolFlipHor extends eZIEImageAction {
-
-    static function filter($region = null) {
+/**
+ * @author eZIE Team
+ *
+ */
+class eZIEImageFilterContrast extends eZIEImageAction {
+    /**
+     * @param $value
+     * @return unknown_type
+     */
+    static function filter($value = 0) {
         return (array(new ezcImageFilter(
-        'horizontalFlip',
+        'contrast',
         array(
-            "region" => $region
+        'value' => $value
         ))));
     }
-
 }
 
 ?>

@@ -1,0 +1,35 @@
+- eZ Image Editor 1.0 extension information
+
+About eZ Image Editor
+=====================
+
+An image editor for simple and usual image modifications integrated in the
+editing interface of any eZ Publish Content Object that has at least an image
+as attribute.
+
+It allows croping, fliping, rotating, watermarking an image as well as modifying
+some of its attributes such as the contrast or brightness.
+
+Technical information
+=====================
+
+    eZ Image Editor uses:
+    - jQuery                            http://www.jquery.com
+    - jQuery UI                         http://www.jqueryui.com/
+    - Some jQuery plugins:
+      - colorpicker                     http://www.eyecon.ro/colorpicker/
+      - Jcrop                           http://deepliquid.com/content/Jcrop.html
+   
+    - PHP
+    - GD2 or ImageMagick
+    - eZ Components (mainly ImageConversion)
+
+Installation
+============
+
+See INSTALL
+
+Using eZ Image Editor
+=====================
+
+TBD.

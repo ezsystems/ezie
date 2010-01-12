@@ -1,7 +1,8 @@
 <?php
-// SOFTWARE NAME: Image Editor
-// SOFTWARE RELEASE: @@@VERSION@@@
-// COPYRIGHT NOTICE: Copyright (C) 2009
+// ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
+// SOFTWARE NAME: eZ Image Editor extension for eZ Publish
+// SOFTWARE RELEASE: 0.1 (preview only)
+// COPYRIGHT NOTICE: Copyright (C) 2009 eZ Systems AS
 // SOFTWARE LICENSE: GNU General Public License v2.0
 // NOTICE: >
 //   This program is free software; you can redistribute it and/or
@@ -17,6 +18,9 @@
 //   Public License along with this program; if not, write to the Free
 //   Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 //   MA 02110-1301, USA.
+//
+//
+// ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
 class ezieInfo {
     static function info() {

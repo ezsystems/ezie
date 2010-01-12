@@ -1,0 +1,51 @@
+- eZ Image Editor 1.0 extension installation documentation
+
+About eZ Image Editor
+=====================
+
+An image editor for simple and usual image modifications integrated in the
+editing interface of any eZ Publish Content Object that has at least an image
+as attribute.
+
+It allows croping, fliping, rotating, watermarking an image as well as modifying
+some of its attributes such as the contrast or brightness.
+
+Requirements
+============
+
+    eZ Publish 4.2 and higher
+
+    PHP 5.2 and higher + PHP GD2
+    or
+    PHP 5.2 and higher + ImageMagick
+
+
+Installation
+============
+
+ 1. Unpack/unzip
+
+    Unpack the downloaded zip package into the 'extension' directory of your
+    eZ Publish installation.
+
+ 2. Activate extension
+
+    Activate the extension by using the admin interface ( Setup -> Extensions ) or by
+    prepending ezie to ActiveExtensions[] in settings/override/site.ini.append.php:
+
+    [ExtensionSettings]
+    ActiveExtensions[]=ezie
+
+ 3. Regenerate autoload array
+
+    Check the eZ Publish docs for your version on how this is done.
+    Or go to Setup -> Extensions and click on the button there.
+
+ 4. Clear caches
+
+    Clear INI and template caches (from admin 'Setup' tab or commandline).
+
+Using eZ Image Editor
+=====================
+
+See README.

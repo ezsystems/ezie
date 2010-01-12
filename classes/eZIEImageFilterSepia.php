@@ -1,6 +1,6 @@
 <?php
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: Ep Image Editor extension for eZ Publish
+// SOFTWARE NAME: eZ Image Editor extension for eZ Publish
 // SOFTWARE RELEASE: 0.1 (preview only)
 // COPYRIGHT NOTICE: Copyright (C) 2009 eZ Systems AS
 // SOFTWARE LICENSE: GNU General Public License v2.0
@@ -22,54 +22,22 @@
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
-/**
- * @author eZIE Team
- *
- */
-interface eZIEEzcConversions {
-	/**
-	 * @param int $angle
-	 * @param string $color
-	 * @return void
-	 */
-	public function rotate($angle, $color = 'FFFFFF');
-	
-	/**
-	 * @param int $width
-	 * @param int $height
-	 * @param int $region
-	 * @return void
-	 */
-	public function pixelate($width, $height, $region = null);
-	
-	/**
-	 * @param int[4] $region
-	 * @return void
-	 */
-	public function horizontalFlip($region = null);
-    
-	/**
-	 * @param int[4] $region
-	 * @return void
-	 */
-	public function verticalFlip($region = null);
-	
+class eZIEImageFilterSepia extends eZIEImageAction {
+
     /**
-     * @param string $space
-     * @param int[4] $region
-     * @return void
+     * @param $region
+     * @return unknown_type
      */
-    public function colorspace($space, $region = null);
-    
-    /**
-     * @param int $value
-     * @return void
-     */
-    public function brightness($value);
-    
-    /**
-     * @param int $value
-     * @return void
-     */
-    public function contrast($value);
+    static function filter($region = null) {
+        return (array(new ezcImageFilter(
+        'colorspace',
+        array(
+            'space' => ezcImageColorspaceFilters::COLORSPACE_SEPIA,
+            'region' => $region
+        ))));
+    }
+
+
 }
+
+?>

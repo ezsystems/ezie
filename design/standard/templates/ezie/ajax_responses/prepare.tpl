@@ -9,3 +9,4 @@
     "image_width": {$result.image_width},
     "image_height": {$result.image_height}
 {rdelim}
+/* <!--DEBUG_REPORT--> */
