@@ -1,0 +1,15 @@
+FIX
+===
+* Make eZIEezcImageConverter use the eZ Publish image advanced settings (path to image magick, etc)
+* The brightness filter doesn't respect the selected region
+* The contrast filter doesn't respect the selected region
+
+VERIFY
+======
+* Check how watermark files can be added
+* Check what exact ezp version ezie requires
+* Check if the following actions do support a region:
+  * contrast:   KO
+  * brightness  KO
+  * pixelate:   OK
+  * sepia:      OK
