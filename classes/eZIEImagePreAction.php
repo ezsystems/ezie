@@ -9,13 +9,47 @@
  */
 class eZIEImagePreAction
 {
+    /**
+     * @var string
+     */
     private $image_path;
+
+    /**
+     * @var string
+     */
     private $image_id;
+
+    /**
+     * @var int
+     */
     private $image_version;
+
+    /**
+      * @var int
+      */
     private $history_version;
+
+    /**
+     * @var string
+     */
     private $key;
+
+    /**
+     * Original image object
+     * @var eZContentObjectAttribute
+     */
     private $original_image;
+
+    /**
+     * Image editor work folder
+     * @var string
+     */
     private $working_folder;
+
+    /**
+     * Region affected by the operation
+     * @var array(int) Array of 4 integers, with w/h & x/y keys
+     */
     private $region;
 
     /**
@@ -93,8 +127,8 @@ class eZIEImagePreAction
     }
 
     /**
-     *
-     * @return unknown_type
+     * Checks if a region has been defined
+     * @return bool
      */
     public function hasRegion()
     {
@@ -102,8 +136,8 @@ class eZIEImagePreAction
     }
 
     /**
-     *
-     * @return unknown_type
+     * Region affected by the operations
+     * @return array(int) Array with 4 keys: x/y & w/h
      */
     public function getRegion()
     {
@@ -111,7 +145,7 @@ class eZIEImagePreAction
     }
 
     /**
-     * @note var/ezie/{user_id}/{image_id}-{image_version}/{history_version}-
+     * Absolute path to the image file
      * @return unknown_type
      */
     public function getAbsoluteImagePath()
@@ -120,7 +154,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * Returns the image path
+     * Image file path
+     * @note var/ezie/{user_id}/{image_id}-{image_version}/{history_version}-
      * @return string
      */
     public function getImagePath()
@@ -129,7 +164,7 @@ class eZIEImagePreAction
     }
 
     /**
-     *
+     * Path to the thumbnail
      * @return string
      */
     public function getThumbnailPath()
@@ -142,7 +177,7 @@ class eZIEImagePreAction
     }
 
     /**
-     *
+     * Absolute path to the thumbnail
      * @return string
      */
     public function getAbsoluteThumbnailPath()
@@ -151,6 +186,7 @@ class eZIEImagePreAction
     }
 
     /**
+     * Absolute path to the new thumbnail version
      *
      * @return string
      */
@@ -160,7 +196,7 @@ class eZIEImagePreAction
     }
 
     /**
-     *
+     * Path to the new thumbnail version
      * @return string
      */
     public function getNewThumbnailPath()
@@ -173,8 +209,9 @@ class eZIEImagePreAction
     }
 
     /**
+     * Absolute path for the new image, based on the new history version
      *
-     * @return unknown_type
+     * @return string
      */
     public function getAbsoluteNewImagePath()
     {
@@ -182,8 +219,8 @@ class eZIEImagePreAction
     }
 
     /**
-     *
-     * @return unknown_type
+     * Path for the new image, based on the new history version
+     * @return string
      */
     public function getNewImagePath()
     {
@@ -193,8 +230,8 @@ class eZIEImagePreAction
     }
 
     /**
-     *
-     * @return unknown_type
+     * Current version number
+     * @return int
      */
     public function getVersion()
     {
@@ -202,7 +239,7 @@ class eZIEImagePreAction
     }
 
     /**
-     *
+     * Current history version
      * @return unknown_type
      */
     public function getHistoryVersion()
@@ -211,25 +248,13 @@ class eZIEImagePreAction
     }
 
     /**
+     * Moves the version to the next one, and return its number
      *
-     * @return unknown_type
+     * @return int
      */
     public function getNewHistoryVersion()
     {
         return $this->history_version + 1;
-    }
-
-    /**
-     * Returns a JSON encoded version of the operation result
-     * @return unknown_type
-     */
-    public function response()
-    {
-        $response = new eZIEJsonResponse();
-        $response->original        = $this->getNewImagePath();
-        $response->thumbnail       = $this->getNewThumbnailPath();
-        $response->history_version = $this->getNewHistoryVersion();
-        return $response;
     }
 
     /**
@@ -252,6 +277,7 @@ class eZIEImagePreAction
     }
 
     /**
+     * Current image editor work folder
      *
      * @return string
      */
@@ -261,8 +287,9 @@ class eZIEImagePreAction
     }
 
     /**
+     * Absolute path to the current image editor work folder
      *
-     * @return unknown_type
+     * @return string
      */
     public function getAbsoluteWorkingFolder()
     {
@@ -270,8 +297,8 @@ class eZIEImagePreAction
     }
 
     /**
-     *
-     * @return unknown_type
+     * Original image object
+     * @return eZContentObjectAttribute
      */
     public function getImageHandler()
     {
@@ -279,7 +306,7 @@ class eZIEImagePreAction
     }
 
     /**
-     *
+     * Image identifier
      * @return string
      */
     public function getImageId()
@@ -288,13 +315,12 @@ class eZIEImagePreAction
     }
 
     /**
-     *
-     * @return unknown_type
+     * Current image version
+     * @return int
      */
     public function getImageVersion()
     {
         return $this->image_version;
     }
 }
-
 ?>
