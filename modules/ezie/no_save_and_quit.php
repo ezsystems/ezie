@@ -22,11 +22,6 @@ eZDir::recursiveDelete($working_folder);
 
 // @todo delete the user directory if empty
 
-// @todo Use proper JSON
-$Result = array();
-$Result["pagelayout"] = false;
-
-$tpl = templateInit();
-$Result["content"] = $tpl->fetch("design:ezie/ajax_responses/empty_json_response.tpl");
-
+echo json_encode( new StdClass() );
+eZExecution::cleanExit();
 ?>
