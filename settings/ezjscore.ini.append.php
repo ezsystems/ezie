@@ -8,4 +8,4 @@ PreferredLibrary=jquery
 # <root>/ezjscore/call/imageeditor::imageReference::<AttributeID>::<ContentObjectVersion>::<ContentObjectID>
 Class=ImageEditorServerFunctions
 
-*/
+*/ ?>

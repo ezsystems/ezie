@@ -1,66 +1,61 @@
 <?php
-// ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: eZ Image Editor extension for eZ Publish
-// SOFTWARE RELEASE: 0.1 (preview only)
-// COPYRIGHT NOTICE: Copyright (C) 2009 eZ Systems AS
-// SOFTWARE LICENSE: GNU General Public License v2.0
-// NOTICE: >
-//   This program is free software; you can redistribute it and/or
-//   modify it under the terms of version 2.0  of the GNU General
-//   Public License as published by the Free Software Foundation.
-//
-//   This program is distributed in the hope that it will be useful,
-//   but WITHOUT ANY WARRANTY; without even the implied warranty of
-//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   GNU General Public License for more details.
-//
-//   You should have received a copy of version 2.0 of the GNU General
-//   Public License along with this program; if not, write to the Free
-//   Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-//   MA 02110-1301, USA.
-//
-//
-// ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-
 /**
- * @author eZIE Team
- *
- */
-class eZIEImageToolResize extends eZIEImageAction {
+* File containing the eZIEImageToolResize class.
+* 
+* @copyright Copyright (C) 1999-2010 eZ Systems AS. All rights reserved.
+* @license http://ez.no/licenses/gnu_gpl GNU GPL v2
+* @version //autogentag//
+* @package ezie
+*/
+class eZIEImageToolResize extends eZIEImageAction
+{
     /**
-     * @param $w
-     * @param $h
-     * @return unknown_type
-     */
-    static function filter($w, $h) {
-        return (array(new ezcImageFilter(
-        'scale',
-        array(
-        'width' => intval($w),
-        'height' => intval($h),
-        'direction' => ezcImageGeometryFilters::SCALE_BOTH
-        ))));
+    * Returns a resize filter
+    * 
+    * @param  int $width Resize width
+    * @param  int $height Resize height 
+    * @return array( ezcImageFilter )
+    */
+    static function filter( $width, $height )
+    {
+        return array(
+            new ezcImageFilter( 
+                'scale',
+                array( 
+                    'width'     => intval( $width ),
+                    'height'    => intval( $height ),
+                    'direction' => ezcImageGeometryFilters::SCALE_BOTH 
+                )
+            )
+        );
     }
 
     /**
-     * @param $src
-     * @param $dst
-     * @param $w
-     * @param $h
-     * @return unknown_type
-     */
-    static function resize($src, $dst, $w, $h) {
-        $imageconverter = new eZIEezcImageConverter(self::filter($h, $w));
-        $imageconverter->perform($src, $dst);
+    * Resizes an image
+    * 
+    * @param  string $src Source image path
+    * @param  string $dst Destination image path
+    * @param  int $width Resize width
+    * @param  int $height Resize height
+    * 
+    * @return void
+    */
+    static function resize( $src, $dst, $width, $height )
+    {
+        $imageconverter = new eZIEezcImageConverter( self::filter( $height, $width ) );
+        $imageconverter->perform( $src, $dst );
     }
 
     /**
-     * @param $src
-     * @param $dst
-     * @return unknown_type
-     */
-    static function doThumb($src, $dst) {
-        self::resize($src, $dst, 250, 250);
+    * Creates a thumb (250x250px) out of an image
+    * @param  string $src Source image path
+    * @param  string $dst Destination image path
+    * @return void
+    */
+    static function doThumb( $src, $dst )
+    {
+        self::resize( $src, $dst, 250, 250 );
     }
 }
+
 ?>

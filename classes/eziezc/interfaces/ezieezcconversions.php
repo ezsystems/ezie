@@ -1,75 +1,74 @@
-<?php
-// ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: eZ Image Editor extension for eZ Publish
-// SOFTWARE RELEASE: 0.1 (preview only)
-// COPYRIGHT NOTICE: Copyright (C) 2009 eZ Systems AS
-// SOFTWARE LICENSE: GNU General Public License v2.0
-// NOTICE: >
-//   This program is free software; you can redistribute it and/or
-//   modify it under the terms of version 2.0  of the GNU General
-//   Public License as published by the Free Software Foundation.
-//
-//   This program is distributed in the hope that it will be useful,
-//   but WITHOUT ANY WARRANTY; without even the implied warranty of
-//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   GNU General Public License for more details.
-//
-//   You should have received a copy of version 2.0 of the GNU General
-//   Public License along with this program; if not, write to the Free
-//   Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-//   MA 02110-1301, USA.
-//
-//
-// ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-
+<?php 
 /**
- * @author eZIE Team
+ * File containing the eZAutoloadGenerator class.
  *
+ * @copyright Copyright (C) 1999-2010 eZ Systems AS. All rights reserved.
+ * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
+ * @version //autogentag//
+ * @author eZIE Team 
+ * @package ezie
  */
-interface eZIEEzcConversions {
-	/**
-	 * @param int $angle
-	 * @param string $color
-	 * @return void
-	 */
-	public function rotate($angle, $color = 'FFFFFF');
-	
-	/**
-	 * @param int $width
-	 * @param int $height
-	 * @param int $region
-	 * @return void
-	 */
-	public function pixelate($width, $height, $region = null);
-	
-	/**
-	 * @param int[4] $region
-	 * @return void
-	 */
-	public function horizontalFlip($region = null);
-    
-	/**
-	 * @param int[4] $region
-	 * @return void
-	 */
-	public function verticalFlip($region = null);
-	
+interface eZIEEzcConversions
+{
     /**
-     * @param string $space
-     * @param int[4] $region
-     * @return void
+     * Adds a rotate effect filter
+     * 
+     * @param int $angle Rotation angle. Valid range: [0 to 360]
+     * @param string $background Background color used for visible background after rotation 
+     * @return void 
      */
-    public function colorspace($space, $region = null);
-    
+    public function rotate( $angle, $background = 'FFFFFF' );
+
     /**
-     * @param int $value
-     * @return void
+     * Adds a pixelate effect filter
+     * 
+     * @param int $width 
+     * @param int $height 
+     * @param array(int) $region Affected region, as an array of 4 keys: x, y, w, h
+     * @return void 
      */
-    public function brightness($value);
-    
+    public function pixelate( $width, $height, $region = null );
+
     /**
-     * @param int $value
-     * @return void
+     * Adds a horizontal flip filter
+     * 
+     * @param array(int) $region Affected region, as an array of 4 keys: x, y, w, h
+     * @return void 
      */
-    public function contrast($value);
+    public function horizontalFlip( $region = null );
+
+    /**
+     * Adds a vertical flip filter
+     * 
+     * @param array(int) $region Affected region, as an array of 4 keys: x, y, w, h
+     * @return void 
+     */
+    public function verticalFlip( $region = null );
+
+    /**
+     * Adds a colorspace transformation effect
+     * 
+     * @link http://www.imagemagick.org/script/command-line-options.php?ImageMagick=v34va9glpjbvqkoke9ag5u5283#colorspace
+     * 
+     * @param string $space Target colorspace
+     * @param array(int) 
+     * @return void 
+     */
+    public function colorspace( $space, $region = null );
+
+    /**
+     * Adds a brightness effect
+     * 
+     * @param int $value Brightness value. Valid range: [-255 to 255]
+     * @return void 
+     */
+    public function brightness( $value );
+
+    /**
+     * Adds a contrast effect
+     * 
+     * @param int $value Contrast value. Valid range: [-100 to 100]
+     * @return void 
+     */
+    public function contrast( $value );
 }

@@ -1,61 +1,38 @@
 <?php
-// ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: eZ Image Editor extension for eZ Publish
-// SOFTWARE RELEASE: 0.1 (preview only)
-// COPYRIGHT NOTICE: Copyright (C) 2009 eZ Systems AS
-// SOFTWARE LICENSE: GNU General Public License v2.0
-// NOTICE: >
-//   This program is free software; you can redistribute it and/or
-//   modify it under the terms of version 2.0  of the GNU General
-//   Public License as published by the Free Software Foundation.
-//
-//   This program is distributed in the hope that it will be useful,
-//   but WITHOUT ANY WARRANTY; without even the implied warranty of
-//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   GNU General Public License for more details.
-//
-//   You should have received a copy of version 2.0 of the GNU General
-//   Public License along with this program; if not, write to the Free
-//   Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-//   MA 02110-1301, USA.
-//
-//
-// ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-
-include_once 'kernel/common/template.php';
-
-$Module = $Params["Module"];
-
+/**
+ * File containing the rotation tool handler
+ * 
+ * @copyright Copyright (C) 1999-2010 eZ Systems AS. All rights reserved.
+ * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
+ * @version //autogentag//
+ * @package kernel
+ */
 $prepare_action = new eZIEImagePreAction();
 
 $http = eZHTTPTool::instance();
-if ($http->hasVariable("angle")) { // TODO: change hasvariable to haspostvariable
-    $angle = $http->variable("angle");
-} else {
-    $angle = 0;
-}
-if ($http->hasVariable("color")) { // TODO: change hasvariable to haspostvariable
-    $color = $http->variable("color");
-} else {
-    $color = 'FFFFFF';
-}
+ 
+// @todo change hasvariable to haspostvariable
+$angle = $http->hasVariable( "angle" ) ? $http->variable( "angle" ) : 0;
+$color = $http->hasVariable( "color" ) ? $http->variable( "color" ) : 'FFFFFF';
 
-if ($http->hasVariable("clockwise") && $http->variable('clockwise') == 'yes') { // TODO: change hasvariable to haspostvariable
-    $angle = 360 - intval($angle);
+// @todo change hasvariable to haspostvariable
+if ( $http->hasVariable( "clockwise" ) && $http->variable( 'clockwise' ) == 'yes' ) 
+{
+    $angle = 360 - intval( $angle );
 }
 
-$imageconverter = new eZIEezcImageConverter(eZIEImageToolRotation::filter($angle, $color));
+$imageconverter = new eZIEezcImageConverter( eZIEImageToolRotation::filter( $angle, $color ) );
 
-$imageconverter->perform($prepare_action->getAbsoluteImagePath(),
-    $prepare_action->getAbsoluteNewImagePath());
+$imageconverter->perform( 
+    $prepare_action->getAbsoluteImagePath(),
+    $prepare_action->getAbsoluteNewImagePath()
+);
 
-eZIEImageToolResize::doThumb( $prepare_action->getAbsoluteNewImagePath(),
-    $prepare_action->getAbsoluteNewThumbnailPath());
+eZIEImageToolResize::doThumb( 
+    $prepare_action->getAbsoluteNewImagePath(),
+    $prepare_action->getAbsoluteNewThumbnailPath()
+);
 
-$tpl = templateInit();
-$tpl->setVariable("result", $prepare_action->responseArray());
-
-$Result = array();
-$Result["pagelayout"] = false;
-$Result["content"] = $tpl->fetch("design:ezie/ajax_responses/default_action_response.tpl");
+echo (string)$prepare_action;
+eZExecution::cleanExit();
 ?>

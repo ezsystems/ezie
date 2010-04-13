@@ -1,44 +1,29 @@
 <?php
-// ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: eZ Image Editor extension for eZ Publish
-// SOFTWARE RELEASE: 0.1 (preview only)
-// COPYRIGHT NOTICE: Copyright (C) 2009 eZ Systems AS
-// SOFTWARE LICENSE: GNU General Public License v2.0
-// NOTICE: >
-//   This program is free software; you can redistribute it and/or
-//   modify it under the terms of version 2.0  of the GNU General
-//   Public License as published by the Free Software Foundation.
-//
-//   This program is distributed in the hope that it will be useful,
-//   but WITHOUT ANY WARRANTY; without even the implied warranty of
-//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   GNU General Public License for more details.
-//
-//   You should have received a copy of version 2.0 of the GNU General
-//   Public License along with this program; if not, write to the Free
-//   Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-//   MA 02110-1301, USA.
-//
-//
-// ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-
-
 /**
- * @author eZIE Team
- *
+ * File containing the eZIEImageToolCrop class.
+ * 
+ * @copyright Copyright (C) 1999-2010 eZ Systems AS. All rights reserved.
+ * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
+ * @version //autogentag//
+ * @package ezie
  */
-class eZIEImageToolCrop extends eZIEImageAction {
+class eZIEImageToolCrop extends eZIEImageAction
+{
     /**
-     * @param $selection
-     * @return unknown_type
-     */
-    public static function filter($selection) {
-        $r = array('x' => intval($selection['x']),
-            'y' => intval($selection['y']),
-            'width' => intval($selection['w']),
-            'height' => intval($selection['h'])
+    * Creates a crop filter
+    * 
+    * @param  array(int) $region Affected region, as a 4 keys array: w, h, x, y
+    * @return array( ezcImageFilter )
+    */
+    public static function filter( $region )
+    {
+        $r = array(
+            'x'      => intval( $region['x'] ),
+            'y'      => intval( $region['y'] ),
+            'width'  => intval( $region['w'] ),
+            'height' => intval( $region['h'] ) 
         );
-        return array(new ezcImageFilter('crop', $r));
+        return array( new ezcImageFilter( 'crop', $r ) );
     }
 }
 
