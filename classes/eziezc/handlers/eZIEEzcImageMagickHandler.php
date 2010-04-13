@@ -1,9 +1,9 @@
 <?php
 /**
  * File containing the eZIEEzcImageMagickHandler class.
- * 
+ *
  * Implements the methods used by the editor (rotate, flip, etc) for image magick.
- * 
+ *
  * @copyright Copyright (C) 1999-2010 eZ Systems AS. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
@@ -13,9 +13,9 @@ class eZIEEzcImageMagickHandler extends ezcImageImagemagickHandler implements eZ
 {
     /**
     * Sets the filtering region
-    * 
+    *
     * @param array $ (int) $region Array of regions, with 4 keys: h+w & x+y
-    * @return void 
+    * @return void
     */
     private function setRegion( $region )
     {
@@ -30,7 +30,7 @@ class eZIEEzcImageMagickHandler extends ezcImageImagemagickHandler implements eZ
 
     /**
      * Adds a rotation filter
-     * 
+     *
      * @param int $angle Rotation angle, 0 <= angle <= 360
      * @param string $color
      * @return void
@@ -49,13 +49,13 @@ class eZIEEzcImageMagickHandler extends ezcImageImagemagickHandler implements eZ
         $this->addFilterOption(
             $this->getActiveReference(),
             '-background',
-            $background 
+            $background
         );
 
         $this->addFilterOption(
             $this->getActiveReference(),
             '-rotate',
-            $angle 
+            $angle
         );
     }
 
@@ -84,19 +84,19 @@ class eZIEEzcImageMagickHandler extends ezcImageImagemagickHandler implements eZ
 
         if ( $region === null )
         {
-            $region = array( 
+            $region = array(
                 'x' => 0,
                 'y' => 0,
                 'w' => $width,
-                'h' => $height 
+                'h' => $height
             );
         }
 
-        $tmpRegion = array( 
+        $tmpRegion = array(
             'x' => $region['x'],
             'y' => $region['y'],
             'w' => $size,
-            'h' => $size 
+            'h' => $size
         );
 
         $activeReference = $this->getActiveReference();
@@ -120,17 +120,17 @@ class eZIEEzcImageMagickHandler extends ezcImageImagemagickHandler implements eZ
 
                 $this->addFilterOption( $activeReference,
                     '-blur',
-                    $blur 
+                    $blur
                 );
             }
         }
     }
 
-    /* 
+    /*
      * Reimplementation of the very same function of the parent class
      * but without the restriction on the width.
      * See related issue: http://issues.ez.no/IssueView.php?Id=15976&
-     * 
+     *
      * @see lib/ezc/ImageConversion/src/handlers/ezcImageImagemagickHandler#scalePercent($width, $height)
      */
     public function scalePercent( $width, $height )
@@ -163,29 +163,30 @@ class eZIEEzcImageMagickHandler extends ezcImageImagemagickHandler implements eZ
     /* (non-PHPdoc)
      * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#brightness($value)
      */
-    public function brightness( $value )
+    public function brightness( $value, $region = null )
     {
         if ( $value < - 255 || $value > 255 )
         {
             throw new ezcBaseValueException( 'value', $value, 'int >= -255 && int <= 255' );
-        } 
-        // 0 = -255 
-        // 50 = half as bright = -127 
-        // 100 = regular brightness = 0 
-        // 150 = 127 
+        }
+        // 0 = -255
+        // 50 = half as bright = -127
+        // 100 = regular brightness = 0
+        // 150 = 127
         // 200 = twice as bright = 255
         $value = ( 200 * ( $value + 255 ) ) / 512;
 
+        $this->setRegion( $region );
         $this->addFilterOption( $this->getActiveReference(),
             '-modulate',
-            $value 
+            $value
         );
     }
 
     /* (non-PHPdoc)
      * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#contrast($value)
      */
-    public function contrast( $value )
+    public function contrast( $value, $region = null )
     {
         if ( $value < - 100 || $value > 100 )
         {
@@ -197,18 +198,19 @@ class eZIEEzcImageMagickHandler extends ezcImageImagemagickHandler implements eZ
         if ( $round_value >= 0 )
         {
             $option = '-contrast';
-        } 
+        }
         else
         {
             $option = '+contrast';
             $round_value = - $round_value;
         }
 
+        $this->setRegion( $region );
         for ( $i = 0; $i < $round_value; ++$i )
         {
             $this->addFilterOption(
                 $this->getActiveReference(),
-                $option 
+                $option
             );
         }
     }

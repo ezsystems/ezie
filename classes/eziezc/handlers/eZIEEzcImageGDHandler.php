@@ -266,8 +266,9 @@ class eZIEEzcGDHandler extends ezcImageGdHandler implements eZIEEzcConversions
     /* (non-PHPdoc)
      * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#brightness($value)
      */
-    public function brightness( $value )
+    public function brightness( $value, $region = null )
     {
+        // @todo Handle region in brightness/GD as well
         $resource = $this->getActiveResource();
 
         if ( $value < - 255 || $value > 255 )
@@ -281,8 +282,9 @@ class eZIEEzcGDHandler extends ezcImageGdHandler implements eZIEEzcConversions
     /* (non-PHPdoc)
      * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#contrast($value)
      */
-    public function contrast( $value )
+    public function contrast( $value, $region = null )
     {
+        // @todo Handle region in contrast/GD as well
         $resource = $this->getActiveResource();
 
         if ( $value < - 100 || $value > 100 )

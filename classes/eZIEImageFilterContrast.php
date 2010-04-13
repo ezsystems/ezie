@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * File containing the eZIEImageFilterContrast class.
  *
@@ -14,12 +14,15 @@ class eZIEImageFilterContrast extends eZIEImageAction
      * @param int $value Contrast value
      * @return array( ezcImageFilter )
      */
-    static function filter( $value = 0 )
+    static function filter( $value = 0, $region = null )
     {
         return array(
-            new ezcImageFilter( 
+            new ezcImageFilter(
                 'contrast',
-                array( 'value' => $value )
+                array(
+                    'value' => $value,
+                    'region' => $region
+                )
             )
         );
     }

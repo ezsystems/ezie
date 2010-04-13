@@ -10,9 +10,10 @@
 $prepare_action = new eZIEImagePreAction();
 
 $http = eZHTTPTool::instance();
-$value = $http->hasPostVariable( 'value' ) ? $http->variable( 'value' ) : 0;
+$value  = $http->hasPostVariable( 'value' ) ? $http->variable( 'value' ) : 0;
+$region = $prepare_action->hasRegion() ? $prepare_action->getRegion() : null;
 
-$imageconverter = new eZIEezcImageConverter( eZIEImageFilterBrightness::filter( $value ) );
+$imageconverter = new eZIEezcImageConverter( eZIEImageFilterBrightness::filter( $value, $region ) );
 
 $imageconverter->perform(
     $prepare_action->getImagePath(),
