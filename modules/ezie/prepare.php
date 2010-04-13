@@ -22,7 +22,7 @@
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
-include_once 'kernel/common/template.php';
+// include_once 'kernel/common/template.php';
 
 $Module = $Params["Module"];
 $Params = $Module->getNamedParameters();
@@ -71,22 +71,25 @@ eZIEImageToolResize::doThumb($working_folder_absolute_path . "/" . $file,
 // retrieve image dimensions
 $ezcanalyzer = new ezcImageAnalyzer($working_folder_path . "/" . $file);
 
-$tpl = templateInit();
-$tpl->setVariable("result", array( 'original' => $working_folder_path . "/" . $file,
-    'thumbnail' => $working_folder_path . "/" . $thumb,
-    // the key is the folder where the working image is stored
-    'key' => $user->id() . "/" . $NodeId . "-" . $Version,
-    'image_id' => $NodeId,
-    'image_version' => $Version,
-    'history_version' => 0,
-    'module_path' => 'ezie',
-    'image_width' => $ezcanalyzer->data->width,
-    'image_height' => $ezcanalyzer->data->height,
-));
+$object = new stdClass();
 
-$Result = array();
-$Result["pagelayout"] = false;
-$Result["content"] = $tpl->fetch("design:ezie/ajax_responses/prepare.tpl");
+$uri = "$working_folder_path/$file";
+eZURI::transformURI( $uri, true );
+$object->image_url = $uri;
 
+$uri = "$working_folder_path/$thumb";
+eZURI::transformURI( $uri, true );
+$object->thumbnail_url = $uri;
 
+// the key is the folder where the working image is stored
+$object->key = $user->id() . "/{$NodeId}-{$Version}";
+$object->image_id = (int)$NodeId;
+$object->image_version = (int)$Version;
+$object->history_version = 0;
+$object->module_url = 'ezie';
+$object->image_width = (int)$ezcanalyzer->data->width;
+$object->image_height = (int)$ezcanalyzer->data->height;
+echo json_encode( $object );
+
+eZExecution::cleanExit();
 ?>
