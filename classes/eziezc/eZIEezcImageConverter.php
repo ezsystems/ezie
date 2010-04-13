@@ -12,26 +12,26 @@ class eZIEezcImageConverter
 {
     /**
      * @var ezcImageConverter
-     */ 
+     */
     private $converter;
 
     /**
     * Instanciantes the image converter with a set of filters
-    * 
+    *
     * @param array(ezcImageFilter) $filter Filters to add to the image converter
     * @return void
     * @throws ezcBaseSettingValueException Error adding the transformation
     */
     public function __construct( $filter )
     {
-        $ini = eZINI::instance( "image.ini" ); 
+        $ini = eZINI::instance( "image.ini" );
         // we use in priority image magick
         $hasImageMagick = $ini->variable( "ImageMagick", "IsEnabled" );
 
         if ( $hasImageMagick == "true" )
         {
             $settings = new ezcImageConverterSettings( array( new ezcImageHandlerSettings( 'ImageMagick', 'eZIEEzcImageMagickHandler' ) ) );
-        } 
+        }
         else
         {
             $settings = new ezcImageConverterSettings( array( new ezcImageHandlerSettings( 'GD', 'eZIEEzcGDHandler' ) ) );
@@ -46,21 +46,31 @@ class eZIEezcImageConverter
 
     /**
     * Performs the ezcImageConverter transformation
-    * 
+    *
     * @param  string $src Source image
     * @param  string $dst Destination image
     * @return void
     */
     public function perform( $src, $dst )
     {
-        try
-        {
+        // fetch the input file locally
+        $inClusterHandler = eZClusterFileHandler::instance( $src );
+        $inClusterHandler->fetch();
+
+        try {
             $this->converter->transform( 'transformation', $src, $dst );
         }
-        catch ( ezcImageTransformationException $e )
+        catch ( Exception $e )
         {
-            die( "Error transforming the image: lol =><{$e->getMessage()}>" );
+            $inClusterHandler->deleteLocal();
+            throw $e;
         }
+
+        // store the output file to the cluster
+        $outClusterHandler = eZClusterFileHandler::instance();
+
+        // @todo Check if the local output file can be deleted at that stage. Theorically yes.
+        $outClusterHandler->fileStore( $dst, true );
     }
 
     /**

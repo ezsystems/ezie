@@ -1,7 +1,7 @@
 <?php
 /**
  * File containing the eZIEImagePreAction class.
- * 
+ *
  * @copyright Copyright (C) 1999-2010 eZ Systems AS. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
@@ -26,21 +26,21 @@ class eZIEImagePreAction
         $http = eZHTTPTool::instance();
         //  @todo change hasVariable to hasPostVariable
         if ( !$http->hasVariable( 'key' ) || !$http->hasVariable( 'image_id' ) || !$http->hasVariable( 'image_version' ) || !$http->hasVariable( 'history_version' ) )
-        { 
+        {
             //  @todo manage errors
             return;
         }
         $this->key = $http->variable( 'key' );
         $this->image_id = $http->variable( 'image_id' );
         $this->image_version = $http->variable( 'image_version' );
-        $this->history_version = $http->variable( 'history_version' ); 
+        $this->history_version = $http->variable( 'history_version' );
         // retieve the attribute image
         $this->original_image = eZContentObjectAttribute::fetch(
             $this->image_id,
             $this->image_version
         )->attribute( 'content' );
         if ( $this->original_image === null )
-        { 
+        {
             //  @todo manage error (the image_id does not match any existing image)
             return;
         }
@@ -50,15 +50,14 @@ class eZIEImagePreAction
         $this->image_path =
             $this->working_folder . "/" .
             $this->history_version . "-" .
-            $this->original_image->attributeFromOriginal( 'filename' ); 
-        
+            $this->original_image->attributeFromOriginal( 'filename' );
+
         // check if file exists (that will mean the data sent is correct)
         $absolute_image_path = eZSys::rootDir() . "/" . $this->image_path;
 
-        // @todo Clustering fix
-        $fs_handler = new eZFSFileHandler();
-        if ( !$fs_handler->fileExists( $absolute_image_path ) )
-        { 
+        $handler = eZClusterFileHandler::instance();
+        if ( !$handler->fileExists( $absolute_image_path ) )
+        {
             // @todo manage error
             return;
         }
@@ -67,8 +66,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return unknown_type 
+     *
+     * @return unknown_type
      */
     private function prepare_region()
     {
@@ -85,7 +84,7 @@ class eZIEImagePreAction
                     'x' => intval( $selection['x'] ),
                     'y' => intval( $selection['y'] ),
                     'w' => intval( $selection['w'] ),
-                    'h' => intval( $selection['h'] ) 
+                    'h' => intval( $selection['h'] )
                 );
             }
         }
@@ -94,8 +93,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return unknown_type 
+     *
+     * @return unknown_type
      */
     public function hasRegion()
     {
@@ -103,8 +102,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return unknown_type 
+     *
+     * @return unknown_type
      */
     public function getRegion()
     {
@@ -113,7 +112,7 @@ class eZIEImagePreAction
 
     /**
      * @note var/ezie/{user_id}/{image_id}-{image_version}/{history_version}-
-     * @return unknown_type 
+     * @return unknown_type
      */
     public function getAbsoluteImagePath()
     {
@@ -122,7 +121,7 @@ class eZIEImagePreAction
 
     /**
      * Returns the image path
-     * @return string 
+     * @return string
      */
     public function getImagePath()
     {
@@ -130,8 +129,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return string 
+     *
+     * @return string
      */
     public function getThumbnailPath()
     {
@@ -143,8 +142,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return string 
+     *
+     * @return string
      */
     public function getAbsoluteThumbnailPath()
     {
@@ -152,8 +151,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return string 
+     *
+     * @return string
      */
     public function getAbsoluteNewThumbnailPath()
     {
@@ -161,8 +160,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return string 
+     *
+     * @return string
      */
     public function getNewThumbnailPath()
     {
@@ -174,8 +173,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return unknown_type 
+     *
+     * @return unknown_type
      */
     public function getAbsoluteNewImagePath()
     {
@@ -183,8 +182,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return unknown_type 
+     *
+     * @return unknown_type
      */
     public function getNewImagePath()
     {
@@ -194,8 +193,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return unknown_type 
+     *
+     * @return unknown_type
      */
     public function getVersion()
     {
@@ -203,8 +202,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return unknown_type 
+     *
+     * @return unknown_type
      */
     public function getHistoryVersion()
     {
@@ -212,8 +211,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return unknown_type 
+     *
+     * @return unknown_type
      */
     public function getNewHistoryVersion()
     {
@@ -222,7 +221,7 @@ class eZIEImagePreAction
 
     /**
      * Returns a JSON encoded version of the operation result
-     * @return unknown_type 
+     * @return unknown_type
      */
     public function response()
     {
@@ -235,25 +234,25 @@ class eZIEImagePreAction
 
     /**
      * Formats the current response as a JSON string
-     * 
+     *
      * @return string The JSON encoded object
      */
     public function __toString()
     {
         $stringObject = new stdClass();
-        
+
         $stringObject->image_url       = $this->getNewImagePath();
         $stringObject->thumbnail_url   = $this->getNewThumbnailPath();
         $stringObject->history_version = $this->getNewHistoryVersion();
-        
+
         eZURI::transformURI( $stringObject->image_url, true );
         eZURI::transformURI( $stringObject->thumbnail_url, true );
-        
+
         return json_encode( $stringObject );
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getWorkingFolder()
@@ -262,8 +261,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return unknown_type 
+     *
+     * @return unknown_type
      */
     public function getAbsoluteWorkingFolder()
     {
@@ -271,8 +270,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return unknown_type 
+     *
+     * @return unknown_type
      */
     public function getImageHandler()
     {
@@ -280,8 +279,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return string 
+     *
+     * @return string
      */
     public function getImageId()
     {
@@ -289,8 +288,8 @@ class eZIEImagePreAction
     }
 
     /**
-     * 
-     * @return unknown_type 
+     *
+     * @return unknown_type
      */
     public function getImageVersion()
     {

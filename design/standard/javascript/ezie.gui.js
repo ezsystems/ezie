@@ -201,16 +201,12 @@ ezie.gui.eziegui = function () {
     // prepare_url is the url to call so
     // the backend prepares the image to be edited (see module/ezie/prepare.php)
     var open = function(prepare_url, button) {
-        $.log('on open \\o/');
         if (initialized == false) {
             init();
         }
-        $.log('show ton gui ?');
         showGUI();
 
-
         ezie_edit_button = $(button);
-        $.log('kik ezie button ? ' + button);
 
         ezie.ezconnect.prepare(prepare_url);
     }
@@ -221,7 +217,6 @@ ezie.gui.eziegui = function () {
     }
 
     var setImages = function(image, thumb) {
-        $.log('global set images (' + image + ', '+thumb+')');
         if (image != null && thumb != null)
             ezie.history().add(image, thumb);
         refreshImages();
@@ -286,7 +281,7 @@ ezie.gui.eziegui = function () {
         // Freeze the GUI while executing server-side actions
         freezeGUI:freezeGUI,
         unfreezeGUI:unfreezeGUI,
-        
+
         isFrozen:isFrozen,
         freeze:setFreeze,
 

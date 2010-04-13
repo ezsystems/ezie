@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * File containing the eZIEImageAction class.
  *

@@ -1,281 +1,297 @@
 <?php
-// ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: eZ Image Editor extension for eZ Publish
-// SOFTWARE RELEASE: 0.1 (preview only)
-// COPYRIGHT NOTICE: Copyright (C) 2009 eZ Systems AS
-// SOFTWARE LICENSE: GNU General Public License v2.0
-// NOTICE: >
-//   This program is free software; you can redistribute it and/or
-//   modify it under the terms of version 2.0  of the GNU General
-//   Public License as published by the Free Software Foundation.
-//
-//   This program is distributed in the hope that it will be useful,
-//   but WITHOUT ANY WARRANTY; without even the implied warranty of
-//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   GNU General Public License for more details.
-//
-//   You should have received a copy of version 2.0 of the GNU General
-//   Public License along with this program; if not, write to the Free
-//   Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-//   MA 02110-1301, USA.
-//
-//
-// ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-
 /**
- * @author eZIE Team
+ * File containing the eZIEEzcGDHandler class.
  *
+ * @copyright Copyright (C) 1999-2010 eZ Systems AS. All rights reserved.
+ * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
+ * @version //autogentag//
+ * @package ezie
  */
-class eZIEEzcGDHandler extends ezcImageGdHandler
-implements eZIEEzcConversions {
+class eZIEEzcGDHandler extends ezcImageGdHandler implements eZIEEzcConversions
+{
+    /**
+     * Apply the filter on the specified region and return the new resource
+     *
+     * @param  $filter
+     * @param  $resource
+     * @param  $region
+     * @param  $colorspace
+     *
+     * @return imageresource
+     */
+    private function region( $filter, $resource, $region, $colorspace = null )
+    {
+        $dest = imagecreatetruecolor( $region["w"], $region["h"] );
+        if ( !imagecopy( $dest, $resource, 0, 0, $region["x"], $region["y"], $region["w"], $region["h"] ) )
+        {
+            throw new ezcImageFilterFailedException( "1/ {$function} applied on region {$region['x']}x{$region['y']}" );
+        }
 
-	// Apply a the filter on the specified region and return the new resource
-	
-	/**
-	 * @param $filter
-	 * @param $resource
-	 * @param $region
-	 * @param $colorspace
-	 * @return imageresource
-	 */
-	private function region($filter, $resource, $region, $colorspace = null) {
+        if ( !$colorspace )
+        {
+            if ( $filter == "pixelateImg" )
+            {
+                $result = $this->$filter( $dest, imagesx( $resource ), imagesy( $resource ) );
+            }
+            else
+                $result = $this->$filter( $dest );
+        }
+        else
+        {
+            $this->setActiveResource( $dest );
+            parent::colorspace( $colorspace );
+            $result = $dest;
+        }
 
-		$dest = imagecreatetruecolor($region["w"], $region["h"]);
-		if (!imagecopy($dest, $resource, 0, 0, $region["x"], $region["y"], $region["w"], $region["h"])) {
-			throw new ezcImageFilterFailedException( "1/ " . $function . ' applied on region ' . $region["x"] . "x" . $region["y"]);
-		}
+        if ( !imagecopy( $resource, $result, $region["x"], $region["y"], 0, 0, $region["w"], $region["h"] ) )
+        {
+            throw new ezcImageFilterFailedException( "2/ {$function} applied on region {$region['x']}x{$region['y']}" );
+        }
 
-		if (!$colorspace) {
-			if ($filter == "pixelateImg") {
+        return $resource;
+    }
 
-				$result = $this->$filter($dest, imagesx($resource), imagesy($resource));
-			} else
-			$result = $this->$filter($dest);
-		} else {
-			$this->setActiveResource( $dest );
-			parent::colorspace($colorspace);
-			$result = $dest;
-		}
+    /**
+     *
+     * @param  $hex
+     * @return array
+     */
+    private function bgArrayFromHex( $hex )
+    {
+        return array(
+            'r' => hexdec( substr( $hex, 0, 2 ) ),
+            'g' => hexdec( substr( $hex, 2, 2 ) ),
+            'b' => hexdec( substr( $hex, 4, 2 ) ),
+            'a' => 127
+        );
+    }
 
-		if (!imagecopy($resource, $result, $region["x"], $region["y"], 0, 0, $region["w"], $region["h"])) {
-			throw new ezcImageFilterFailedException( "2/ " . $function . ' applied on region ' . $region["x"] . "x" . $region["y"]);
-		}
+    /* (non-PHPdoc)
+     * @see lib/ezc/ImageConversion/src/handlers/ezcImageGdHandler#colorspace($space)
+     */
+    public function colorspace( $space, $region = null )
+    {
+        $resource = $this->getActiveResource();
 
-		return $resource;
-	}
+        if ( $region )
+        {
+            $newResource = $this->region( null, $resource, $region, $space );
+        }
+        else
+        {
+            parent::colorspace( $space );
+            return;
+        }
 
-	/**
-	 * @param $hex
-	 * @return array
-	 */
-	private function bgArrayFromHex($hex) {
-		return array(
-                'r' => hexdec(substr($hex, 0, 2)),
-                'g' => hexdec(substr($hex, 2, 2)),
-                'b' => hexdec(substr($hex, 4, 2)),
-                'a' => 127
-		);
-	}
+        $this->setActiveResource( $newResource );
+    }
 
-	/* (non-PHPdoc)
-	 * @see lib/ezc/ImageConversion/src/handlers/ezcImageGdHandler#colorspace($space)
-	 */
-	public function colorspace($space, $region = null) {
-		$resource = $this->getActiveResource();
+    /* (non-PHPdoc)
+     * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#rotate($angle, $color)
+     */
+    public function rotate( $angle, $background = 'FFFFFF' )
+    {
+        $angle = intval( $angle );
+        if ( !is_int( $angle ) || $angle < 0 || $angle > 360 )
+        {
+            throw new ezcBaseValueException( 'height', $angle, 'int > 0 && int < 360' );
+        }
 
-		if ($region) {
-			$newResource = $this->region(null, $resource, $region, $space);
-		} else {
-			parent::colorspace($space);
-			return;
-		}
+        $resource = $this->getActiveResource();
 
-		$this->setActiveResource( $newResource );
-	}
+        $bg = $this->bgArrayFromHex( $background );
+        $gdBackgroundColor = imagecolorallocatealpha( $resource, $bg['r'], $bg['g'], $bg['b'], $bg['a'] );
 
-	/* (non-PHPdoc)
-	 * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#rotate($angle, $color)
-	 */
-	public function rotate($angle, $background = 'FFFFFF') {
-		$angle = intval($angle);
-		if ( !is_int($angle) || $angle < 0 || $angle > 360) {
-			throw new ezcBaseValueException( 'height', $angle, 'int > 0 && int < 360' );
-		}
+        $newResource = ImageRotate( $resource, $angle, $gdBackgroundColor );
+        if ( $newResource === false )
+        {
+            throw new ezcImageFilterFailedException( 'rotate', 'Rotation of image failed.' );
+        }
 
-		$resource = $this->getActiveResource();
+        imagedestroy( $resource );
+        $this->setActiveResource( $newResource );
+    }
 
-		$bg = $this->bgArrayFromHex($background);
-		$gdBackgroundColor = imagecolorallocatealpha($resource, $bg['r'], $bg['g'], $bg['b'], $bg['a']);
+    /* (non-PHPdoc)
+     * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#verticalFlip($region)
+     */
+    public function verticalFlip( $region = null )
+    {
+        $resource = $this->getActiveResource();
 
-		$newResource  = ImageRotate($resource, $angle, $gdBackgroundColor);
-		if ( $newResource === false ) {
-			throw new ezcImageFilterFailedException( 'rotate', 'Rotation of image failed.' );
-		}
+        $w = imagesx( $resource );
+        $h = imagesy( $resource );
 
-		imagedestroy( $resource );
-		$this->setActiveResource( $newResource );
-	}
+        $newResource = imagecreatetruecolor( $w, $h );
 
-	/* (non-PHPdoc)
-	 * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#verticalFlip($region)
-	 */
-	public function verticalFlip($region = null) {
-		$resource = $this->getActiveResource();
+        imagealphablending( $newResource, false );
+        imagesavealpha( $newResource, true );
 
-		$w = imagesx($resource);
-		$h = imagesy($resource);
+        $res = imagecopyresampled( $newResource, $resource,
+            0, 0,
+            0, $h,
+            $w, $h,
+            $w, - $h );
 
-		$newResource = imagecreatetruecolor($w, $h);
+        if ( $res === false )
+        {
+            throw new ezcImageFilterFailedException( 'rotate', 'Rotation of image failed.' );
+        }
 
-		imagealphablending($newResource, false);
-		imagesavealpha($newResource, true);
+        imagedestroy( $resource );
+        $this->setActiveResource( $newResource );
+    }
 
-		$res = imagecopyresampled($newResource, $resource,
-								  0,		    0,
-								  0,            $h,
-								  $w, 		    $h,
-								  $w,          -$h);
+    /**
+     *
+     * @param  $resource
+     * @return unknown_type
+     */
+    private function horizontalFlipImg( $resource )
+    {
+        $w = imagesx( $resource );
+        $h = imagesy( $resource );
 
-		if ( $res === false ) {
-			throw new ezcImageFilterFailedException( 'rotate', 'Rotation of image failed.' );
-		}
+        $newResource = imagecreatetruecolor( $w, $h );
 
-		imagedestroy( $resource );
-		$this->setActiveResource( $newResource );
-	}
+        imagealphablending( $newResource, false );
+        imagesavealpha( $newResource, true );
 
-	/**
-	 * @param $resource
-	 * @return unknown_type
-	 */
-	private function horizontalFlipImg($resource) {
-		$w = imagesx($resource);
-		$h = imagesy($resource);
+        $res = imagecopyresampled( $newResource, $resource,
+            0, 0,
+            $w, 0,
+            $w, $h, - $w, $h );
 
-		$newResource = imagecreatetruecolor($w, $h);
+        if ( $res === false )
+        {
+            throw new ezcImageFilterFailedException( 'rotate', 'Rotation of image failed.' );
+        }
 
-		imagealphablending($newResource, false);
-		imagesavealpha($newResource, true);
+        imagedestroy( $resource );
+        return $newResource;
+    }
 
-		$res = imagecopyresampled($newResource, $resource,
-		0,  0,
-		$w, 0,
-		$w, $h,
-		-$w, $h);
+    /* (non-PHPdoc)
+     * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#horizontalFlip($region)
+     */
+    public function horizontalFlip( $region = null )
+    {
+        $resource = $this->getActiveResource();
 
-		if ( $res === false ) {
-			throw new ezcImageFilterFailedException( 'rotate', 'Rotation of image failed.' );
-		}
+        if ( $region )
+        {
+            $newResource = $this->region( "horizontalFlipImg", $resource, $region );
+        }
+        else
+        {
+            $newResource = $this->horizontalFlipImg( $resource );
+        }
 
-		imagedestroy( $resource );
-		return $newResource;
-	}
+        $this->setActiveResource( $newResource );
+    }
 
-	/* (non-PHPdoc)
-	 * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#horizontalFlip($region)
-	 */
-	public function horizontalFlip($region = null) {
-		$resource = $this->getActiveResource();
+    /**
+     *
+     * @param  $resource
+     * @param  $width
+     * @param  $height
+     * @return unknown_type
+     */
+    private function pixelateImg( $resource, $width, $height )
+    {
+        $w = imagesx( $resource );
+        $h = imagesy( $resource );
 
-		if ($region) {
-			$newResource = $this->region("horizontalFlipImg", $resource, $region);
-		} else {
-			$newResource = $this->horizontalFlipImg($resource);
-		}
+        $size = ceil( max( $width, $height ) ) / 42;
 
-		$this->setActiveResource( $newResource );
-	}
+        $tmp_w = $w / $size;
+        $tmp_h = $h / $size;
 
-	/**
-	 * @param $resource
-	 * @param $width
-	 * @param $height
-	 * @return unknown_type
-	 */
-	private function pixelateImg($resource, $width, $height) {
-		$w = imagesx($resource);
-		$h =  imagesy($resource);
+        $tmpResource = imagecreatetruecolor( $tmp_w, $tmp_h );
 
+        imagealphablending( $tmpResource, false );
+        imagesavealpha( $tmpResource, true );
 
-		$size = ceil(max($width, $height)) / 42;
+        $res = imagecopyresampled( $tmpResource, $resource,
+            0, 0,
+            0, 0,
+            $tmp_w, $tmp_h,
+            $w, $h );
 
-		$tmp_w = $w / $size;
-		$tmp_h = $h / $size;
+        if ( $res === false )
+        {
+            throw new ezcImageFilterFailedException( 'pixelate', 'First part of pixelate failed.' );
+        }
+        imagedestroy( $resource );
 
-		$tmpResource = imagecreatetruecolor($tmp_w, $tmp_h);
+        $newResource = imagecreatetruecolor( $w, $h );
 
-		imagealphablending($tmpResource, false);
-		imagesavealpha($tmpResource, true);
+        imagealphablending( $newResource, false );
+        imagesavealpha( $newResource, true );
 
-		$res = imagecopyresampled($tmpResource, $resource,
-		0, 0,
-		0, 0,
-		$tmp_w, $tmp_h,
-		$w, $h);
+        $res = imagecopyresampled( $newResource, $tmpResource,
+            0, 0,
+            0, 0,
+            $w, $h,
+            $tmp_w, $tmp_h );
 
-		if ( $res === false ) {
-			throw new ezcImageFilterFailedException( 'pixelate', 'First part of pixelate failed.' );
-		}
-		imagedestroy($resource);
+        if ( $res === false )
+        {
+            throw new ezcImageFilterFailedException( 'pixelate', 'Second part of pixelate failed.' );
+        }
 
-		$newResource = imagecreatetruecolor($w, $h);
+        imagedestroy( $tmpResource );
+        return $newResource;
+    }
 
-		imagealphablending($newResource, false);
-		imagesavealpha($newResource, true);
+    /* (non-PHPdoc)
+     * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#pixelate($width, $height, $region)
+     */
+    public function pixelate( $width, $height, $region = null )
+    {
+        $resource = $this->getActiveResource();
 
-		$res = imagecopyresampled($newResource, $tmpResource,
-		0, 0,
-		0, 0,
-		$w, $h,
-		$tmp_w, $tmp_h);
+        if ( $region )
+        {
+            $newResource = $this->region( "pixelateImg", $resource, $region );
+        }
+        else
+        {
+            $newResource = $this->pixelateImg( $resource, $width, $height );
+        }
 
-		if ( $res === false ) {
-			throw new ezcImageFilterFailedException( 'pixelate', 'Second part of pixelate failed.' );
-		}
+        $this->setActiveResource( $newResource );
+    }
 
-		imagedestroy( $tmpResource );
-		return $newResource;
-	}
+    /* (non-PHPdoc)
+     * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#brightness($value)
+     */
+    public function brightness( $value )
+    {
+        $resource = $this->getActiveResource();
 
-	/* (non-PHPdoc)
-	 * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#pixelate($width, $height, $region)
-	 */
-	public function pixelate($width, $height, $region = null) {
-		$resource = $this->getActiveResource();
+        if ( $value < - 255 || $value > 255 )
+        {
+            throw new ezcBaseValueException( 'value', $value, 'int >= -255 && int <= 255' );
+        }
 
-		if ($region) {
-			$newResource = $this->region("pixelateImg", $resource, $region);
-		} else {
-			$newResource = $this->pixelateImg($resource, $width, $height);
-		}
+        imagefilter( $resource, IMG_FILTER_BRIGHTNESS, $value );
+    }
 
-		$this->setActiveResource( $newResource );
-	}
+    /* (non-PHPdoc)
+     * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#contrast($value)
+     */
+    public function contrast( $value )
+    {
+        $resource = $this->getActiveResource();
 
-	/* (non-PHPdoc)
-	 * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#brightness($value)
-	 */
-	public function brightness($value) {
-		$resource = $this->getActiveResource();
+        if ( $value < - 100 || $value > 100 )
+        {
+            throw new ezcBaseValueException( 'value', $value, 'int >= -100 && int <= 100' );
+        }
 
-		if ($value < -255 || $value > 255) {
-			throw new ezcBaseValueException( 'value', $value, 'int >= -255 && int <= 255' );
-		}
-
-		imagefilter($resource, IMG_FILTER_BRIGHTNESS, $value);
-	}
-
-	/* (non-PHPdoc)
-	 * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#contrast($value)
-	 */
-	public function contrast($value) {
-		$resource = $this->getActiveResource();
-
-		if ($value < -100 || $value > 100) {
-			throw new ezcBaseValueException( 'value', $value, 'int >= -100 && int <= 100' );
-		}
-
-		imagefilter($resource, IMG_FILTER_CONTRAST, -$value);
-	}
+        imagefilter( $resource, IMG_FILTER_CONTRAST, - $value );
+    }
 }
+
 ?>

@@ -18,12 +18,12 @@ if ( $prepare_action->hasRegion() )
 }
 
 // retrieve image dimensions
-$ezcanalyzer = new ezcImageAnalyzer( $prepare_action->getAbsoluteImagePath() );
+$analyzer = new ezIEImageAnalyzer( $prepare_action->getAbsoluteImagePath() );
 
 $imageconverter = new eZIEezcImageConverter(
     eZIEImageToolPixelate::filter(
-        $ezcanalyzer->data->width,
-        $ezcanalyzer->data->height,
+        $analyzer->data->width,
+        $analyzer->data->height,
         $region 
     ) 
 );

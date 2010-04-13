@@ -1,3 +1,4 @@
+{*?template charset=utf-8?*}
 {* Require jQuery, using JS Core *}
 {ezscript_require( array( 'ezjsc::jquery',
                         'ezjsc::jqueryio',
@@ -64,7 +65,7 @@
         <div class="topBar">
             <div class="leftCorner"></div><div class="rightCorner"></div>
             <div class="topBarContent">
-                <h2>eZ Image Editor</h2>
+                <h2>{'eZ Image Editor'|i18n('design/standard/ezie')}</h2>
                 <ul id="window">
                     <li><a id="ezie_close" href="#"></a></li>
                 </ul>
@@ -90,7 +91,7 @@
                         </div>
 
                         <div id="optsRotation" class="opts">
-                            <div class="topMenu"><h2>Rotation</h2></div>
+                            <div class="topMenu"><h2>{'Rotation'|i18n('design/standard/ezie')}</h2></div>
                             <div id="selectAngle">
                                 <p class="relative">
                                     <a class="preset zero" href="javascript:void(0)">0°</a>
@@ -112,7 +113,7 @@
                             <div class="topMenu"><h2>{'Select'|i18n('design/standard/ezie')}</h2></div>
 
                             <fieldset>
-                                <legend>Dimensions</legend>
+                                <legend>{'Dimensions'|i18n('design/standard/ezie')}</legend>
                                 <input type="text" name="selection_width" value="100" /> x
                                 <input type="text" name="selection_height" value="100" />
                             </fieldset>
@@ -123,7 +124,7 @@
                             </ul>
 
                             <div id="optsCrop" class="opts">
-                                <button class="submit">Crop</button>
+                                <button class="submit">{'Crop'|i18n('design/standard/ezie')}</button>
                             </div>
                         </div>
 
@@ -134,8 +135,8 @@
                                 <li class="current"><a id="zoomIn" href="#"></a></li>
                                 <li><a id="zoomOut" href="#"></a></li>
                             </ul>
-                            <button id="actualPixels">{'Actual pixels'|i18n('design/standard/ezie')}</button>
-                            <button id="fitOnScreen">{'Fit on screen'|i18n('design/standard/ezie')}</button>
+                            <button class="button" id="actualPixels">{'Actual pixels'|i18n('design/standard/ezie')}</button>
+                            <button class="button" id="fitOnScreen">{'Fit on screen'|i18n('design/standard/ezie')}</button>
                         </div>
 
                         <div id="optsWatermarks" class="opts">
@@ -157,9 +158,7 @@
 
                             <ul>
                                 {foreach $watermarks as $wm}
-                                    <li><img
-		class="ezie-watermark-image" src={concat(
-		'watermarks/', $wm)|ezimage()} alt="" /></li>
+                                    <li><img class="ezie-watermark-image" src={concat( 'watermarks/', $wm )|ezimage()} alt="" /></li>
                                 {/foreach}
                             </ul>
                             
