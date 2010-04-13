@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * File containing the eZAutoloadGenerator class.
  *
@@ -16,13 +16,14 @@ $region = $prepare_action->hasRegion() ? $prepare_action->getRegion() : null;
 $imageconverter = new eZIEezcImageConverter( eZIEImageToolFlipHor::filter( $region ) );
 
 $imageconverter->perform(
-    $prepare_action->getAbsoluteImagePath(),
-    $prepare_action->getAbsoluteNewImagePath()
+    $prepare_action->getImagePath(),
+    $prepare_action->getNewImagePath()
+
 );
 
 eZIEImageToolResize::doThumb(
-    $prepare_action->getAbsoluteNewImagePath(),
-    $prepare_action->getAbsoluteNewThumbnailPath()
+    $prepare_action->getNewImagePath(),
+    $prepare_action->getNewThumbnailPath()
 );
 
 echo (string)$prepare_action;

@@ -1,7 +1,7 @@
 <?php
 /**
  * File containing the ezie no save & quit menu item handler
- * 
+ *
  * @copyright Copyright (C) 1999-2010 eZ Systems AS. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
@@ -17,7 +17,7 @@ $imageAttribute = eZContentObjectAttribute::fetch( $imageId, $imageVersion );
 
 // Save the class attribute
 $imageHandler = $prepare_action->getImageHandler();
-$imageHandler->initializeFromFile( $prepare_action->getAbsoluteImagePath(), false , false );
+$imageHandler->initializeFromFile( $prepare_action->getImagePath(), false , false );
 
 // TODO: what's $contentobjectattribute (ask jerome) ?
 $imageHandler->store( $imageAttribute );
@@ -27,7 +27,7 @@ eZContentCacheManager::clearObjectViewCacheIfNeeded( $prepare_action->getImageHa
 
 // delete all the images in working directory
 // delete working directory
-$working_folder = eZDir::dirpath( $prepare_action->getAbsoluteImagePath() );
+$working_folder = eZDir::dirpath( $prepare_action->getImagePath() );
 
 // deletes the working folder recursively
 eZDir::recursiveDelete( $working_folder );

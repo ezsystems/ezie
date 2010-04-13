@@ -45,14 +45,14 @@ $thumb = "thumb-{$file}";
 
 // @todo Manage possible errors
 $handler->fileCopy(
-    $absolute_image_path,
-    "{$working_folder_absolute_path}/{$file}"
+    $image_path,
+    "{$working_folder_path}/{$file}"
 );
 
 // Creation of a thumbnail
 eZIEImageToolResize::doThumb(
-    "{$working_folder_absolute_path}/{$file}",
-    "{$working_folder_absolute_path}/{$thumb}"
+    "{$working_folder_path}/{$file}",
+    "{$working_folder_path}/{$thumb}"
 );
 // retrieve image dimensions
 $ezcanalyzer = new eZIEImageAnalyzer( "{$working_folder_path}/{$file}" );

@@ -34,11 +34,11 @@ class eZIEImagePreAction
         $this->image_id = $http->variable( 'image_id' );
         $this->image_version = $http->variable( 'image_version' );
         $this->history_version = $http->variable( 'history_version' );
+
         // retieve the attribute image
         $this->original_image = eZContentObjectAttribute::fetch(
             $this->image_id,
-            $this->image_version
-        )->attribute( 'content' );
+            $this->image_version )->attribute( 'content' );
         if ( $this->original_image === null )
         {
             //  @todo manage error (the image_id does not match any existing image)
@@ -56,7 +56,7 @@ class eZIEImagePreAction
         $absolute_image_path = eZSys::rootDir() . "/" . $this->image_path;
 
         $handler = eZClusterFileHandler::instance();
-        if ( !$handler->fileExists( $absolute_image_path ) )
+        if ( !$handler->fileExists( $this->image_path ) )
         {
             // @todo manage error
             return;
@@ -75,9 +75,9 @@ class eZIEImagePreAction
 
         $http = eZHTTPTool::instance();
          // @todo Change hasvariable to haspostvariable
-        if ( $http->hasVariable( "selection" ) )
+        if ( $http->hasVariable( 'selection' ) )
         {
-            $selection = $http->variable( "selection" );
+            $selection = $http->variable( 'selection' );
             if ( $selection['x'] >= 0 && $selection['y'] >= 0 && $selection['w'] > 0 && $selection['h'] > 0 )
             {
                 $region = array(

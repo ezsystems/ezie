@@ -17,14 +17,14 @@ if ( $http->hasPostVariable( "saturation" ) )
 }
 
 eZIEImageToolSaturation::toolSaturation(
-    $prepare_action->getAbsoluteImagePath(),
-    $prepare_action->getAbsoluteNewImagePath(),
+    $prepare_action->getImagePath(),
+    $prepare_action->getNewImagePath(),
     $saturation
 );
 
 eZIEImageToolResize::doThumb(
-    $prepare_action->getAbsoluteNewImagePath(),
-    $prepare_action->getAbsoluteNewThumbnailPath()
+    $prepare_action->getNewImagePath(),
+    $prepare_action->getNewThumbnailPath()
 );
 
 echo (string)$prepare_action;

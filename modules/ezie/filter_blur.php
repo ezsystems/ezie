@@ -11,7 +11,7 @@
 $prepare_action = new eZIEImagePreAction();
 
 $http = eZHTTPTool::instance();
-$value = $http->hasPostVariable( 'value' ) ? $http->variable("value") : 1;
+$value = $http->hasPostVariable( 'value' ) ? $http->variable( 'value' ) : 1;
 
 $imageconverter = new eZIEezcImageConverter( eZIEImageFilterBlur::filter( $prepare_action->getRegion() ) );
 

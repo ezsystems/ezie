@@ -15,7 +15,7 @@ $prepare_action = new eZIEImagePreAction();
 
 // delete all the images in working directory
 // delete working directory
-$working_folder = eZDir::dirpath( $prepare_action->getAbsoluteImagePath() );
+$working_folder = eZDir::dirpath( $prepare_action->getImagePath() );
 
 // deletes the working folder recursively
 eZDir::recursiveDelete($working_folder);
