@@ -19,7 +19,7 @@ Technical information
     - Some jQuery plugins:
       - colorpicker                     http://www.eyecon.ro/colorpicker/
       - Jcrop                           http://deepliquid.com/content/Jcrop.html
-   
+
     - PHP
     - GD2 or ImageMagick
     - eZ Components (mainly ImageConversion)
@@ -33,3 +33,18 @@ Using eZ Image Editor
 =====================
 
 TBD.
+
+Adding custom watermarks
+========================
+
+The image editor supports adding custom watermarks to the existing set (which can of course be modified):
+
+* Place your watermark file (usually a PNG) in a 'watermark' subfolder of an 'images' design folder::
+  extension/mydesign/design/standard/images/watermarks/logo_ubuntu.png
+* Add the new watermark file to the list of used watermarks in image.ini::
+  ; extension/mydesign/settings/image.ini.append.php
+  [eZIE]
+  watermarks[]=logo_ubuntu.png
+* Clear your caches
+
+The custom file will be visible in the list.
