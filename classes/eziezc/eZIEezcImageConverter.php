@@ -24,13 +24,57 @@ class eZIEezcImageConverter
     */
     public function __construct( $filter )
     {
-        $ini = eZINI::instance( "image.ini" );
-        // we use in priority image magick
-        $hasImageMagick = $ini->variable( "ImageMagick", "IsEnabled" );
+        $imageINI = eZINI::instance( 'image.ini' );
 
-        if ( $hasImageMagick == "true" )
+        // we get an array of handlers, where order of entries in array gives priority
+        // for each entry, we need to check if the matching handler is enabled, and this has to be manual
+        $imageHandlers = $imageINI->variable( 'ImageConverterSettings', 'ImageConverters' );
+        foreach( $imageHandlers as $imageHandler )
         {
-            $settings = new ezcImageConverterSettings( array( new ezcImageHandlerSettings( 'ImageMagick', 'eZIEEzcImageMagickHandler' ) ) );
+            switch( $imageHandler )
+            {
+                case 'ImageMagick':
+                {
+                    $hasImageMagick = ( $imageINI->variable( 'ImageMagick', 'IsEnabled' ) == 'true' );
+                    if ( $hasImageMagick )
+                        break 2;
+                } break;
+
+                // GD2 is required for the image editor
+                // @todo Make the image editor degrade as nicely as possible if GD is not bundled
+                case 'GD':
+                {
+                    $hasGD2 =
+                        $imageINI->variable( 'GD', 'IsEnabled' ) == 'true' &&
+                        $imageINI->variable( 'GDSettings', 'HasGD2' == 'true' );
+                    if ( $hasGD2 )
+                        break 2;
+                } break;
+            }
+        }
+
+        if ( $hasImageMagick )
+        {
+            // we need to use the ImageMagick path configured in the image.ini file
+            $executable = $imageINI->variable( 'ImageMagick', 'Executable' );
+
+            if ( eZSys::osType() == 'win32' && $imageINI->hasVariable( 'ImageMagick', 'ExecutableWin32' ) )
+                $executable = $imageINI->variable( 'ImageMagick', 'ExecutableWin32' );
+            else if ( eZSys::osType() == 'mac'  && $imageINI->hasVariable( 'ImageMagick', 'ExecutableMac' ) )
+                $executable = $imageINI->variable( 'ImageMagick', 'ExecutableMac' );
+            else if ( eZSys::osType() == 'unix' && $imageINI->hasVariable( 'ImageMagick', 'ExecutableUnix' ) )
+                $executable = $imageINI->variable( 'ImageMagick', 'ExecutableUnix' );
+            if ( $imageINI->hasVariable( 'ImageMagick', 'ExecutablePath' ) )
+                $executable = $imageINI->variable( 'ImageMagick', 'ExecutablePath' ) . eZSys::fileSeparator() . $executable;
+            // @todo Remove if ezc indeed do it automatically
+            // if ( eZSys::osType() == 'win32' )
+            //    $executable = "\"$executable\"";
+
+            $imageHandlerSettings = new ezcImageHandlerSettings(
+                'ImageMagick', 'eZIEEzcImageMagickHandler',
+                array( 'binary' => $executable )
+            );
+            $settings = new ezcImageConverterSettings( array( $imageHandlerSettings ) );
         }
         else
         {
@@ -74,7 +118,7 @@ class eZIEezcImageConverter
     }
 
     /**
-    * Returns the ezcImageConverter in use
+    * Active ezcImageConverter
     * @return ezcImageConverter
     */
     public function getConverter()
