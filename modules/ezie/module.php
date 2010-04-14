@@ -13,8 +13,7 @@ $Module = array( 'name' => 'ezie' );
 $ViewList = array();
 
 $ViewList['prepare'] = array('script' => 'prepare.php',
-                             'params' => array( 'node_id',
-                                                'version'),
+                             'params' => array( 'object_id', 'edit_language', 'attribute_id', 'version' ),
 );
 
 // FILTERS

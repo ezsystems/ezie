@@ -31,7 +31,7 @@
     {* Edit button *}
     <input type="button"
            class="button ezieEdit ezieEditButton"
-           name="ezieEdit[{concat("ezie/prepare/", $attribute.id, "/", $attribute.version)|ezurl(no)}]"
+           name="ezieEdit[{array( "ezie/prepare", $attribute.contentobject_id, $attribute.language_code, $attribute.id, $attribute.version )|implode( '/' )|ezurl( no )}]"
            id="ezieEdit_{$attribute.id}_{$attribute.version}_{$attribute.contentobject_id}"
            value="{'Edit'|i18n( 'design/standard/ezie' )}"
            {if $attribute_content.original.is_valid|not} disabled="disabled"{/if}

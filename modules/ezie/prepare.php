@@ -9,24 +9,31 @@
  * @package ezie
  */
 
-$Module = $Params["Module"];
+$Module = $Params['Module'];
 $Params = $Module->getNamedParameters();
-// TODO: make sure it's an actual image class node id ?
-// retrieve the original image path
-$NodeId = $Params['node_id'];
-$Version = $Params['version'];
+$objectId     = (int)$Params['object_id'];
+$editLanguage = (int)$Params['edit_language'];
+$attributeID  = (int)$Params['attribute_id'];
+$version      = (int)$Params['version'];
 
-$img = eZContentObjectAttribute::fetch( $NodeId, $Version )->attribute( 'content' );
+// Check for permissions
+$contentObject = eZContentObject::fetchByNodeID( $objectId );
+if ( !$contentObject->canEdit( false, false, false, $editLanguage ) )
+{
+    die( '// @todo fixme :)' );
+}
+// retrieve the original image path
+$img = eZContentObjectAttribute::fetch( $attributeID, $version )->attribute( 'content' );
 $image_path = $img->attributeFromOriginal( 'url' );
 $absolute_image_path = eZSys::rootDir() . "/{$image_path}";
-// TODO: Check for editing rights
+
 // Creation of the editing arborescence
 // /{var folder}/ezie/user_id/image_id-version_id
 $user = eZUser::instance();
 
 $working_folder_path =
-    eZSys::varDirectory() . "/ezie/" .
-    $user->id() . "/{$NodeId}-{$Version}";
+    eZSys::varDirectory() . '/ezie/' .
+    $user->id() . "/{$attributeID}-{$version}";
 $working_folder_absolute_path = eZSys::rootDir() . "/{$working_folder_path}";
 
 $handler = eZClusterFileHandler::instance();
@@ -72,9 +79,9 @@ $object->thumbnail_url = $thumbnailURI;
 $object->image_url = $imageURI;
 
 // the key is the folder where the working image is stored
-$object->key = $user->id() . "/{$NodeId}-{$Version}";
-$object->image_id = (int)$NodeId;
-$object->image_version = (int)$Version;
+$object->key = $user->id() . "/{$attributeID}-{$version}";
+$object->image_id = (int)$attributeID;
+$object->image_version = (int)$version;
 $object->history_version = 0;
 $object->module_url = $moduleURI;
 $object->image_width = (int)$ezcanalyzer->data->width;

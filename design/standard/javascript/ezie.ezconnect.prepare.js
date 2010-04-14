@@ -22,15 +22,12 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 
 ezie.ezconnect.prepare = function (prepare_url) {
-    $.log('preparation');
     ezie.ezconnect.connect.instance().reset();
     ezie.history().reset();
 
     ezie.ezconnect.connect.instance().prepare({
         'url': prepare_url,
         'success': function(response) {
-            $.log('image prepared, now binding');
-            $.log('type of response : ' + (typeof response));
             // We achieve setting the values for ezie.ezconnect
             ezie.ezconnect.connect.instance().set({
                 'key': response.key,
@@ -44,7 +41,6 @@ ezie.ezconnect.prepare = function (prepare_url) {
 
             ezie.gui.eziegui.getInstance().setImages(response.image_url, response.thumbnail_url);
             ezie.gui.config.zoom().init();
-            $.log('prepared');
         },
         'complete': function() {
             ezie.gui.eziegui.getInstance().main().hideLoading();
