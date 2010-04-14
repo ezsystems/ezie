@@ -214,9 +214,9 @@
                         <div class="sectionContent">
                             <ul class="tools">
                                 <li><a class="vtip" id="ezie_select" href="" title="{'Select'|i18n('design/standard/ezie')}"></a></li>
+                                <li class="current"><a class="vtip" id="ezie_zoom" href="" title="{'Zoom'|i18n('design/standard/ezie')}"></a></li>
                                 <li class="less"><a class="vtip" id="ezie_undo" href="" title="{'Undo'|i18n('design/standard/ezie')}"></a></li>
                                 <li class="less"><a class="vtip" id="ezie_redo" href="" title="{'Redo'|i18n('design/standard/ezie')}"></a></li>
-                                <li class="current"><a class="vtip" id="ezie_zoom" href="" title="{'Zoom'|i18n('design/standard/ezie')}"></a></li>
                             </ul>
                         </div>
                     </div>
