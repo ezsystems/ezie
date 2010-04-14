@@ -49,3 +49,13 @@ Using eZ Image Editor
 =====================
 
 See README.
+
+eZ Publish cluster
+==================
+
+If you're using an eZDB or eZDFS based cluster setup, custom changes are required to get the images streamed correctly
+through the cluster index script. You can use the doc/clusterindex.diff file::
+
+patch -p0 < extension/ezie/doc/clusterindex.diff
+
+These changes will be part of the 4.4 release of eZ Publish.
