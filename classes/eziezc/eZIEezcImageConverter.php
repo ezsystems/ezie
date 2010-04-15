@@ -83,7 +83,7 @@ class eZIEezcImageConverter
 
         $this->converter = new ezcImageConverter( $settings );
 
-        $mimeType = array( 'image/jpeg', 'image/png' );
+        $mimeType = $imageINI->variable( 'OutputSettings', 'AllowedOutputFormat' );
 
         $this->converter->createTransformation( 'transformation', $filter, $mimeType );
     }
