@@ -35,13 +35,10 @@ eZDir::recursiveDelete( $working_folder );
 // new attribute
 $imageAttribute = eZContentObjectAttribute::fetch( $imageId, $imageVersion );
 
-// @todo Refactor with proper JSON
-$Result = array();
-$Result["pagelayout"] = false;
-
+// @todo Use proper JSON, but this will do for now.
 $tpl = templateInit();
 $tpl->setVariable( 'ezie_ajax_response', true );
 $tpl->setVariable( 'attribute', $imageAttribute );
-$Result["content"] = $tpl->fetch( "design:content/datatype/edit/ezimage.tpl" );
-
+echo $tpl->fetch( "design:content/datatype/edit/ezimage.tpl" );
+eZExecution::cleanExit();
 ?>
