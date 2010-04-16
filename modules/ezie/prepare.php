@@ -17,10 +17,10 @@ $attributeID  = (int)$Params['attribute_id'];
 $version      = (int)$Params['version'];
 
 // Check for permissions
-$contentObject = eZContentObject::fetchByNodeID( $objectId );
-if ( !$contentObject->canEdit( false, false, false, $editLanguage ) )
+$contentObject = eZContentObject::fetch( $objectId );
+if ( !$contentObject instanceOf eZContentObject || !$contentObject->canEdit( false, false, false, $editLanguage ) )
 {
-    die( '// @todo fixme :)' );
+   die( '// @todo fixme :)' );
 }
 // retrieve the original image path
 $img = eZContentObjectAttribute::fetch( $attributeID, $version )->attribute( 'content' );
