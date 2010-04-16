@@ -1,0 +1,13 @@
+KNOWN ISSUES on EZIE
+====================
+
+Black & White filter applied to a region
+----------------------------------------
+
+The black & white filter won't apply to a specific region but to the whole document. The reason hasn't been found in the
+ezie code itself, and might require investigation in the conversion ezcomponent.
+
+Contrast and pixelate don't support the region limitaton with GD
+----------------------------------------------------------------
+
+This hasn't been implemented in the first place, and is a bit more complex than with ImageMagick
