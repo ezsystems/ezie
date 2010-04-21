@@ -13,6 +13,10 @@ The bug has been narrowed down to the imagemagick command line. The following li
 though the region parameter is correct::
     /usr/local/bin/myconvert 'test.jpg' -region '341x379+291+178' -colorspace 'Gray' -colors '255' 'JPG:test-out.jpg'
 
+Extra info:
+ * this does work when the output is a PNG file. So it's not an input, but output problem.
+ * this happens on ImageMagick 6.3.7 on Ubuntu, and other platforms as well (the QA team has noticed it too)
+
 We should probably report an imagemagick bug, as the generated command line is okay and works with other file formats
 and color spaces.
 
@@ -26,3 +30,8 @@ Default eZ Publish image.ini settings will make ezcImageConverter fail
 ----------------------------------------------------------------------
 
 The default ezp image.ini contains ImageMagick.Executable = 'convert' and ImageMagick.ExecutablePath = ''. This is an issue with the current code, as we use this configuration for the component, and end up with a binary named convert. If a custom binary setting is sent to the component, it won't look in the path, and will therefore throw an exception since it won't find a file by that name in the current directory.
+
+The image file name changes after save & quit
+---------------------------------------------
+
+This occurs in the final operation on the image, and should be fixed.

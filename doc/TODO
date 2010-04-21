@@ -10,9 +10,3 @@ FIX
 VERIFY
 ======
 * Check what exact ezp version ezie requires
-* Check if the following actions do support a region:
-  * contrast:    OK on ImageMagick, still broken on GD
-  * brightness   OK on ImageMagick, still broken on GD
-  * pixelate:    OK
-  * sepia:       OK
-  * black white: KO just doesn't work. Dunno why yet, need to dig in the component
