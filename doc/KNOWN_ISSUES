@@ -25,8 +25,3 @@ Default eZ Publish image.ini settings will make ezcImageConverter fail
 ----------------------------------------------------------------------
 
 The default ezp image.ini contains ImageMagick.Executable = 'convert' and ImageMagick.ExecutablePath = ''. This is an issue with the current code, as we use this configuration for the component, and end up with a binary named convert. If a custom binary setting is sent to the component, it won't look in the path, and will therefore throw an exception since it won't find a file by that name in the current directory.
-
-The image file name changes after save & quit
----------------------------------------------
-
-This occurs in the final operation on the image, and should be fixed.
