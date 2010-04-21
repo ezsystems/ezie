@@ -16,10 +16,10 @@ class eZIEEzcGDHandler extends ezcImageGdHandler implements eZIEEzcConversions
      * @param  $resource
      * @param  $region
      * @param  $colorspace
-     *
+     * @param  $value parameters for region handling
      * @return imageresource
      */
-    private function region( $filter, $resource, $region, $colorspace = null )
+    private function region( $filter, $resource, $region, $colorspace = null, $value = null )
     {
         $dest = imagecreatetruecolor( $region["w"], $region["h"] );
         if ( !imagecopy( $dest, $resource, 0, 0, $region["x"], $region["y"], $region["w"], $region["h"] ) )
@@ -34,7 +34,7 @@ class eZIEEzcGDHandler extends ezcImageGdHandler implements eZIEEzcConversions
                 $result = $this->$filter( $dest, imagesx( $resource ), imagesy( $resource ) );
             }
             else
-                $result = $this->$filter( $dest );
+                $result = $this->$filter( $dest, $value );
         }
         else
         {
@@ -244,6 +244,30 @@ class eZIEEzcGDHandler extends ezcImageGdHandler implements eZIEEzcConversions
         return $newResource;
     }
 
+    /**
+     * contrast the given image, change $resource and return changed $resoure
+     * @param $resource
+     * @param $value contrast parameter
+     * @return object $resource changed
+     */
+    private function contrastImg( $resource, $value )
+    {
+        imagefilter( $resource, IMG_FILTER_CONTRAST, - $value );
+        return $resource;
+    }
+    
+    /**
+     * brightness the given image, change $resource and return changed $resource
+     * @param $resource
+     * @param unknown_type $value
+     * @return object $resource changed
+     */
+    private function brightnessImg( $resource, $value )
+    {
+        imagefilter( $resource, IMG_FILTER_BRIGHTNESS, $value );
+        return $resource;
+    }
+    
     /* (non-PHPdoc)
      * @see extension/ezie/autoloads/eziezc/interfaces/eZIEEzcConversions#pixelate($width, $height, $region)
      */
@@ -275,8 +299,15 @@ class eZIEEzcGDHandler extends ezcImageGdHandler implements eZIEEzcConversions
         {
             throw new ezcBaseValueException( 'value', $value, 'int >= -255 && int <= 255' );
         }
-
-        imagefilter( $resource, IMG_FILTER_BRIGHTNESS, $value );
+        
+        if( $region )
+        {
+            $this->region( "brightnessImg", $resource, $region, null, $value );
+        }
+        else
+        {
+            $this->brightnessImg( $resource, $value );
+        }
     }
 
     /* (non-PHPdoc)
@@ -284,7 +315,6 @@ class eZIEEzcGDHandler extends ezcImageGdHandler implements eZIEEzcConversions
      */
     public function contrast( $value, $region = null )
     {
-        // @todo Handle region in contrast/GD as well
         $resource = $this->getActiveResource();
 
         if ( $value < - 100 || $value > 100 )
@@ -292,7 +322,14 @@ class eZIEEzcGDHandler extends ezcImageGdHandler implements eZIEEzcConversions
             throw new ezcBaseValueException( 'value', $value, 'int >= -100 && int <= 100' );
         }
 
-        imagefilter( $resource, IMG_FILTER_CONTRAST, - $value );
+        if ( $region )
+        {
+            $this->region( "contrastImg", $resource, $region, null, $value );
+        }
+        else
+        {
+            $this->contrastImg( $resource, $value );
+        }
     }
 }
 
