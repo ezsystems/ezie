@@ -17,7 +17,7 @@ $imageAttribute = eZContentObjectAttribute::fetch( $imageId, $imageVersion );
 
 // Save the class attribute
 $imageHandler = $prepare_action->getImageHandler();
-$imageHandler->initializeFromFile( $prepare_action->getImagePath(), false , false );
+$imageHandler->initializeFromFile( $prepare_action->getImagePath(), $imageHandler->attribute( 'alternative_text' ), $imageHandler->attribute( 'original_filename' ) );
 
 // TODO: what's $contentobjectattribute (ask jerome) ?
 $imageHandler->store( $imageAttribute );
