@@ -21,11 +21,6 @@ We should probably report an imagemagick bug, as the generated command line is o
 and color spaces.
 
 
-Contrast and brightness don't support the region limitation with GD
--------------------------------------------------------------------
-
-This hasn't been implemented in the first place, and is a bit more complex than with ImageMagick.
-
 Default eZ Publish image.ini settings will make ezcImageConverter fail
 ----------------------------------------------------------------------
 
