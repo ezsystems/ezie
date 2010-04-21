@@ -7,10 +7,20 @@ Black & White filter applied to a region
 The black & white filter won't apply to a specific region but to the whole document. The reason hasn't been found in the
 ezie code itself, and might require investigation in the conversion ezcomponent.
 
-Contrast and pixelate don't support the region limitaton with GD
-----------------------------------------------------------------
+This only occurs with JPG files. It works fine with PNG and GIF.
 
-This hasn't been implemented in the first place, and is a bit more complex than with ImageMagick
+The bug has been narrowed down to the imagemagick command line. The following line will convert the whole image even
+though the region parameter is correct::
+    /usr/local/bin/myconvert 'test.jpg' -region '341x379+291+178' -colorspace 'Gray' -colors '255' 'JPG:test-out.jpg'
+
+We should probably report an imagemagick bug, as the generated command line is okay and works with other file formats
+and color spaces.
+
+
+Contrast and brightness don't support the region limitation with GD
+-------------------------------------------------------------------
+
+This hasn't been implemented in the first place, and is a bit more complex than with ImageMagick.
 
 Default eZ Publish image.ini settings will make ezcImageConverter fail
 ----------------------------------------------------------------------
