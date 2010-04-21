@@ -292,7 +292,6 @@ class eZIEEzcGDHandler extends ezcImageGdHandler implements eZIEEzcConversions
      */
     public function brightness( $value, $region = null )
     {
-        // @todo Handle region in brightness/GD as well
         $resource = $this->getActiveResource();
 
         if ( $value < - 255 || $value > 255 )
