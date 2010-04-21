@@ -45,6 +45,11 @@ Installation
 
     Clear INI and template caches (from admin 'Setup' tab or commandline).
 
+ 5. Clustering
+
+    If you run eZ Publish in cluster mode, you need to add a rewrite rule towards the cluster index::
+    Rewriterule ^/var/([^/]+/)?cache/public/ezie/.*         /index_cluster.php [L]
+
 Using eZ Image Editor
 =====================
 

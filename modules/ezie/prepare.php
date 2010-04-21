@@ -28,11 +28,11 @@ $image_path = $img->attributeFromOriginal( 'url' );
 $absolute_image_path = eZSys::rootDir() . "/{$image_path}";
 
 // Creation of the editing arborescence
-// /{var folder}/ezie/user_id/image_id-version_id
+// /{cache folder}/public/ezie/user_id/image_id-version_id
 $user = eZUser::instance();
 
 $working_folder_path =
-    eZSys::varDirectory() . '/ezie/' .
+    eZSys::cacheDirectory() . '/public/ezie/' .
     $user->id() . "/{$attributeID}-{$version}";
 $working_folder_absolute_path = eZSys::rootDir() . "/{$working_folder_path}";
 
