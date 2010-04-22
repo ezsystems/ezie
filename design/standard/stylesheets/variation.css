@@ -16,7 +16,7 @@
 #ezieVariationsTop {
     height:25px;
     background:#aaa;
-    background:url("../images/menuBarBg.png") top left repeat-x;
+    background:url("../images/ezie/menuBarBg.png") top left repeat-x;
 }
 
 #ezieVariationsTop h2 {
@@ -54,13 +54,13 @@
 }
 
 #ezieVariationsBar:hover .ui-resizable-n {
-    background:#E3E3E3 url("../images/arrawOrange.gif") center center no-repeat;
+    background:#E3E3E3 url("../images/ezie/arrawOrange.gif") center center no-repeat;
 }
 
 #ezieVariationsBar .ui-resizable-n {
     border:1px solid #b1b1b1;
     border-bottom:1px solid white;
     margin-left:-1px;
-    background:#E3E3E3 url("../images/arrawBlack.gif") center center no-repeat;
+    background:#E3E3E3 url("../images/ezie/arrawBlack.gif") center center no-repeat;
     z-index:100;
 }
