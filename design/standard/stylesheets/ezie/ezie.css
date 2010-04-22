@@ -36,7 +36,7 @@
 }
 
 .topBarContent {
-    background:url("../images/ezie/topBarBg.png") repeat-x;
+    background:url("../../images/ezie/topBarBg.png") repeat-x;
     height:42px;
     margin:0px 19px;
 }
@@ -49,26 +49,26 @@
 }
 
 .topBar .leftCorner {
-    background:url("../images/ezie/topBarLeftCorner.png") no-repeat;
+    background:url("../../images/ezie/topBarLeftCorner.png") no-repeat;
     height:42px;
     width:19px;
     float:left;
 }
 
 .topBar .rightCorner {
-    background:url("../images/ezie/topBarRightCorner.png") no-repeat;
+    background:url("../../images/ezie/topBarRightCorner.png") no-repeat;
     height:42px;
     width:19px;
     float:right;
 }
 
 .contentLeft {
-    background:url("../images/ezie/contentLeftShadow.png") top left repeat-y;
+    background:url("../../images/ezie/contentLeftShadow.png") top left repeat-y;
     padding-left:12px;
 }
 
 .contentRight {
-    background:url("../images/ezie/contentRightShadow.png") top right repeat-y;
+    background:url("../../images/ezie/contentRightShadow.png") top right repeat-y;
     padding-right:12px;
 }
 
@@ -91,7 +91,7 @@
 }
 
 #main_image {
-    background: url(../images/ezie/editorBg.png);
+    background: url(../../images/ezie/editorBg.png);
     border: 1px solid #505050;
     display: inline-block;
 }
@@ -103,7 +103,7 @@
 
 .topMenu {
     height:26px;
-    background:url("../images/ezie/menuBarBg.png") repeat-x;
+    background:url("../../images/ezie/menuBarBg.png") repeat-x;
     padding:4px 10px 0 12px;
     font-size:0.7em;
 }
@@ -146,12 +146,12 @@
     width: 137px;
     height: 137px;
     margin: 2px auto;
-    background: url(../images/ezie/rotationSlider.png) no-repeat;
+    background: url(../../images/ezie/rotationSlider.png) no-repeat;
     text-align: center;
 }
 
 #circularSlider .ui-circular-slider {
-    background: url(../images/ezie/rotationHandle.png) no-repeat;
+    background: url(../../images/ezie/rotationHandle.png) no-repeat;
     width: 24px;
     height: 24px;
     margin-left: -12px;
@@ -175,7 +175,7 @@
     text-indent: -100px;
     text-align: center;
     z-index: 99;
-    background: url(../images/ezie/rotationPreset.png) no-repeat;
+    background: url(../../images/ezie/rotationPreset.png) no-repeat;
 }
 
 #selectAngle .zero {
@@ -227,7 +227,7 @@
     margin-right:12px;
     margin-bottom:7px;
     float:left;
-    background:url("../images/ezie/iconBg.png") no-repeat;
+    background:url("../../images/ezie/iconBg.png") no-repeat;
 }
 
 .tools li a {
@@ -239,26 +239,26 @@
 }
 
 .tools li.current, .tools li.click {
-    background:url("../images/ezie/iconBgOn.png") no-repeat;
+    background:url("../../images/ezie/iconBgOn.png") no-repeat;
 }
 
-#ezie_select { background-image:url("../images/ezie/ico/selection.png")}
-#ezie_zoom { background-image:url("../images/ezie/ico/zoom.png") }
-#ezie_undo { background-image:url("../images/ezie/ico/arrowGreyLeft.png") }
-#ezie_redo { background-image:url("../images/ezie/ico/arrowGreyRight.png") }
-.active #ezie_redo { background-image:url("../images/ezie/ico/arrowGreenRight.png") }
-.active #ezie_undo { background-image:url("../images/ezie/ico/arrowGreenLeft.png") }
-#ezie_pot { background-image:url("../images/ezie/ico/pot.png") }
-#ezie_img { background-image:url("../images/ezie/ico/img.png") }
-#ezie_rotation_left { background-image:url("../images/ezie/ico/rotationLeft.png") }
-#ezie_rotation_right { background-image:url("../images/ezie/ico/rotationRight.png") }
+#ezie_select { background-image:url("../../images/ezie/ico/selection.png")}
+#ezie_zoom { background-image:url("../../images/ezie/ico/zoom.png") }
+#ezie_undo { background-image:url("../../images/ezie/ico/arrowGreyLeft.png") }
+#ezie_redo { background-image:url("../../images/ezie/ico/arrowGreyRight.png") }
+.active #ezie_redo { background-image:url("../../images/ezie/ico/arrowGreenRight.png") }
+.active #ezie_undo { background-image:url("../../images/ezie/ico/arrowGreenLeft.png") }
+#ezie_pot { background-image:url("../../images/ezie/ico/pot.png") }
+#ezie_img { background-image:url("../../images/ezie/ico/img.png") }
+#ezie_rotation_left { background-image:url("../../images/ezie/ico/rotationLeft.png") }
+#ezie_rotation_right { background-image:url("../../images/ezie/ico/rotationRight.png") }
 
 #ezie_alternative_crop_text {
     display: none;
 }
 
-#zoomIn { background-image:url("../images/ezie/ico/zoomIn.png") }
-#zoomOut { background-image:url("../images/ezie/ico/zoomOut.png") }
+#zoomIn { background-image:url("../../images/ezie/ico/zoomIn.png") }
+#zoomOut { background-image:url("../../images/ezie/ico/zoomOut.png") }
 
 .filters {
 }
@@ -272,14 +272,14 @@
 }
 
 .filters li.more {
-    background:url("../images/ezie/arrowSmall.gif") 95% 50% no-repeat;
+    background:url("../../images/ezie/arrowSmall.gif") 95% 50% no-repeat;
 }
 .filters li.current {
     background-color:#C2E0EF;
 }
 
 .filters li.more:hover {
-    background:#DFDFDF url("../images/ezie/arrowSmall.gif") 95% 50% no-repeat;
+    background:#DFDFDF url("../../images/ezie/arrowSmall.gif") 95% 50% no-repeat;
 }
 
 .section {
@@ -287,7 +287,7 @@
 }
 
 .sectionHeader {
-    background:url("../images/ezie/menuBarBg.png") repeat-x;
+    background:url("../../images/ezie/menuBarBg.png") repeat-x;
     height:30px;
 }
 
@@ -295,18 +295,18 @@
     font-size:0.8125em;
     padding:10px 10px 0 10px !important;
     color:black !important;
-    background:url("../images/ezie/arrowDown.png") 90% 7px no-repeat;
+    background:url("../../images/ezie/arrowDown.png") 90% 7px no-repeat;
     cursor:pointer;
 }
 .sectionHeader h4.closed {
-    background:url("../images/ezie/arrowUp.png") 90% 7px no-repeat;
+    background:url("../../images/ezie/arrowUp.png") 90% 7px no-repeat;
 }
 
 .sectionHeader h4:hover {
-    background:url("../images/ezie/arrowUp.png") 90% 7px no-repeat;
+    background:url("../../images/ezie/arrowUp.png") 90% 7px no-repeat;
 }
 .sectionHeader h4.closed:hover {
-    background:url("../images/ezie/arrowDown.png") 90% 7px no-repeat;
+    background:url("../../images/ezie/arrowDown.png") 90% 7px no-repeat;
 }
 
 .bottomBar {
@@ -316,18 +316,18 @@
 .bottomBar .leftCorner {
     height:37px;
     width:19px;
-    background:url("../images/ezie/bottomBarLeftBorder.png") no-repeat;
+    background:url("../../images/ezie/bottomBarLeftBorder.png") no-repeat;
     float:left;
 }
 .bottomBar .rightCorner {
     height:37px;
     width:19px;
-    background:url("../images/ezie/bottomBarRightBorder.png") no-repeat;
+    background:url("../../images/ezie/bottomBarRightBorder.png") no-repeat;
     float:right;
 }
 .bottomBar .bottomBarContent {
     margin:0 19px;
-    background:url("../images/ezie/bottomBarBg.png") repeat-x;
+    background:url("../../images/ezie/bottomBarBg.png") repeat-x;
     height:37px;
 }
 
@@ -355,7 +355,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background: url("../images/ezie/ezie_white_transparent_background.png");
+    background: url("../../images/ezie/ezie_white_transparent_background.png");
     z-index:100;
     width: 100%;
     height: 100%;
@@ -373,14 +373,14 @@
 
 #ezie_expand {
     display:block;
-    background:url("../images/ezie/icoExpand.gif") center center no-repeat;
+    background:url("../../images/ezie/icoExpand.gif") center center no-repeat;
     height:16px;
     width:16px;
 }
 
 #ezie_close {
     display:block;
-    background:url("../images/ezie/icoClose.gif") center center no-repeat;
+    background:url("../../images/ezie/icoClose.gif") center center no-repeat;
     height:16px;
     width:16px;
 }
@@ -420,13 +420,13 @@
 }
 
 .detachBox .sep {
-    background:url("../images/ezie/icoDetach.gif");
+    background:url("../../images/ezie/icoDetach.gif");
 }
 .attachBox .sep {
-    background:url("../images/ezie/icoAttach.gif");
+    background:url("../../images/ezie/icoAttach.gif");
 }
 
-.ui-icon { width: 16px; height: 16px; background-image: url(../images/ezie/ui-icons_222222_256x240.png); }
+.ui-icon { width: 16px; height: 16px; background-image: url(../../images/ezie/ui-icons_222222_256x240.png); }
 
 .opts input {
     font-size: 0.7em;
@@ -443,7 +443,7 @@
 }
 .opts button {
     color: #fff;
-    background: #8da5c0 url(../images/ezie/gradient_passive.png) repeat-x center center scroll;
+    background: #8da5c0 url(../../images/ezie/gradient_passive.png) repeat-x center center scroll;
     padding: 0 0.3em;
     width: auto;
     margin: 2px 10px;
@@ -458,16 +458,16 @@
     border-radius: 3px;
 }
 .opts button:active {
-    background:url("../images/ezie/gradient_active.png") repeat-x center center scroll;
+    background:url("../../images/ezie/gradient_active.png") repeat-x center center scroll;
 }
 .opts button:hover {
-    background:url("../images/ezie/gradient_hover.png") repeat-x center center scroll;
+    background:url("../../images/ezie/gradient_hover.png") repeat-x center center scroll;
 }
 
 #loadingBar {
     height:19px;
     width:220px;
-    background:url("../images/ezie/loading.gif") no-repeat;
+    background:url("../../images/ezie/loading.gif") no-repeat;
     position:absolute;
     right:17px;
     top:3px;
@@ -494,11 +494,11 @@
     width: 21px;
     height: 21px;
     margin: 2px;
-    background:url("../images/ezie/positionButton.png") no-repeat;
+    background:url("../../images/ezie/positionButton.png") no-repeat;
 }
 
 #optsWatermarksPositions .selected {
-    background:url("../images/ezie/positionButton-selected.png") no-repeat;
+    background:url("../../images/ezie/positionButton-selected.png") no-repeat;
 }
 
 #optsWatermarks ul li img {
