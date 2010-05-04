@@ -1,7 +1,7 @@
 <?php
     return array(
-        'before' => array(
-            'ezwebin'
+        'after' => array(
+        'ezjscore'
         )
     );
 ?>
