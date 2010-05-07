@@ -13,7 +13,7 @@ $http = eZHTTPTool::instance();
 
 $region = $prepare_action->hasRegion() ? $prepare_action->getRegion() : null;
 
-$imageconverter = new eZIEezcImageConverter( eZIEImageToolFlipHor::filter( $region ) );
+$imageconverter = new eZIEezcImageConverter( eZIEImageToolFlipHorizontally::filter( $region ) );
 
 $imageconverter->perform(
     $prepare_action->getImagePath(),

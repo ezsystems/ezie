@@ -9,7 +9,7 @@
  */
 $prepare_action = new eZIEImagePreAction();
 
-$imageconverter = new eZIEezcImageConverter( eZIEImageToolFlipVer::filter() );
+$imageconverter = new eZIEezcImageConverter( eZIEImageToolFlipVertically::filter() );
 
 $imageconverter->perform(
     $prepare_action->getImagePath(),

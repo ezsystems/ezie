@@ -7,7 +7,7 @@
  * @version //autogentag//
  * @package ezie
  */
-class eZIEImageToolFlipHor extends eZIEImageAction
+class eZIEImageToolFlipHorizontally extends eZIEImageAction
 {
     /**
      * Creates a horizontal flip filter
