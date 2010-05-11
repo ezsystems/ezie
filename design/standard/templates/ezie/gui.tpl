@@ -45,8 +45,8 @@
                         'jquery.hotkeys.js',
                         'jquery.circular.slider.js',
                         'colorpicker/colorpicker.js',
-                        'eye.js',
-                        'utils.js',
+                        'colorpicker/eye.js',
+                        'colorpicker/utils.js',
                         'vtip-min.js',
                         'wait.js',
                         'ezie.js', )
@@ -55,7 +55,6 @@
 
 {ezcss_require( array(  'ezie/ezie.css',
                         'ezie/slider.css',
-                        'ezie/imgareaselect-animated.css',
                         'ezie/colorpicker.css',
                         'ezie/vtip.css',
                         'ezie/jquery.Jcrop.css',) )}
