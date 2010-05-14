@@ -53,11 +53,11 @@
                         )
 }
 
-{ezcss_require( array(  'ezie/ezie.css',
-                        'ezie/slider.css',
-                        'ezie/colorpicker.css',
-                        'ezie/vtip.css',
-                        'ezie/jquery.Jcrop.css',) )}
+{ezcss_require( array( 'ezie/ezie.css',
+                       'ezie/slider.css',
+                       'ezie/colorpicker.css',
+                       'ezie/vtip.css',
+                       'ezie/jquery.Jcrop.css' ) )}
 
 <div id="ezieMainContainer">
     <div class="ezieBox drawZone" id="ezieMainWindow">
