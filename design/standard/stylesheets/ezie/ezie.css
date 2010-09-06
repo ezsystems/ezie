@@ -7,6 +7,10 @@
 .ezieBox a { text-decoration:none; color:black; }
 .ezieBox ul , .ezieBox li { list-style-type:none; }
 
+#ezieToolsWindow .sectionContent a { 
+    display: block; 
+}
+
 .ezieBox * {
     margin:0px;
     padding:0px;
