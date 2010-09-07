@@ -23,14 +23,8 @@
 
 (function($) {
     $.log = function(msg) {
-        if(window.console) {
-            console.debug(msg);
-        } else {
-            if ((typeof opera != "undefined")
-                && opera.postError) {
-                opera.postError(msg);
-            }
-        }
+        if ( window.console !== undefined )
+            console.log( msg );
     }
 
     $.fn.ezie = function() {
