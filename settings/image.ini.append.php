@@ -5,9 +5,8 @@
 #
 # TODO: remove this file.
 [eZIE]
-watermarks[]
+#watermarks[]
 watermarks[]=elephpant.png
 watermarks[]=ez-logo.png
-watermarks[]=logo_opera.png
 
 */ ?>
