@@ -33,6 +33,22 @@
     height:400px;
 }
 
+#ezieConnectionError {
+    font-size: 1em;
+    padding: 5px;
+    left:40%;
+    top:35%;
+    width:250px;
+    height:50px;
+    background-color:#f2f2f2;
+    z-index:120;
+    text-align:center;
+}
+
+#ezieConfirmMessage{
+    margin-top:6px;
+}
+
 .topBar {
     height:42px;
     cursor:move;

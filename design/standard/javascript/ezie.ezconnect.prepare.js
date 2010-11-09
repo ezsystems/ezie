@@ -24,6 +24,7 @@
 ezie.ezconnect.prepare = function (prepare_url) {
     ezie.ezconnect.connect.instance().reset();
     ezie.history().reset();
+    $( "#ezieConnectionError" ).hide();
 
     ezie.ezconnect.connect.instance().prepare({
         'url': prepare_url,

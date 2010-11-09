@@ -276,6 +276,14 @@
         </div>
     </div>
 
+    <div id="ezieConnectionError" class="ezieBox">
+        <div>
+            <p>{'The image can not be loaded correctly.'|i18n( 'design/standard/ezie' )}</p>
+        </div>
+        <div>
+            <input id="ezieConfirmMessage" type="button" class="button" value="{'Close'|i18n('design/standard/ezie')}" />
+        </div>
+    </div>
 
     <div id="ezieControlBar"></div>
 </div>
