@@ -48,3 +48,10 @@ The image editor supports adding custom watermarks to the existing set (which ca
 * Clear your caches
 
 The custom file will be visible in the list.
+
+FAQ
+=======================
+Q: Why do I get a message "The image is not loaded because of a server error." after I click 'Edit' button in image attribute?
+A: That is because there is a connection error. Please check log file to see the log. There are some possible reasons:
+- the image library is not configured correctly. Please see requirement in http://doc.ez.no/Extensions/eZ-Image-Editor/Setup-and-user-guide-eZ-Image-Editor/Requirements.
+- connection error. Please make sure the connection is working.
