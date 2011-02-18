@@ -40,12 +40,6 @@ ezie.gui.opts_window = function() {
                 min:config.min,
                 max:config.max,
                 step:config.step,
-                change:function () {
-                    if (!ezie.gui.eziegui.getInstance().isFrozen()) {
-                        config.change();
-                    }
-                    return false;
-                },
                 slide:function(event, ui) {
                     config.slide(ui.value);
                 }
