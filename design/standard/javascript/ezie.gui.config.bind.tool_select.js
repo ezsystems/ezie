@@ -123,16 +123,17 @@ ezie.gui.config.bind.tool_select_method = function() {
 
             break;
         case 'free':
+            settings.aspectRatio = null;
             $.log('on entre dans free');
             break;
     }
 
-    if (ezie.gui.config.bind.tool_select_api != null) {
-        $.log('bye bye api');
-        ezie.gui.config.bind.tool_select_api.destroy();
+    if( ezie.gui.config.bind.tool_select_api != null ) {
+        ezie.gui.config.bind.tool_select_api.setOptions( { aspectRatio: settings.aspectRatio } );
+        ezie.gui.config.bind.tool_select_api.setSelect( settings.setSelect );
+    }else{
+        ezie.gui.config.bind.tool_select_api  = $.Jcrop("#main_image img:first", settings);
     }
-
-    ezie.gui.config.bind.tool_select_api = $.Jcrop("#main_image img:first", settings);
 
     // hack to avoid an eZ Publish function I can't find that blocks
     // the changes of values of the input radios
