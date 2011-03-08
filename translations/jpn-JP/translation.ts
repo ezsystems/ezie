@@ -182,5 +182,13 @@
         <source>Options</source>
         <translation>オプション</translation>
     </message>
+    <message>
+        <source>The image is not loaded because of a server error.</source>
+        <translation>サーバエラーのために画像は読み込めませんでした。</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>閉じる</translation>
+    </message>
 </context>
 </TS>
