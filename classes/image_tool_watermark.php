@@ -24,7 +24,7 @@ class eZIEImageToolWatermark extends eZIEImageAction
         $img_path = realpath( dirname( __FILE__ ) . "/../design/standard/images/watermarks" ) . "/" . $image;
 
         // retrieve image dimensions
-        $analyzer = new eZIEImageAnalyzer( $img_path );
+        $analyzer = new ezcImageAnalyzer( $img_path );
 
         // percentage of the watermark original size to use
         $pc = $region['w'] / $analyzer->data->width;
