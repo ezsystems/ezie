@@ -23,7 +23,6 @@
 
 ezie.gui.tools_window = function() {
     var jWindow = null;
-    var initialized = false;
 
     // returns the jQuery Dom element corresponding to
     // the window
@@ -45,7 +44,7 @@ ezie.gui.tools_window = function() {
 
             if (config.shortcut) {
                 item.attr("title", item.attr("title") + " (" + config.shortcut + ")");
-                $(document).bind('keydown', config.shortcut, function (e) {
+                $(document).bind('keydown.ezie', config.shortcut, function (e) {
                     if (!ezie.gui.eziegui.getInstance().isFrozen()) {
                         config.click();
                         e.stopPropagation( );
@@ -71,11 +70,9 @@ ezie.gui.tools_window = function() {
 
     };
 
-    var init = function() {
-        setBinds();
-        jWindow = $("#ezieToolsWindow");
-        initialized = true;
-    };
+    var unsetBinds = function () {
+        $(document).unbind('keydown.ezie');
+    }
 
     var freeze = function() {
         $(".filters").add(".tools").freeze();
@@ -85,13 +82,13 @@ ezie.gui.tools_window = function() {
     }
 
     var hide = function () {
+        unsetBinds();
         jWindow.fadeOut('fast');
     };
 
     var show = function () {
-        if (!initialized) {
-            init();
-        }
+        setBinds();
+        jWindow = $("#ezieToolsWindow");
         jWindow.fadeIn('fast');
     }
 
