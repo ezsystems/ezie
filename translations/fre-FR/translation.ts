@@ -46,11 +46,11 @@
     </message>
     <message>
         <source>Save &amp; Close</source>
-        <translation type="obsolete">Sauvegarder et quitter</translation>
+        <translation type="obsolete">Enregistrer et quitter</translation>
     </message>
     <message>
         <source>Save and Close</source>
-        <translation>Enregister et quitter</translation>
+        <translation>Enregistrer et quitter</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -166,11 +166,11 @@
     </message>
     <message>
         <source>eZ Image Editor</source>
-        <translation>eZ Image Editor</translation>
+        <translation>Éditeur d&apos;image eZ</translation>
     </message>
     <message>
         <source>Save &amp;amp; Close</source>
-        <translation>Enregister &amp;amp; quitter</translation>
+        <translation>Enregistrer &amp;amp; quitter</translation>
     </message>
     <message>
         <source>Dimensions</source>
