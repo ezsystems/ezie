@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<!DOCTYPE TS><TS>
 <context>
     <name>design/standard/content/datatype</name>
     <message>
@@ -29,7 +27,7 @@
     </message>
     <message>
         <source>Remove image</source>
-        <translation>Supprimer l'image</translation>
+        <translation>Supprimer l&apos;image</translation>
     </message>
     <message>
         <source>New image file for upload</source>
@@ -37,7 +35,7 @@
     </message>
     <message>
         <source>Alternative image text</source>
-        <translation>Texte alternatif de l'image</translation>
+        <translation>Texte alternatif de l&apos;image</translation>
     </message>
 </context>
 <context>
@@ -180,7 +178,7 @@
     </message>
     <message>
         <source>Keep ratio</source>
-        <translation>Conserver l'aspect</translation>
+        <translation>Conserver l&apos;aspect</translation>
     </message>
     <message>
         <source>Free</source>
@@ -188,7 +186,7 @@
     </message>
     <message>
         <source>The image is not loaded because of a server error.</source>
-        <translation>L'image n'est pas chargée en raison d'une erreur côté serveur.</translation>
+        <translation>L&apos;image n&apos;est pas chargée en raison d&apos;une erreur côté serveur.</translation>
     </message>
     <message>
         <source>Close</source>

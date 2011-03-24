@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="ja_JP">
+<!DOCTYPE TS><TS>
 <context>
     <name>design/standard/content/datatype</name>
     <message>
@@ -181,6 +179,14 @@
     <message>
         <source>Options</source>
         <translation>オプション</translation>
+    </message>
+    <message>
+        <source>The image is not loaded because of a server error.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
