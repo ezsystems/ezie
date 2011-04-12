@@ -72,6 +72,11 @@ ezie.gui.tools_window = function() {
 
     var unsetBinds = function () {
         $(document).unbind('keydown.ezie');
+        $.each(ezie.gui.config.bindings.tools_window, function() {
+            var config = this;
+            var item = $(config.selector);
+            item.unbind('click');
+        });
     }
 
     var freeze = function() {

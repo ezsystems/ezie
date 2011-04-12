@@ -50,6 +50,9 @@ ezie.gui.config.bind.menu_save_and_close = function() {
 
             $('#ezieToolsWindow').find('.current').removeClass('current');
             $('#ezie_zoom').parent().addClass('current');
+
+            ezie.gui.eziegui.getInstance().desactivateUndo();
+            ezie.gui.eziegui.getInstance().desactivateRedo();
         },
         dataType: 'html'
     });
