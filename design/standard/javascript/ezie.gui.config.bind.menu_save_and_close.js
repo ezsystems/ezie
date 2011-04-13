@@ -41,6 +41,8 @@ ezie.gui.config.bind.menu_save_and_close = function() {
 
     $.log('starting save + close');
 
+    ezie.gui.config.zoom().reset();
+
     ezie.ezconnect.connect.instance().action({
         'action': 'save_and_quit',
         'success': function(response) {

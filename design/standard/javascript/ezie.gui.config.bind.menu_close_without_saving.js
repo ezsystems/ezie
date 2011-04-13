@@ -33,6 +33,7 @@ ezie.gui.config.bind.menu_close_without_saving = function() {
 
     $.log('starting quit + no save');
 
+    ezie.gui.config.zoom().reset();
     ezie.gui.eziegui.getInstance().desactivateUndo();
     ezie.gui.eziegui.getInstance().desactivateRedo();
 
