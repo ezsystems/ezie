@@ -119,7 +119,7 @@ ezie.gui.config.bind.tool_select_method = function() {
 
             settings.aspectRatio = selectWidth / selectHeight;
 
-            settings.setSelect[3] = settings.setSelect[3] * settings.aspectRatio;
+            settings.setSelect[4] = settings.setSelect[3] * settings.aspectRatio;
 
             break;
         case 'free':
