@@ -89,13 +89,15 @@ ezie.gui.config.zoom_impl = function() {
             jImgBlock.css('margin-top', '0px');
         }
 
-        if (selection != null) {
+        //if there is fist layer, meaning the select button has been clicked.
+        // This can solve the issue of clicking zoom after clicking select button but not doing selection.
+        // ref: http://issues.ez.no/IssueView.php?Id=18302
+        if ( $('.jcrop-tracker:first') ) {
             $.log('2| sel opts :' + selectionOptions);
             ezie.gui.config.bind.set_tool_select(selection, selectionOptions, ezie.gui.config.bind.select_last_was_wm);
             if (selectionData) {
                 $('.jcrop-tracker:first').html(selectionData);
             }
-
         }
 
         $.log('new zoom = ' + zoom + "% on ["+realWidth+" x "+realHeight+"]");
