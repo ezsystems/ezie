@@ -88,7 +88,7 @@ ezie.gui.config.bind.tool_select_remove = function (){
     }
 }
 
-ezie.gui.config.bind.tool_select_method = function() {
+ezie.gui.config.bind.tool_select_method = function( e ) {
 
     var selectMethod = $('#optsSelect input[type="radio"]:checked:first').val();
     var selectWidth = $('#optsSelect input[type="text"][name="selection_width"]:first').val();
@@ -124,6 +124,10 @@ ezie.gui.config.bind.tool_select_method = function() {
             break;
         case 'free':
             settings.aspectRatio = null;
+            if( e!=null && e.type=='keyup' ){
+            settings.setSelect[2] = selectWidth;
+            settings.setSelect[3] = selectHeight;
+            }
             $.log('on entre dans free');
             break;
     }
