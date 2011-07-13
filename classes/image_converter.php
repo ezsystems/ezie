@@ -64,7 +64,7 @@ class eZIEezcImageConverter
                 $executable = $imageINI->variable( 'ImageMagick', 'ExecutableMac' );
             else if ( eZSys::osType() == 'unix' && $imageINI->hasVariable( 'ImageMagick', 'ExecutableUnix' ) )
                 $executable = $imageINI->variable( 'ImageMagick', 'ExecutableUnix' );
-            if ( $imageINI->hasVariable( 'ImageMagick', 'ExecutablePath' ) )
+            if ( $imageINI->hasVariable( 'ImageMagick', 'ExecutablePath' ) && $imageINI->variable( 'ImageMagick', 'ExecutablePath' ) )
                 $executable = $imageINI->variable( 'ImageMagick', 'ExecutablePath' ) . eZSys::fileSeparator() . $executable;
             // @todo Remove if ezc indeed do it automatically
             // if ( eZSys::osType() == 'win32' )
