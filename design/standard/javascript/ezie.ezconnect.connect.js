@@ -48,7 +48,10 @@ ezie.ezconnect.connect = function() {
         // url used to send make an action (like applying a filter)
         // format: /{site_access}/{module}/
         // append {action_name} to call apply the action on the image
-        'module_url': null
+        'module_url': null,
+        // form token to avoid CSRF attack
+        // only useful and filled when ezformtoken extension is enabled
+        'ezxform_token': $('#ezxform_token_js').attr('title')
     };
 
     // Sets the attributes at unusables values
