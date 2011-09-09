@@ -44,6 +44,7 @@ if ( !$handler->fileExists( $working_folder_absolute_path ) )
     $res = eZDir::mkdir( $working_folder_absolute_path, false, true );
 }
 
+
 // Copy the original file in the temp directory
 // $work_folder/{history_id}-{file_name}
 // (thumb: $working_folder/thumb_{history_id}-{file_name}
@@ -56,18 +57,21 @@ $handler->fileCopy(
     "{$working_folder_path}/{$file}"
 );
 
+
 // Creation of a thumbnail
 eZIEImageToolResize::doThumb(
     "{$working_folder_path}/{$file}",
     "{$working_folder_path}/{$thumb}"
 );
 // retrieve image dimensions
-$ezcanalyzer = new eZIEImageAnalyzer( "{$working_folder_path}/{$file}" );
+$ezcanalyzer = new eZIEImageAnalyzer( "{$working_folder_path}/{$file}", false );
+
 
 $object = new stdClass();
 
 $imageURI = "{$working_folder_path}/{$file}";
 eZURI::transformURI( $imageURI, true );
+
 
 $thumbnailURI = "{$working_folder_path}/{$thumb}";
 eZURI::transformURI( $thumbnailURI, true );
