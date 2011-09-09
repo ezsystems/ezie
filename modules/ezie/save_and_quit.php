@@ -23,7 +23,7 @@ $imageHandler->initializeFromFile( $prepare_action->getImagePath(), $imageHandle
 $imageHandler->store( $imageAttribute );
 
 // remove view cache if needed
-eZContentCacheManager::clearObjectViewCacheIfNeeded( $prepare_action->getImageHandler()->attribute( 'id' ) );
+eZContentCacheManager::clearObjectViewCacheIfNeeded( $imageAttribute->attribute( 'contentobject_id' ) );
 
 // delete all the images in working directory
 // delete working directory
