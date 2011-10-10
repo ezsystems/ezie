@@ -41,7 +41,7 @@ ezie.gui.main_window = function() {
                 return false;
             });
 
-            if (item.prop('title').length > 0) {
+            if (item.attr('title').length > 0) {
                 var p = item.closest('div.ezieBox').find('div.bottomBarContent p')
                 var oldcontent = p.html()
 
