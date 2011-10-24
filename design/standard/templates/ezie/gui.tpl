@@ -2,7 +2,7 @@
 {* Require jQuery, using JS Core *}
 {ezscript_require( array( 'ezjsc::jquery',
                         'ezjsc::jqueryio',
-                        'jquery-ui-1.7.2.custom.min.js',
+                        'ezjsc::jqueryUI',
                         'ezie.namespaces.js',
                         'ezie.js',
                         'ezie.ezconnect.success_default.js',
