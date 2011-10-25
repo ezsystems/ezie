@@ -182,5 +182,13 @@
         <source>Options</source>
         <translation>Optionen</translation>
     </message>
+    <message>
+        <source>The image is not loaded because of a server error.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
