@@ -42,7 +42,7 @@ class eZIEImageToolResize extends eZIEImageAction
     */
     static function resize( $src, $dst, $width, $height )
     {
-        $imageconverter = new eZIEezcImageConverter( self::filter( $height, $width ) );
+        $imageconverter = new eZIEezcImageConverter( self::filter( $width, $height ) );
         $imageconverter->perform( $src, $dst );
     }
 
