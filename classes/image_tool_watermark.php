@@ -19,9 +19,7 @@ class eZIEImageToolWatermark extends eZIEImageAction
      */
     public static function filter( $region, $image )
     {
-        // the watermark images are in ezie/design/standard/images/watermarks
-        // @todo use ini file for image paths instead
-        $img_path = realpath( dirname( __FILE__ ) . "/../design/standard/images/watermarks" ) . "/" . $image;
+        $img_path = self::findWatermark( $image );
 
         // retrieve image dimensions
         $analyzer = new ezcImageAnalyzer( $img_path );
@@ -41,6 +39,31 @@ class eZIEImageToolWatermark extends eZIEImageAction
                 )
             )
         );
+    }
+
+    /**
+     * Looks for $imageFileName in each extension watermark repository
+     * defined in image.ini and returns its complete path
+     *
+     * @param string $imageFileName		Watermark file name
+     * @return string					Watermark file path
+     * @throws ezcBaseFileNotFoundException
+     */
+    public static function findWatermark( $imageFileName )
+    {
+        $ini = eZINI::instance( 'image.ini' );
+        $extensionRepositories = $ini->variable( 'eZIE', 'WatermarkExtensions' );
+        foreach( $extensionRepositories as $extension )
+        {
+            $path = 'extension/' . $extension . '/design/standard/images/watermarks/' . $imageFileName;
+            if( file_exists( $path ) )
+            {
+                return $path;
+            }
+        }
+
+        eZDebug::writeWarning( 'Could not find watermark ' . $imageFileName, __METHOD__ );
+        throw new ezcBaseFileNotFoundException( $imageFileName, 'image' );
     }
 }
 ?>

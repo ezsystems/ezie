@@ -13,12 +13,23 @@ $http = eZHTTPTool::instance();
 
 if ( $prepare_action->hasRegion() && $http->hasPostVariable( 'watermark_image' ) )
 {
-    $imageconverter = new eZIEezcImageConverter(
-        eZIEImageToolWatermark::filter(
-            $prepare_action->getRegion(),
-            $http->variable( 'watermark_image' )
-        )
-    );
+    try{
+        $imageconverter = new eZIEezcImageConverter(
+            eZIEImageToolWatermark::filter(
+                $prepare_action->getRegion(),
+                $http->variable( 'watermark_image' )
+            )
+        );
+    }
+    catch( ezcBaseFileNotFoundException $e )
+    {
+        header( 'HTTP/1.0 500 Internal Server Error' );
+        if( eZDebug::isDebugEnabled() )
+        {
+            echo $e->getMessage();
+        }
+        eZExecution::cleanExit();
+    }
 }
 else
 {
