@@ -51,15 +51,10 @@ class eZIEImageToolWatermark extends eZIEImageAction
      */
     public static function findWatermark( $imageFileName )
     {
-        $ini = eZINI::instance( 'image.ini' );
-        $extensionRepositories = $ini->variable( 'eZIE', 'WatermarkExtensions' );
-        foreach( $extensionRepositories as $extension )
+        $path = eZURLOperator::eZImage( eZTemplate::factory(), 'watermarks/' . $imageFileName, 'ezimage', true );
+        if( file_exists( $path ) )
         {
-            $path = 'extension/' . $extension . '/design/standard/images/watermarks/' . $imageFileName;
-            if( file_exists( $path ) )
-            {
-                return $path;
-            }
+            return $path;
         }
 
         eZDebug::writeWarning( 'Could not find watermark ' . $imageFileName, __METHOD__ );
