@@ -115,6 +115,9 @@ class eZIEezcImageConverter
 
         // @todo Check if the local output file can be deleted at that stage. Theorically yes.
         $outClusterHandler->fileStore( $dst, true );
+        
+        // fixing the file permissions
+        eZImageHandler::changeFilePermissions( $dst );
     }
 
     /**
