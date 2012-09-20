@@ -112,7 +112,7 @@
     </message>
     <message>
         <source>Watermarks</source>
-        <translation>Marca d'água</translation>
+        <translation>Marca d&apos;água</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -160,7 +160,7 @@
     </message>
     <message>
         <source>Watermark</source>
-        <translation>Marca d'água</translation>
+        <translation>Marca d&apos;água</translation>
     </message>
     <message>
         <source>Effects</source>
