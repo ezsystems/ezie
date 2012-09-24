@@ -7,7 +7,6 @@
  * @version //autogentag//
  * @package ezie
  */
-include_once 'kernel/common/template.php';
 
 $prepare_action = new eZIEImagePreAction();
 $imageId = $prepare_action->getImageId();
@@ -36,7 +35,7 @@ eZDir::recursiveDelete( $working_folder );
 $imageAttribute = eZContentObjectAttribute::fetch( $imageId, $imageVersion );
 
 // @todo Use proper JSON, but this will do for now.
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 $tpl->setVariable( 'ezie_ajax_response', true );
 $tpl->setVariable( 'attribute', $imageAttribute );
 echo $tpl->fetch( "design:content/datatype/edit/ezimage.tpl" );

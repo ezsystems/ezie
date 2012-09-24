@@ -7,7 +7,6 @@
  * @version //autogentag//
  * @package ezie
  */
-include_once 'kernel/common/template.php';
 
 $prepare_action = new eZIEImagePreAction();
 
