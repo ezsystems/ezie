@@ -225,7 +225,7 @@
                         </div>
                         <div class="sectionContent">
                             <ul class="filters">
-                                <li><a href="" id="ezie_flip_hor" title={'Horizontal Flip'|i18n('design/standard/ezie')}">{'Horizontal Flip'|i18n('design/standard/ezie')}</a></li>
+                                <li><a href="" id="ezie_flip_hor" title="{'Horizontal Flip'|i18n('design/standard/ezie')}">{'Horizontal Flip'|i18n('design/standard/ezie')}</a></li>
                                 <li><a href="" id="ezie_flip_ver" title="{'Vertical Flip'|i18n('design/standard/ezie')}">{'Vertical Flip'|i18n('design/standard/ezie')}</a></li>
                                 <li class="more"><a href="" id="ezie_rotation" title="{'Rotation'|i18n('design/standard/ezie')}">{'Rotation'|i18n('design/standard/ezie')}</a></li>
                                 <li class="more"><a href="" id="ezie_crop" title="Crop">{'Crop'|i18n('design/standard/ezie')}</a><span id="ezie_alternative_crop_text">{'Perform Crop'|i18n('design/standard/ezie')}</span></li>
