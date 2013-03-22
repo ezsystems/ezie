@@ -130,7 +130,7 @@ ezie.gui.eziegui = function () {
              stop: ezie.gui.config.zoom().reZoom
         });
 
-        $(".detachBox .sep").live("click", function() {
+        $(document).on("click", ".detachBox .sep", function() {
             var optBox = $('#ezieOptsWindow');
             $(this).closest(".detachBox").removeClass("detachBox").addClass("attachBox").appendTo(optBox.find(".content"));
             optBox.fadeIn();
@@ -139,7 +139,7 @@ ezie.gui.eziegui = function () {
             });
             return false;
         });
-        $(".attachBox .sep").live("click", function() {
+        $(document).on("click", ".attachBox .sep", function() {
             $("#grid").animate({
                 marginRight: "161px"
             });

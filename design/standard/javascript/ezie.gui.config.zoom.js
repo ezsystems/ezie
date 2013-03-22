@@ -79,6 +79,10 @@ ezie.gui.config.zoom_impl = function() {
             'height': (zoom * realHeight / 100) + 'px',
             'width': (zoom * realWidth / 100) + 'px'
         });
+        jImgBlock.find('img,div[class^="jcrop-"]').css({
+            'height': (zoom * realHeight / 100) + 'px',
+            'width': (zoom * realWidth / 100) + 'px'
+        });
 
         var gridH = $('#grid').height();
 
