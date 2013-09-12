@@ -80,7 +80,7 @@ class eZIEImagePreAction
         }
 
         // we could store the images in var/xxx/cache/public
-        $this->working_folder = eZSys::cacheDirectory() . "/public/ezie/" . $this->key;
+        $this->working_folder = eZSys::storageDirectory() . "/public/ezie/" . $this->key;
 
         $this->image_path =
             $this->working_folder . "/" .

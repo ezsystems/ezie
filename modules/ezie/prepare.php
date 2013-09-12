@@ -32,7 +32,7 @@ $absolute_image_path = eZSys::rootDir() . "/{$image_path}";
 $user = eZUser::instance();
 
 $working_folder_path =
-    eZSys::cacheDirectory() . '/public/ezie/' .
+    eZSys::storageDirectory() . '/public/ezie/' .
     $user->id() . "/{$attributeID}-{$version}";
 $working_folder_absolute_path = eZSys::rootDir() . "/{$working_folder_path}";
 
