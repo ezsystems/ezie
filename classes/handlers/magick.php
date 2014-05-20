@@ -4,7 +4,7 @@
  *
  * Implements the methods used by the editor (rotate, flip, etc) for image magick.
  *
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) eZ Systems AS.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  * @version //autogentag//
  * @package ezie
