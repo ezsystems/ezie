@@ -19,9 +19,8 @@ class eZIEImageToolWatermark extends eZIEImageAction
      */
     public static function filter( $region, $image )
     {
-        // the watermark images are in ezie/design/standard/images/watermarks
-        // @todo use ini file for image paths instead
-        $img_path = realpath( dirname( __FILE__ ) . "/../design/standard/images/watermarks" ) . "/" . $image;
+        // the watermark images could be in any extension in a subfolder design/*/images/watermarks
+        $img_path = realpath( self::eZImage( "watermarks/" . $image ));
 
         // retrieve image dimensions
         $analyzer = new ezcImageAnalyzer( $img_path );
@@ -42,5 +41,36 @@ class eZIEImageToolWatermark extends eZIEImageAction
             )
         );
     }
+
+    /**
+     * Mimic the ezimage() template operator and find a file that matches the given name
+     *
+     * @param string $filename
+     * @return string the full filepath
+     */
+    private static function eZImage( $filename )
+    {
+        $sys = eZSys::instance();
+        $skipSlash = true;
+        if ( $skipSlash && strlen( $sys->wwwDir() ) != 0 ) {
+            $skipSlash = false;
+        }
+
+        $bases = eZTemplateDesignResource::allDesignBases();
+        $triedFiles = array();
+        $fileInfo = eZTemplateDesignResource::fileMatch( $bases, 'images', $filename, $triedFiles );
+
+        if ( !$fileInfo ) {
+            eZLog::write( __METHOD__ . " : Image '$filename' does not exist in any design", 'error.log' );
+            eZLog::write( __METHOD__ . " : Tried files: " . implode( ', ', $triedFiles ), 'error.log' );
+            $siteDesign = eZTemplateDesignResource::designSetting( 'site' );
+            $imgPath = "design/$siteDesign/images/$filename";
+        } else {
+            $imgPath = $fileInfo['path'];
+        }
+
+        return htmlspecialchars( $skipSlash ? $imgPath : $sys->wwwDir() . '/' . $imgPath );
+    }
+
 }
 ?>
