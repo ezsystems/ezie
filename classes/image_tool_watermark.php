@@ -65,7 +65,9 @@ class eZIEImageToolWatermark extends eZIEImageAction
             eZLog::write( __METHOD__ . " : Tried files: " . implode( ', ', $triedFiles ), 'error.log' );
             $siteDesign = eZTemplateDesignResource::designSetting( 'site' );
             $imgPath = "design/$siteDesign/images/$filename";
-        } else {
+        }
+        else
+        {
             $imgPath = $fileInfo['path'];
         }
 
