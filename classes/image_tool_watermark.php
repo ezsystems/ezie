@@ -52,7 +52,7 @@ class eZIEImageToolWatermark extends eZIEImageAction
     {
         $sys = eZSys::instance();
         $skipSlash = true;
-        if ( $skipSlash && strlen( $sys->wwwDir() ) != 0 ) {
+        if ( $skipSlash && strlen( $sys->wwwDir() ) !== 0 ) {
             $skipSlash = false;
         }
 
