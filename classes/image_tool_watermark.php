@@ -52,7 +52,8 @@ class eZIEImageToolWatermark extends eZIEImageAction
     {
         $sys = eZSys::instance();
         $skipSlash = true;
-        if ( $skipSlash && strlen( $sys->wwwDir() ) !== 0 ) {
+        if ( $skipSlash && strlen( $sys->wwwDir() ) !== 0 )
+        {
             $skipSlash = false;
         }
 
@@ -60,7 +61,8 @@ class eZIEImageToolWatermark extends eZIEImageAction
         $triedFiles = array();
         $fileInfo = eZTemplateDesignResource::fileMatch( $bases, 'images', $filename, $triedFiles );
 
-        if ( !$fileInfo ) {
+        if ( !$fileInfo )
+        {
             eZLog::write( __METHOD__ . " : Image '$filename' does not exist in any design", 'error.log' );
             eZLog::write( __METHOD__ . " : Tried files: " . implode( ', ', $triedFiles ), 'error.log' );
             $siteDesign = eZTemplateDesignResource::designSetting( 'site' );
