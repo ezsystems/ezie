@@ -21,7 +21,27 @@ class eZIEImageToolWatermark extends eZIEImageAction
     {
         // the watermark images are in ezie/design/standard/images/watermarks
         // @todo use ini file for image paths instead
-        $img_path = realpath( dirname( __FILE__ ) . "/../design/standard/images/watermarks" ) . "/" . $image;
+
+        $image = 'watermarks/' . $image;
+
+        $bases = eZTemplateDesignResource::allDesignBases();
+        $triedFiles = array();
+        $fileInfo = eZTemplateDesignResource::fileMatch( $bases, 'images', $image, $triedFiles );
+
+        if ( !$fileInfo )
+        {
+            $tpl->warning( 'ezieWaterMark', "Image '$image' does not exist in any design" );
+            $tpl->warning( 'ezieWaterMark', "Tried files: " . implode( ', ', $triedFiles ) );
+            $siteDesign = eZTemplateDesignResource::designSetting( 'site' );
+            $img_path = "design/$siteDesign/images/$image";
+        }
+        else
+        {
+            $img_path = $fileInfo['path'];
+        }
+
+        $img_path = eZSys::siteDir() . $img_path;
+        $img_path = htmlspecialchars( $img_path );
 
         // retrieve image dimensions
         $analyzer = new ezcImageAnalyzer( $img_path );
