@@ -214,6 +214,57 @@ class eZIEEzcImageMagickHandler extends ezcImageImagemagickHandler implements eZ
             );
         }
     }
+
+    /**
+     * (non-PHPdoc)
+     * @see ezcImageImagemagickHandler::watermarkAbsolute()
+     */
+    public function watermarkAbsolute( $image, $posX, $posY, $width = false, $height = false )
+    {
+        if ( !is_string( $image ) || !file_exists( $image ) || !is_readable( $image ) )
+        {
+            throw new ezcBaseValueException( 'image', $image, 'string, path to an image file' );
+        }
+        if ( !is_int( $posX ) )
+        {
+            throw new ezcBaseValueException( 'posX', $posX, 'int' );
+        }
+        if ( !is_int( $posY ) )
+        {
+            throw new ezcBaseValueException( 'posY', $posY, 'int' );
+        }
+        if ( !is_int( $width ) && !is_bool( $width ) )
+        {
+            throw new ezcBaseValueException( 'width', $width, 'int/bool' );
+        }
+        if ( !is_int( $height ) && !is_bool( $height ) )
+        {
+            throw new ezcBaseValueException( 'height', $height, 'int/bool' );
+        }
+
+        $data = getimagesize( $this->getActiveResource() );
+
+        // Negative offsets
+        $posX = ( $posX >= 0 ) ? $posX : $data[0] + $posX;
+        $posY = ( $posY >= 0 ) ? $posY : $data[1] + $posY;
+
+        /*
+         * overridden to suppress third parameter
+         * @see https://issues.apache.org/jira/browse/ZETACOMP-55
+         */
+        $this->addFilterOption(
+            $this->getActiveReference(),
+            '-composite'
+        );
+
+        $this->addFilterOption(
+            $this->getActiveReference(),
+            '-geometry',
+            ( $width !== false ? $width : "" ) . ( $height !== false ? "x$height" : "" ) . "+$posX+$posY"
+        );
+
+        $this->addCompositeImage( $this->getActiveReference(), $image );
+    }
 }
 
 ?>

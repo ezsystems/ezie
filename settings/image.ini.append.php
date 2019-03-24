@@ -4,6 +4,7 @@
 # The settings must not be overriden in the extension.
 #
 [eZIE]
+
 watermarks[]=elephpant.png
 watermarks[]=ez-logo.png
 
